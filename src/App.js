@@ -12,7 +12,6 @@ class App extends React.Component {
                         <Route path="/" element={<Login/>} />
                         <Route path="/Page1" element={<HomePage/>} />
                     </Routes>
-                    aaaa
                 </div>
             </Router>
         )
