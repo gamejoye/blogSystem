@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Login from './function/login';
+import Way from './function/way';
 import HomePage from './containers/homePage';
 
 class App extends React.Component {
@@ -9,7 +9,8 @@ class App extends React.Component {
             <Router>
                 <div>
                     <Routes>
-                        <Route path="/" element={<Login/>} />
+                        <Route path="/login" element={<Way way="login"/>} />
+                        <Route path="/register" element={<Way way="register"/>} />
                         <Route path="/Page1" element={<HomePage/>} />
                     </Routes>
                 </div>

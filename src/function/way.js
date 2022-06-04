@@ -1,8 +1,8 @@
 import axios from 'axios';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import FunctionForm from '../form/functionForm';
 
-class Login extends React.Component {
+class Action extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -13,8 +13,9 @@ class Login extends React.Component {
     }
     handlerLogin() {
         const state = this.state;
+        const way = this.props.way;
         axios.defaults.withCredentials=true;
-        axios.post('http://localhost:8080/MyBlog/function/login',{
+        axios.post('http://localhost:8080/MyBlog/function/'+way,{
             username:state.username,
             password:state.password
         })
@@ -22,12 +23,15 @@ class Login extends React.Component {
             //判断是否跳转页面
             (res) => {
                 if((res.data == 'success')) {
-                    //验证成功，列出该用户的所有博客 
-                    window.location.href="/Page1"
+                    if(way == "login") {
+                        window.location.href = "/Page1";
+                    } else if(way == "register") {
+                        window.location.href = "/login";
+                    }
                 } else {
                     //验证失败，返回验证失败提示信息
                     this.setState({
-                        message: 'The user name or password is incorrect. Please enter it again'
+                        message: way=="login" ? 'The user name or password is incorrect. Please enter it again' : 'The user name already exists. Please register again'
                     })
                 }
             }
@@ -48,40 +52,17 @@ class Login extends React.Component {
     render() {
         return(
             <div>
-                <LoginForm 
+                <FunctionForm 
                         handlerUsernameOnChange={(value)=>{this.handlerUsernameOnChange(value)}}
                         handlerPasswordOnChange={(value)=>{this.handlerPasswordOnChange(value)}}
                         handlerSubmit={()=>this.handlerLogin()}
                         message={this.state.message}
+                        way = {this.props.way}
                 >
-                </LoginForm>
+                </FunctionForm>
             </div>
         )
     }
 }
 
-class LoginForm extends React.Component {
-
-    handlerUsernameOnChange(e) {
-        this.props.handlerUsernameOnChange(e.target.value);
-    }
-
-    handlerPasswordOnChange(e) {
-        this.props.handlerPasswordOnChange(e.target.value);
-    }
-
-    render() {
-        return(
-            <div>
-                <input onChange={(e)=>this.handlerUsernameOnChange(e)}></input>
-                <input type="password" onChange={(e)=>this.handlerPasswordOnChange(e)}></input>
-                <button onClick={()=>this.props.handlerSubmit()}>提交</button>
-                <p style={{color:'red'}}>{this.props.message}</p>
-            </div>
-        );
-    }
-}
-
-
-
-export default Login;
+export default Action;
