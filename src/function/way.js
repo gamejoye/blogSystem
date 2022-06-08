@@ -14,6 +14,16 @@ class Action extends React.Component {
     handlerLogin() {
         const state = this.state;
         const way = this.props.way;
+        if(this.state.username=='' || this.state.password==''){
+            this.setState({
+                message : 'The user name or password cannot be empty'
+            })
+            return;
+        } else {
+            this.setState({
+                message : ''
+            })
+        }
         axios.defaults.withCredentials=true;
         axios.post('http://localhost:8080/MyBlog/function/'+way,{
             username:state.username,
@@ -24,7 +34,7 @@ class Action extends React.Component {
             (res) => {
                 if((res.data == 'success')) {
                     if(way == "login") {
-                        window.location.href = "/Page1";
+                       window.location.href='/homepage';
                     } else if(way == "register") {
                         window.location.href = "/login";
                     }
