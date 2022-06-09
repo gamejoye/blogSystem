@@ -2,9 +2,10 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 
-import Way from './function/way';
+import Way from './action/way';
 import HomePage from './containers/homePage';
 import BlogBody from './containers/blogPage';
+import Add from './action/add'
 
 class App extends React.Component {
     render() {
@@ -16,6 +17,7 @@ class App extends React.Component {
                         <Route path="/register" element={<Way way="register" />} />
                         <Route path="/homepage" element={<HomePage />} />
                         <Route path="/blogpage" element={<BlogBody />} />
+                        <Route path="/addpage" element={<Add />} />
                     </Routes>
                 </div>
             </Router>

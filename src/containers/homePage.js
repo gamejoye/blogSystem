@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Add from '../action/add'
 
 const username = getCookie("username");
 
@@ -29,7 +30,6 @@ class HomePage extends React.Component {
         )
     }
 
-
     hanlderLiOnblur(e) {
         const article = e.target.innerHTML;
         for (let i = 0; i < this.state.informations.length; i++) {
@@ -45,6 +45,10 @@ class HomePage extends React.Component {
 
     hanlderLiOnclick() {
         document.getElementById("toBlogPage").click()
+    }
+
+    hanlderButtonOnclick() {
+        window.location.href='/addpage';
     }
 
 
@@ -68,6 +72,7 @@ class HomePage extends React.Component {
                     state={{ blog: this.state.blog }}
                     to={{ pathname: '/blogpage' }}
                 ></Link>
+                <button onClick={()=>this.hanlderButtonOnclick()}>Add a blog</button>
             </div>
         );
     }
