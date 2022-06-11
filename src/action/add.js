@@ -1,6 +1,6 @@
-import axios from 'axios';
 import React from 'react';
 import BlogForm  from '../form/blogForm';
+import { instance } from '../api/axiosConfig2';
 const username = getCookie("username");
 
 class Add extends React.Component {
@@ -12,6 +12,10 @@ class Add extends React.Component {
             ordered:1000,
             message:''
         };
+    }
+
+    componentDidMount() {
+        if(username == ""){window.location.href='/login'}
     }
 
     handlerArticlenameOnChange(value) {
@@ -35,7 +39,7 @@ class Add extends React.Component {
     handlerAdd() {
         const state = this.state;
         //axios请求spring后端进行博客添加
-        axios.post('http://localhost:8080/MyBlog/blogs/add',{
+        instance.post('http://localhost:8080/MyBlog/blogs/add',{
             article_name:state.article_name,
             username:username,
             content:state.content,

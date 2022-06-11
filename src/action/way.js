@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React from 'react';
 import FunctionForm from '../form/functionForm';
+import { instance } from '../api/axiosConfig';
 
 class Action extends React.Component {
     constructor(props) {
@@ -24,8 +25,8 @@ class Action extends React.Component {
                 message : ''
             })
         }
-        axios.defaults.withCredentials=true;
-        axios.post('http://localhost:8080/MyBlog/function/'+way,{
+        instance.defaults.withCredentials=true;
+        instance.post('http://localhost:8080/MyBlog/function/'+way,{
             username:state.username,
             password:state.password
         })

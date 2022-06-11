@@ -1,7 +1,6 @@
-import axios from 'axios';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Add from '../action/add'
+import { instance } from '../api/axiosConfig';
 
 const username = getCookie("username");
 
@@ -16,13 +15,13 @@ class HomePage extends React.Component {
     }
 
     componentDidMount() {
-        axios.defaults.withCredentials = true;
-        axios.get('http://localhost:8080/MyBlog/blogs/byName', {
+        instance.get('http://localhost:8080/MyBlog/blogs/byName', {
             params: {
                 username: username,
             }
         }).then(
             (res) => {
+                if(res.data == "not login") {window.location.href='/login'}
                 this.setState({
                     informations: res.data
                 })
@@ -34,7 +33,7 @@ class HomePage extends React.Component {
         const article = e.target.innerHTML;
         for (let i = 0; i < this.state.informations.length; i++) {
             if (article == this.state.informations[i].article_name) {
-                console.log(i);
+                //console.log(i);
                 this.setState({
                     blog: this.state.informations[i]
                 })
@@ -49,6 +48,11 @@ class HomePage extends React.Component {
 
     hanlderButtonOnclick() {
         window.location.href='/addpage';
+    }
+
+    hanlderLogoutOnclick() {
+        document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        window.location.href='/login'
     }
 
 
@@ -66,6 +70,7 @@ class HomePage extends React.Component {
         return (
             <div>
                 <h1>HomePage</h1>
+                <button onClick={()=>this.hanlderLogoutOnclick()}>logout</button>
                 <ol>{blogList}</ol>
                 <Link id='toBlogPage'
                     style={{display:'none'}}
