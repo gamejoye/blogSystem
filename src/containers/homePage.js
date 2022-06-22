@@ -1,39 +1,59 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { instance } from '../api/axiosConfig';
+import UserList from '../components/userList';
+import UserInteface from './userInterface';
 
 const username = getCookie("username");
+const isAD = getCookie("isAd");
 
 class HomePage extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            informations: [],
-            blog: {}
+            informations: [],//博客s
+            users: [],//用户s
+            blog: {},
+            isAD: isAD
         }
     }
 
     componentDidMount() {
+
+        //从数据库获取登陆用户博客
         instance.get('http://localhost:8080/MyBlog/blogs/byName', {
             params: {
                 username: username,
             }
         }).then(
             (res) => {
-                if(res.data == "not login") {window.location.href='/login'}
+                if (res.data == "not login") { window.location.href = '/login' }
                 this.setState({
                     informations: res.data
                 })
             }
         )
+
+        //从数据库获取管理员所管理的普通用户信息
+        if (isAD > 0) {
+            instance.get('http://localhost:8080/MyBlog/users/level', {
+                params: {
+                    level: isAD,
+                }
+            }).then(
+                (res) => {
+                    this.setState({
+                        users: res.data
+                    })
+                }
+            )
+        }
     }
 
     hanlderLiOnblur(e) {
         const article = e.target.innerHTML;
         for (let i = 0; i < this.state.informations.length; i++) {
             if (article == this.state.informations[i].article_name) {
-                //console.log(i);
                 this.setState({
                     blog: this.state.informations[i]
                 })
@@ -42,44 +62,43 @@ class HomePage extends React.Component {
         }
     }
 
-    hanlderLiOnclick() {
-        document.getElementById("toBlogPage").click()
-    }
-
-    hanlderButtonOnclick() {
-        window.location.href='/addpage';
-    }
-
-    hanlderLogoutOnclick() {
-        document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-        window.location.href='/login'
+    hanlderIdChangeOnclick() {
+        this.setState(state => ({
+            isAD : state.isAD==0 ? isAD : 0
+        }))
     }
 
 
     render() {
-        const informations = this.state.informations;
+        const users = this.state.users;
+        const isAD = this.state.isAD;
 
-        const blogList = informations.map((value, i) => {
+
+        const userList = users.map((user,i) => {
             return (
-                <li key={i} onMouseOver={(e) => { this.hanlderLiOnblur(e) }}
-                    onClick={() => { this.hanlderLiOnclick() }}
-                >{value.article_name}</li>
+                <li key={i} 
+                >{user.name}</li>
             )
         })
 
+
+        if(isAD==0) {
+            return (
+                <UserList
+                    userList = {userList}
+                    hanlderIdChangeOnclick = {() => {this.hanlderIdChangeOnclick()}}
+                ></UserList>
+            )
+        }
+
         return (
-            <div>
-                <h1>HomePage</h1>
-                <button onClick={()=>this.hanlderLogoutOnclick()}>logout</button>
-                <ol>{blogList}</ol>
-                <Link id='toBlogPage'
-                    style={{display:'none'}}
-                    state={{ blog: this.state.blog }}
-                    to={{ pathname: '/blogpage' }}
-                ></Link>
-                <button onClick={()=>this.hanlderButtonOnclick()}>Add a blog</button>
-            </div>
-        );
+            <UserInteface
+                hanlderIdChangeOnclick = {() => this.hanlderIdChangeOnclick()}
+                hanlderLiOnblur = {(e) => this.hanlderLiOnblur(e)}
+                informations = {this.state.informations}
+                blog = {this.state.blog}
+            ></UserInteface>
+        )
     }
 }
 

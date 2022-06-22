@@ -1,9 +1,8 @@
-import axios from 'axios';
 import React from 'react';
 import FunctionForm from '../form/functionForm';
 import { instance } from '../api/axiosConfig';
 
-class Action extends React.Component {
+class Way extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -12,6 +11,7 @@ class Action extends React.Component {
             message:''
         };
     }
+
     handlerLogin() {
         const state = this.state;
         const way = this.props.way;
@@ -48,6 +48,7 @@ class Action extends React.Component {
             }
         )
     }
+    
     handlerUsernameOnChange(value) {
         this.setState({
             username: value
@@ -63,7 +64,7 @@ class Action extends React.Component {
     render() {
         return(
             <div>
-                <FunctionForm 
+                <FunctionForm
                         handlerUsernameOnChange={(value)=>{this.handlerUsernameOnChange(value)}}
                         handlerPasswordOnChange={(value)=>{this.handlerPasswordOnChange(value)}}
                         handlerSubmit={()=>this.handlerLogin()}
@@ -76,4 +77,4 @@ class Action extends React.Component {
     }
 }
 
-export default Action;
+export default Way;
