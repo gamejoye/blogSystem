@@ -33,9 +33,11 @@ class Way extends React.Component {
         .then(
             //判断是否跳转页面
             (res) => {
-                if((res.data != 'failed')) {
+                if((res.data !== 'failed')) {
                     if(way == "login") {
-                        document.cookie = "username = "+res.data;
+                        const user = res.data;
+                        document.cookie = "username = "+user.name;
+                        document.cookie = "isAd = "+user.is_Admin;
                        window.location.href='/homepage';
                     } else if(way == "register") {
                         window.location.href = "/login";
