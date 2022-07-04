@@ -26,7 +26,7 @@ class Way extends React.Component {
             })
         }
         instance.defaults.withCredentials=true;
-        instance.post('http://112.74.55.177/Blogfunction/'+way,{
+        instance.post('http://112.74.55.177/Blog/function/'+way,{
             username:state.username,
             password:state.password
         })

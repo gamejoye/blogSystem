@@ -82,7 +82,7 @@ class HomePage extends React.Component {
         })
 
 
-        if(isAD==0) {
+        if(isAD!=0) {
             return (
                 <UserList
                     userList = {userList}
