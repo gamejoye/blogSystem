@@ -21,7 +21,7 @@ class HomePage extends React.Component {
     componentDidMount() {
 
         //从数据库获取登陆用户博客
-        instance.get('http://localhost:8080/MyBlog/blogs/byName', {
+        instance.get('http://112.74.55.177/Blog/blogs/byName', {
             params: {
                 username: username,
             }
@@ -36,7 +36,7 @@ class HomePage extends React.Component {
 
         //从数据库获取管理员所管理的普通用户信息
         if (isAD > 0) {
-            instance.get('http://localhost:8080/MyBlog/users/level', {
+            instance.get('http://112.74.55.177/Blog/users/level', {
                 params: {
                     level: isAD,
                 }

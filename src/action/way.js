@@ -26,15 +26,16 @@ class Way extends React.Component {
             })
         }
         instance.defaults.withCredentials=true;
-        instance.post('http://localhost:8080/MyBlog/function/'+way,{
+        instance.post('http://112.74.55.177/Blogfunction/'+way,{
             username:state.username,
             password:state.password
         })
         .then(
             //判断是否跳转页面
             (res) => {
-                if((res.data == 'success')) {
+                if((res.data != 'failed')) {
                     if(way == "login") {
+                        document.cookie = "username = "+res.data;
                        window.location.href='/homepage';
                     } else if(way == "register") {
                         window.location.href = "/login";

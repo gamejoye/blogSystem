@@ -39,7 +39,7 @@ class Add extends React.Component {
     handlerAdd() {
         const state = this.state;
         //axios请求spring后端进行博客添加
-        instance.post('http://localhost:8080/MyBlog/blogs/add',{
+        instance.post('http://112.74.55.177/Blog/blogs/add',{
             article_name:state.article_name,
             username:username,
             content:state.content,
