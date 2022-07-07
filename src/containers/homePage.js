@@ -14,7 +14,7 @@ class HomePage extends React.Component {
             informations: [],//博客s
             users: [],//用户s
             blog: {},
-            isAD: isAD
+            isAD: 0
         }
     }
 
