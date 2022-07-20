@@ -1,36 +1,27 @@
 import React from "react";
+import { useState } from "react";
+
 import { getInstance } from "../../utils/apis/axiosConfig";
 import TitleList from "./TitleList";
 import { baseUrl } from "../../constant";
+import { getCookie } from "../../utils/apis/getCookie";
 
-
-class Titles extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            titles: []
+function Titles(props) {
+    const [titles,setTitles] = useState([]);
+    const username = getCookie("username");
+    getInstance.get(baseUrl + 'titles/byName', {
+        params: {
+            username: username
         }
-    }
-    componentDidMount() {
-        const username = this.props.username;
-        getInstance.get(baseUrl+'titles/byName',{
-            params: {
-                username:username
-            }
-        }).then(
-            (res) => {
-                this.setState({
-                    titles:res.data
-                })
-            }
-        );
-    }
-    render() {
-        
-        return(
-            <TitleList titles={this.state.titles}></TitleList>
-        )
-    }
+    }).then(
+        (res) => {
+            setTitles(res.data);
+        }
+    );
+
+    return (
+        <TitleList titles={titles}></TitleList>
+    )
 }
 
-export default Titles;
+export default (Titles);

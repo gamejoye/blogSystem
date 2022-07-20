@@ -1,6 +1,5 @@
 import React from "react";
 import { useState } from "react";
-import { setUserName } from "../../redux/actions";
 
 import { baseUrl } from "../../constant";
 import { postInstance } from "../../utils/apis/axiosConfig";
@@ -18,8 +17,7 @@ function Way(props) {
             (res) => {
                 isSuccess = res.data;
                 if(isSuccess !== 'failed') {
-                    setUserName(isSuccess.name);
-                    props.setUserName(username);
+                    document.cookie="username="+isSuccess.name;
                 }
             }
         )

@@ -1,20 +1,52 @@
 import React from "react";
-import { connect } from "react-redux";
+import { useState, useEffect } from "react";
 
-import Titles from "../Titles";
+import PostCard from "./PostCard";
+
+import { getInstance } from "../../utils/apis/axiosConfig";
+import { baseUrl } from "../../constant";
+import { useNavigate } from "react-router-dom";
+import { getCookie } from "../../utils/apis/getCookie";
 
 
-class Home extends React.Component {
-    render() {
-        const username = this.props.username;
-        if(username === "") {
-            //
-            return <div>Home </div>
-        }
-        return <Titles username={username}></Titles>
-    }
+
+function Home(props) {
+    const navigate = useNavigate();
+    const gotoPath = (title)=> {
+        //window.location.href = '/post?title='+title;
+        navigate('/post?title='+title)
+    };
+    const [blogs, setBlogs] = useState([]);
+    const username = getCookie("username");
+
+    useEffect(() => {
+        console.log('home...');
+        getInstance.get(baseUrl + 'blogs/byName', {
+            params: {
+                username: username
+            }
+        }).then(
+            (res) => {
+                setBlogs(res.data);
+            }
+        )
+    },blogs);
+
+    const posts = blogs.map((blog, index) => {
+        return (
+            <div>
+                <PostCard
+                    blog={blog}
+                    key={index}
+                    onClick={() => {gotoPath(blog.article_name)}}
+                />
+            </div>
+        )
+    })
+    return (<div>
+        {posts}
+        Home
+    </div>)
 }
 
-export default connect(
-    (state) => {return {username:state.username}}
-)(Home);
+export default (Home);

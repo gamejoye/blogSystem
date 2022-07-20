@@ -1,15 +1,14 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { getCookie } from './utils/apis/getCookie';
 
-import { setUserName } from './redux/actions';
 
 import Main from './components/Main';
 import Way from './components/Way';
 
 class App extends React.Component {
     render() {
-        const username = this.props.username;
-        if(!username) {return <Way action="login" setUserName={this.props.setUserName}></Way>}
+        const username = getCookie("username");
+        if(!username) {return <Way action="login"></Way>}
         return (
             <div>
                 <Main></Main>
@@ -17,7 +16,4 @@ class App extends React.Component {
         )
     }
 }
-export default connect(
-    (state) => {return {username:state.username}},
-    {setUserName}
-)(App);
+export default(App);
