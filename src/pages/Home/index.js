@@ -8,8 +8,6 @@ import { baseUrl } from "../../constant";
 import { useNavigate } from "react-router-dom";
 import { getCookie } from "../../utils/apis/getCookie";
 
-
-
 function Home(props) {
     const navigate = useNavigate();
     const gotoPath = (title)=> {
@@ -20,7 +18,6 @@ function Home(props) {
     const username = getCookie("username");
 
     useEffect(() => {
-        console.log('home...');
         getInstance.get(baseUrl + 'blogs/byName', {
             params: {
                 username: username
@@ -30,14 +27,13 @@ function Home(props) {
                 setBlogs(res.data);
             }
         )
-    },blogs);
+    },[1]);
 
     const posts = blogs.map((blog, index) => {
         return (
-            <div>
+            <div key={index}>
                 <PostCard
                     blog={blog}
-                    key={index}
                     onClick={() => {gotoPath(blog.article_name)}}
                 />
             </div>
@@ -45,7 +41,6 @@ function Home(props) {
     })
     return (<div>
         {posts}
-        Home
     </div>)
 }
 

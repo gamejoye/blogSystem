@@ -8,6 +8,7 @@ import Way from './components/Way';
 class App extends React.Component {
     render() {
         const username = getCookie("username");
+        
         if(!username) {return <Way action="login"></Way>}
         return (
             <div>

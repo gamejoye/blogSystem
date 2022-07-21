@@ -6,6 +6,7 @@ function PostCard(props) {
         <div onClick={props.onClick}>
             <h1>{blog.article_name}</h1>
             <p>{blog.content}</p>
+            
         </div>
     )
 }
