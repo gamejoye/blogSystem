@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import { Button } from "antd";
 
 import { baseUrl } from "../../constant";
 import { postInstance } from "../../utils/apis/axiosConfig";
@@ -23,13 +24,15 @@ function Way(props) {
                 }
             }
         )
-        navigate('/');
+        setTimeout(() => {
+            navigate('/');
+        }, 1000);
     }
     return (
         <div>
             <b>UserName: </b><input onChange={(e)=>setUsername(e.target.value)}></input><br/>
             <b>PassWord: </b><input type="password" onChange={(e)=>setPassword(e.target.value)}></input><br/>
-            <button id="submit" onClick={handlerSubmit}>{action}</button><br/>
+            <Button id="submit" onClick={handlerSubmit}>{action}</Button><br/>
         </div>
     )
 }

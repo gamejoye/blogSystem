@@ -5,6 +5,7 @@ import Home from '../../pages/Home';
 import Titles from "../../pages/Titles";
 import Post from "../../pages/Post";
 import Creation from "../../pages/Creation";
+import Way from "../Way";
 
 class Main extends React.Component {
     render() {
@@ -16,6 +17,7 @@ class Main extends React.Component {
                         <Route path="/titles" element={<Titles />}></Route>
                         <Route path="/post" element={<Post />}></Route>
                         <Route path="/creation" element={<Creation />}></Route>
+                        <Route path="/login" element={<Way action="login"/>}></Route>
                         <Route path='*' element={<Navigate to='/' replace />} />
                     </Routes>
                 </div>

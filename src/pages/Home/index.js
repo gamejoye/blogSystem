@@ -1,6 +1,7 @@
 import React from "react";
 import { Button } from "antd";
 import 'antd/dist/antd.css';
+import './index.css'
 
 import { useState, useEffect } from "react";
 
@@ -12,10 +13,12 @@ import { useNavigate } from "react-router-dom";
 import { getCookie } from "../../utils/apis/getCookie";
 
 function Home(props) {
-    const navigate = useNavigate();
-    const [blogs, setBlogs] = useState([]);
-    const username = getCookie("username");
 
+    const username = getCookie("username");
+    const navigate = useNavigate();
+    if(username === "") {navigate('/login');}
+    const [blogs, setBlogs] = useState([]);
+    
     useEffect(() => {
         getInstance.get(baseUrl + 'blogs/byName', {
             params: {
@@ -39,7 +42,7 @@ function Home(props) {
         )
     })
     return (
-        <div style={{ textAlign: 'center' ,width: 600}}>
+        <div className="home">
             {posts}
             <Button onClick={() => { navigate('/titles') }}>文章</Button>
         </div>

@@ -3,25 +3,36 @@ import { Layout, Menu } from 'antd';
 import { useNavigate } from "react-router";
 
 import { baseUrl } from "../../constant";
+import { map } from "../../constant";
+import { getCookie } from "../../utils/apis/getCookie";
 
 const { Header } = Layout;
-const map = [
-    'home',
-    'titles'
-]
 
 function Nav() {
     const navigate = useNavigate();
+    const username = getCookie("username")
     function handlerButton(e) {
         const param = map[e.key];
+        if(param === 'logout') {
+            document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+            navigate('/');
+            return;
+        }
         navigate('/'+param);
+    }
+    if(!username) {
+        return (
+            <Header
+                style={{backgroundColor: 'white'}}
+            ><h1 style={{textAlign:'center'}}>Welcome to Gamejoye's blog project</h1></Header>
+        )
     }
     return (
         <Header>
             <Menu
                 theme="dark"
                 mode="horizontal"
-                items={new Array(2).fill(null).map((_, index) => {
+                items={new Array(3).fill(null).map((_, index) => {
                     return {
                         key: index,
                         label: map[index]
