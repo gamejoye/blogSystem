@@ -19,7 +19,7 @@ class ErrorBoundary extends React.Component {
 
     render() {
         if(this.state.error) {
-            return <h1 style={{textAlign:'center'}}>页面发生未知崩溃,请稍后访问</h1>
+            return <h1 style={{textAlign:'center'}}>Something went wrong.</h1>
         }
         return <App></App>
     }

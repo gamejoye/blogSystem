@@ -4,7 +4,7 @@ import axios from "axios";
 const getInstance = axios.create({
     timeout: 5000,
     baseURL: 'http://localhost:3000',
-    withCredentials: true
+    withCredentials: true,
 })
 
 getInstance.interceptors.response.use(function (config) {
@@ -14,7 +14,7 @@ getInstance.interceptors.response.use(function (config) {
     return Promise.reject(error);
 });
 
-export{
+export {
     getInstance
 };
 
@@ -32,6 +32,6 @@ postInstance.interceptors.request.use(function (config) {
     return Promise.reject(error);
 });
 
-export{
+export {
     postInstance
 };

@@ -4,6 +4,7 @@ import { Navigate, Route, Routes} from "react-router-dom";
 import Home from '../../pages/Home';
 import Titles from "../../pages/Titles";
 import Post from "../../pages/Post";
+import Creation from "../../pages/Creation";
 
 class Main extends React.Component {
     render() {
@@ -14,6 +15,7 @@ class Main extends React.Component {
                         <Route path="/" element={<Home />}></Route>
                         <Route path="/titles" element={<Titles />}></Route>
                         <Route path="/post" element={<Post />}></Route>
+                        <Route path="/creation" element={<Creation />}></Route>
                         <Route path='*' element={<Navigate to='/' replace />} />
                     </Routes>
                 </div>

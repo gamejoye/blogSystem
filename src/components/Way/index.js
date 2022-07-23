@@ -3,11 +3,13 @@ import { useState } from "react";
 
 import { baseUrl } from "../../constant";
 import { postInstance } from "../../utils/apis/axiosConfig";
+import { useNavigate } from "react-router";
 
 function Way(props) {
     const action = props.action;
     const [username,setUsername] = useState('');
     const [password,setPassword] = useState('');
+    const navigate = useNavigate();
     var isSuccess;
     function handlerSubmit() {
         postInstance.post(baseUrl+'function/'+action,{
@@ -21,6 +23,7 @@ function Way(props) {
                 }
             }
         )
+        navigate('/');
     }
     return (
         <div>

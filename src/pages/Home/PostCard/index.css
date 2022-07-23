@@ -1,0 +1,13 @@
+.card {
+    overflow : hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    margin: 10px;
+    margin-left: 20%;
+    width: 60%;
+}
+
+.layout {
+    align-items: center;
+}

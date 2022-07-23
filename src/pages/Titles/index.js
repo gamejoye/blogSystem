@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
+import { useNavigate } from "react-router";
 
 import TitleList from "./TitleList";
 import Search from "./Search";
@@ -13,6 +14,7 @@ function Titles(props) {
     const [totalTitles, setTotalTitles] = useState([]);
     const [titles, setTitles] = useState([]);
     const [page, setPage] = useState('');
+    const navigate = useNavigate();
     const username = getCookie("username");
     useEffect(() => {
         getInstance.get(baseUrl + 'titles/byName', {
@@ -27,9 +29,9 @@ function Titles(props) {
         );
     }, [1]);
 
-    function hanlderSearch() {
+    useEffect(() => {
         if (page.trim() == '') {
-            alert('输入值不能为空!');
+            setTitles(totalTitles);
             return;
         }
         var temporary = [];
@@ -39,15 +41,13 @@ function Titles(props) {
             }
         }
         setTitles(temporary);
-    }
+    }, [page]);
 
     return (
         <div>
             <Search
                 page={page}
                 setPage={setPage}
-                search={() => { hanlderSearch() }}
-                reset={() => { setTitles(totalTitles) }}
             ></Search>
             <TitleList titles={titles}></TitleList>
         </div>

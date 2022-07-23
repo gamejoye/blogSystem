@@ -6,23 +6,23 @@ import { getInstance } from "../../utils/apis/axiosConfig";
 import { baseUrl } from "../../constant";
 
 function Post(props) {
-    const location = useLocation();
-    const titlename = location.search.split('=');
+    const localtion = useLocation();
+    const {title} = localtion.state;
     const navigate = useNavigate();
     const [blog,setBlog] = useState({});
     useEffect(() => {
-        getInstance.get(baseUrl+'blogs/'+'article_name',{
+        getInstance.get(baseUrl+'blogs/'+'title',{
             params: {
-                article_name: titlename[1]
+                titles: title
             }
         }).then(
             (res) => { setBlog(res.data); }
         )
     },[1]);
     return (<div>
-        <h1>{blog.article_name}</h1>
-        <p>{blog.content}</p>
         <button onClick={() => {navigate('/')}}>Home</button>
+        <h1>{blog.title}</h1>
+        <p>{blog.content}</p>
     </div>)
 }
 
