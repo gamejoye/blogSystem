@@ -5,3 +5,15 @@ export const map = [
     'titles',
     'logout'
 ]
+
+export function mapToindex(str) {
+    switch (str) {
+        case '/':
+            return 0;
+        case 'titles':
+            return 1;
+        default:
+            return 2;
+    }
+}
+

@@ -44,7 +44,6 @@ function Home(props) {
     return (
         <div className="home">
             {posts}
-            <Button onClick={() => { navigate('/titles') }}>文章</Button>
         </div>
     )
 }
