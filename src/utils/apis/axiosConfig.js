@@ -3,7 +3,7 @@ import axios from "axios";
 //get请求axios实例
 const getInstance = axios.create({
     timeout: 5000,
-    baseURL: 'http://localhost:3000',
+    baseURL: 'http://112.74.55.177:3000',
     withCredentials: true,
 })
 
@@ -21,7 +21,7 @@ export {
 //post请求axios实例
 const postInstance = axios.create({
     timeout: 5000,
-    baseURL: 'http://localhost:3000',
+    baseURL: 'http://112.74.55.177:3000',
     withCredentials: true
 })
 

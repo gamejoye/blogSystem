@@ -3,7 +3,8 @@ export const baseUrl = 'http://localhost:8080/MyBlog/';
 export const map = [
     'home',
     'titles',
-    'logout'
+    'aboutme',
+    'logout',
 ]
 
 export function mapToindex(str) {
@@ -12,8 +13,10 @@ export function mapToindex(str) {
             return 0;
         case 'titles':
             return 1;
-        default:
+        case 'aboutme':
             return 2;
+        default:
+            return 3;
     }
 }
 

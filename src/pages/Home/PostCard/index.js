@@ -1,5 +1,5 @@
 import React from "react";
-import { Divider, Card } from "antd";
+import { Divider } from "antd";
 import 'antd/dist/antd.css';
 import './index.css'
 
@@ -7,13 +7,13 @@ function PostCard(props) {
     const blog = props.blog;
     return (
         <div>
-            <Card
-                title={blog.title}
-                extra={<a onClick={props.onClick}>Detail</a>}
+            <li
+                onClick={props.onClick}
                 className="card"
-            >
-                <p>{blog.content}</p>
-            </Card>
+            >   
+                <h1 className="h1">{blog.title}</h1>
+                <p className="p">{blog.content}</p>
+            </li>
         </div>
     )
 }

@@ -1,16 +1,15 @@
 import React from 'react';
-import { getCookie } from './utils/apis/getCookie';
 
 import Main from './components/Main';
 import Nav from './components/Nav';
-import { Layout } from 'antd';
+import './App.css'
 
 function App(props) {
     return (
-        <Layout>
+        <div className='app'>
             <Nav />
             <Main />
-        </Layout>
+        </div>
     )
 }
 export default (App);

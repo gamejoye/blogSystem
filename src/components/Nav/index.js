@@ -1,34 +1,37 @@
 import React from "react";
 import { Layout, Menu } from 'antd';
-import { useLocation, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
+import './index.css'
 
-import { baseUrl } from "../../constant";
 import { map } from "../../constant";
-import { mapToindex } from "../../constant";
 import { getCookie } from "../../utils/apis/getCookie";
 
 const { Header } = Layout;
 
 function Nav() {
     const navigate = useNavigate();
-    const username = getCookie("username")
-    const pathname = useLocation().pathname;
-    const index = mapToindex(pathname)+"";
-    console.log(pathname+"  "+index);
+    const username = getCookie("username");
     function handlerButton(e) {
         const param = map[e.key];
-        if(param === 'logout') {
-            document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-            navigate('/');
+        if (param === 'logout') {
+            setTimeout(() => {
+                document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+                navigate('/');
+            }, 1000);
             return;
         }
-        navigate('/'+param);
+        navigate('/' + param);
     }
-    if(!username) {
+    if (!username) {
         return (
-            <Header
-                style={{backgroundColor: 'white'}}
-            ><h1 style={{textAlign:'center'}}>Welcome to Gamejoye's blog project</h1></Header>
+            <div>
+                <div
+                    className="notLogIn"
+                ><h1
+                    className="notLogInh1"
+                >Welcome to Gamejoye's blog project</h1>
+                </div>
+            </div>
         )
     }
     return (
@@ -36,8 +39,7 @@ function Nav() {
             <Menu
                 theme="dark"
                 mode="horizontal"
-                defaultSelectedKeys={[index]}
-                items={new Array(3).fill(null).map((_, index) => {
+                items={new Array(4).fill(null).map((_, index) => {
                     return {
                         key: index,
                         label: map[index],
@@ -47,7 +49,6 @@ function Nav() {
             ></Menu>
         </Header>
     )
-
 }
 
 export default Nav;
