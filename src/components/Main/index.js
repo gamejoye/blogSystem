@@ -6,6 +6,7 @@ import Titles from "../../pages/Titles";
 import Post from "../../pages/Post";
 import Creation from "../../pages/Creation";
 import Way from "../../pages/Way";
+import AboutMe from "../../pages/About/AboutMe";
 
 class Main extends React.Component {
     render() {
@@ -17,6 +18,7 @@ class Main extends React.Component {
                     <Route path="/post" element={<Post />}></Route>
                     <Route path="/creation" element={<Creation />}></Route>
                     <Route path="/login" element={<Way action="login" />}></Route>
+                    <Route path="/aboutme" element={<AboutMe/>}></Route>
                     <Route path='*' element={<Navigate to='/' replace />} />
                 </Routes>
             </Suspense>
