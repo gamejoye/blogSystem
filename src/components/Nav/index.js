@@ -16,7 +16,7 @@ function Nav() {
         if (param === 'logout') {
             setTimeout(() => {
                 document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-                navigate('/');
+                navigate('/login');
             }, 1000);
             return;
         }

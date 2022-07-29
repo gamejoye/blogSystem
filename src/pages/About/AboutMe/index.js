@@ -1,63 +1,44 @@
 import React from "react";
-import { getInstance, postInstance } from "../../../utils/apis/axiosConfig";
-import { baseUrl } from "../../../constant";
-
-import { useEffect, useState } from "react";
-import { getCookie } from "../../../utils/apis/getCookie";
+import { Button, Input, Radio } from "antd";
 
 function AboutMe(props) {
-    const username = getCookie("username");
-
-    const [aboutMe, setAboutMe] = useState('');
-    const [isEdit, setEdit] = useState(false);
-    const [preAboutMe, setPreAboutMe] = useState('');
-    useEffect(() => {
-        getInstance.get(baseUrl + 'user/' + 'introduction', {
-            params: {
-                username: username
-            }
-        }
-        ).then(
-            (res) => {
-                setAboutMe(res.data);
-                setPreAboutMe(res.data);
-            }
-        )
-    }, [1]);
-
-    function handlerSubmit() {
-        postInstance.post(baseUrl + 'user/' + 'edit', {
-            username: username,
-            aboutMe: aboutMe
-        });
-        setPreAboutMe(aboutMe);
-        setEdit(false);
-    }
-
-    function handlerCancel() {
-        setEdit(false);
-        setAboutMe(preAboutMe);
-    }
-
+    const preState = props.preState;
+    const isEdit = props.isEdit;
     return (
         <div>
-            <h2>Self-Introduction:</h2>
-            {isEdit &&
-                <div>
-                    <input
-                        defaultValue={preAboutMe}
-                        onChange={(e) => setAboutMe(e.target.value)}
-                    />
-                    <button onClick={() => handlerSubmit()}>Submit</button>
-                    <button onClick={() => handlerCancel()}>Cancel</button>
-                </div>
-            }
-            {!isEdit &&
-                <div>
-                    <p>{aboutMe}</p>
-                    <button onClick={() => setEdit(true)}>Edit</button>
-                </div>
-            }
+            <h1>Self-Introduction:</h1>
+            <div>
+                <p>个人简介:</p>
+                {(isEdit & (1 << 0) &&
+                    <div>
+                        <input
+                            defaultValue={preState["aboutMe"]}
+                            onChange={(e) => props.setAboutMe(e.target.value)}
+                        />
+                        <button onClick={() => props.handlerSubmit("aboutMe", 0)}>Submit</button>
+                        <button onClick={() => props.handlerCancel("aboutMe", 0)}>Cancel</button>
+                    </div>) ||
+                    <div>
+                        <p>{props.preState["aboutMe"]}</p>
+                        <button onClick={() => props.setEdit(isEdit ^ (1 << 0))}>Edit</button>
+                    </div>
+                }
+                <p>性别:</p>
+                {(isEdit & (1 << 1) &&
+                    <div>
+                        <Radio.Group onChange={(e) => (props.setSex(e.target.value))} defaultValue={preState["sex"]}>
+                            <Radio value={'男'}>男</Radio>
+                            <Radio value={'女'}>女</Radio>
+                        </Radio.Group>
+                        <button onClick={() => props.handlerSubmit("sex", 1)}>Submit</button>
+                        <button onClick={() => props.handlerCancel("sex", 1)}>Cancel</button>
+                    </div>) ||
+                    <div>
+                        <p>{props.preState["sex"]}</p>
+                        <button onClick={() => props.setEdit(isEdit ^ (1 << 1))}>Edit</button>
+                    </div>
+                }
+            </div>
         </div>
     )
 }
