@@ -1,0 +1,23 @@
+.aboutMe {
+    height: 120px;
+    width: 60%;
+}
+
+.calendar {
+    width: 15%;
+    background-color: rgba(19, 13, 13, 0.158);
+    color: aliceblue;
+}
+
+.ant-picker {
+    border: 1px solid ;
+}
+
+.ant-picker-input > input {
+    color: white;
+    text-align: center;
+}
+
+.anticon {
+    color: white
+}

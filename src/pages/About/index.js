@@ -58,6 +58,7 @@ function About(props) {
                 setEdit = {setEdit}
                 setAboutMe = {setAboutMe}
                 setSex = {setSex}
+                setBirthday = {setBirthday}
                 preState = {preState}
                 handlerCancel = {handlerCancel}
                 handlerSubmit = {handlerSubmit}

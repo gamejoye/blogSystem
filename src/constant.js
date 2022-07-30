@@ -4,7 +4,7 @@ export const Urlnp = 'http://localhost:8080/';
 export const map = [
     'home',
     'titles',
-    'aboutme',
+    'about',
     'logout',
 ]
 
