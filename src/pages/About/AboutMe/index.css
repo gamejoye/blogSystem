@@ -21,3 +21,16 @@
 .anticon {
     color: white
 }
+
+.edit {
+   display: none; 
+}
+
+button {
+    margin-left: 5%;
+}
+
+.para {
+    margin: 1%;
+    margin-left: 3%;
+}

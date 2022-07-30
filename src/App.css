@@ -14,7 +14,8 @@
 }
 
 p {
-    color:white
+    color:white;
+    display: inline;
 }
 
 h1 {
