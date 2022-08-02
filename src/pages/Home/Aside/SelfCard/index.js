@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
+import { useNavigate } from "react-router";
 import './index.css'
 
 import { getInstance } from "../../../../utils/apis/axiosConfig";
@@ -9,6 +10,7 @@ import { baseUrl } from "../../../../constant";
 function SelfCard(props) {
     const username = getCookie("username");
     const [aboutMe, setAboutMe] = useState('');
+    const navigate = useNavigate();
     useEffect(() => {
         getInstance.get(baseUrl + 'user/introduction/aboutMe', {
             params: {
@@ -24,6 +26,7 @@ function SelfCard(props) {
     return (
         <div
             className="selfcard"
+            onClick={() => {navigate('/about')}}
         >
             <p className="self-p">
                 <b>个人简介:&nbsp;&nbsp;</b>

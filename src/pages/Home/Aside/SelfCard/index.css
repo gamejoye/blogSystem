@@ -1,11 +1,19 @@
 .selfcard {
     margin: 3%;
     height: 11%;
-    width: 75%;
+    width: 70%;
     border-radius:25px 25px 25px 25px;
     background-image: url('../../../../images/bg1.jpeg');
     background-size: cover;
     overflow-y: scroll;
+}
+
+.selfcard:hover {
+    margin-left: 2%;
+    margin-right: 2%;
+    width: 72%;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, .25);
+    transition: all .2s ease-in-out;
 }
 
 .self-p {

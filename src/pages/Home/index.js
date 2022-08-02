@@ -41,7 +41,7 @@ function Home(props) {
     })
     return (
         <div className="home">
-            <div className="posts">
+            <div className="middle">
                 {posts}
             </div>
             <div className="right">
