@@ -25,7 +25,7 @@ function AboutMe(props) {
                     </div>) ||
                     <div className="para">
                         <span>
-                            <p>{props.preState["aboutMe"]}</p>
+                            <p className="p">{props.preState["aboutMe"]}</p>
                             <button
                                 id="aboutMeEdit"
                                 onClick={() => props.setEdit(isEdit ^ (1 << 0))}
@@ -45,7 +45,7 @@ function AboutMe(props) {
                     </div>) ||
                     <div className="para">
                         <span>
-                            <p>{props.preState["sex"]}</p>
+                            <p className="p">{props.preState["sex"]}</p>
                             <button
                                 id="sexEdit"
                                 onClick={() => props.setEdit(isEdit ^ (1 << 1))}
@@ -66,7 +66,7 @@ function AboutMe(props) {
                     </div> ||
                     <div className="para">
                         <span>
-                            <p>{props.preState["birthday"]}</p>
+                            <p className="p">{props.preState["birthday"]}</p>
                             <button
                                 id="birthdayEdit"
                                 onClick={() => props.setEdit(isEdit ^ (1 << 2))}

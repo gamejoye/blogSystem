@@ -26,11 +26,11 @@
    display: none; 
 }
 
-button {
-    margin-left: 5%;
-}
-
-.para {
+.para  {
     margin: 1%;
     margin-left: 3%;
+}
+
+.p {
+    display: inline;
 }

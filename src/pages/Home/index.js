@@ -1,11 +1,10 @@
 import React from "react";
-import { Button } from "antd";
-import 'antd/dist/antd.css';
 import './index.css'
 
 import { useState, useEffect } from "react";
 
 import PostCard from "./PostCard";
+import SelfCard from "./Aside/SelfCard";
 
 import { getInstance } from "../../utils/apis/axiosConfig";
 import { baseUrl } from "../../constant";
@@ -16,9 +15,9 @@ function Home(props) {
 
     const username = getCookie("username");
     const navigate = useNavigate();
-    if(username === "") {navigate('/login');}
+    if (username === "") { navigate('/login'); }
     const [blogs, setBlogs] = useState([]);
-    
+
     useEffect(() => {
         getInstance.get(baseUrl + 'blogs/byName', {
             params: {
@@ -33,17 +32,21 @@ function Home(props) {
 
     const posts = blogs.map((blog, index) => {
         return (
-            <div key={index} >
-                <PostCard
-                    blog={blog}
-                    onClick={() => { navigate('/post?title=' + blog.title, { state: { title: blog.title } }) }}
-                />
-            </div>
+            <PostCard
+                key = {index}
+                blog={blog}
+                onClick={() => { navigate('/post?title=' + blog.title, { state: { title: blog.title } }) }}
+            />
         )
     })
     return (
         <div className="home">
-            {posts}
+            <div className="posts">
+                {posts}
+            </div>
+            <div className="right">
+                <SelfCard/>
+            </div>
         </div>
     )
 }

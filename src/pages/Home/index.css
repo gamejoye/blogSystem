@@ -1,11 +1,12 @@
-.home {
+.posts {
+    width: 65%;
     text-align: center;
 }
 
-h1 {
-    color: white;
+.home {
+    display: flex;
 }
 
-p {
-    color: white;
+.right {
+    width: 35%;
 }
