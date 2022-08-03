@@ -18,7 +18,7 @@ function SelfCard(props) {
             }
         }).then(
             (res) => {
-                setAboutMe(res.data);
+                res.data ? setAboutMe(res.data):setAboutMe('暂无简介');
             }
         )
     }, [1]);
@@ -30,7 +30,7 @@ function SelfCard(props) {
         >
             <p className="self-p">
                 <b>个人简介:</b>
-                <p>{aboutMe ? aboutMe:'暂无简介'}</p>
+                {aboutMe}
             </p>
         </div>
     )
