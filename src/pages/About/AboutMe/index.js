@@ -3,6 +3,8 @@ import { Radio, DatePicker } from "antd";
 import moment from "moment";
 import './index.css'
 
+import Unedited from "./Unedited";
+
 const dateForm = 'YYYY-MM-DD';
 
 function AboutMe(props) {
@@ -12,7 +14,7 @@ function AboutMe(props) {
         <div>
             <h1>Self-Introduction:</h1>
             <div>
-                <p>个人简介:</p>
+                <p>个人介绍:</p>
                 {(isEdit & (1 << 0) &&
                     <div className="para">
                         <textarea
@@ -23,15 +25,11 @@ function AboutMe(props) {
                         <button onClick={() => props.handlerSubmit("aboutMe", 0)}>Submit</button>
                         <button onClick={() => props.handlerCancel("aboutMe", 0)}>Cancel</button>
                     </div>) ||
-                    <div className="para">
-                        <span>
-                            <p className="p">{props.preState["aboutMe"]}</p>
-                            <button
-                                id="aboutMeEdit"
-                                onClick={() => props.setEdit(isEdit ^ (1 << 0))}
-                            >Edit</button>
-                        </span>
-                    </div>
+                    <Unedited
+                        preState={preState}
+                        type="aboutMe"
+                        setEdit={props.setEdit}
+                    />
                 }
                 <p>性别:</p>
                 {(isEdit & (1 << 1) &&
@@ -43,15 +41,11 @@ function AboutMe(props) {
                         <button onClick={() => props.handlerSubmit("sex", 1)}>Submit</button>
                         <button onClick={() => props.handlerCancel("sex", 1)}>Cancel</button>
                     </div>) ||
-                    <div className="para">
-                        <span>
-                            <p className="p">{props.preState["sex"]}</p>
-                            <button
-                                id="sexEdit"
-                                onClick={() => props.setEdit(isEdit ^ (1 << 1))}
-                            >Edit</button>
-                        </span>
-                    </div>
+                    <Unedited
+                        preState={preState}
+                        type="sex"
+                        setEdit={props.setEdit}
+                    />
                 }
                 <p>生日:</p>
                 {(isEdit & (1 << 2)) &&
@@ -64,15 +58,11 @@ function AboutMe(props) {
                         <button onClick={() => props.handlerSubmit("birthday", 2)}>Submit</button>
                         <button onClick={() => props.handlerCancel("birthday", 2)}>Cancel</button>
                     </div> ||
-                    <div className="para">
-                        <span>
-                            <p className="p">{props.preState["birthday"]}</p>
-                            <button
-                                id="birthdayEdit"
-                                onClick={() => props.setEdit(isEdit ^ (1 << 2))}
-                            >Edit</button>
-                        </span>
-                    </div>
+                    <Unedited
+                        preState={preState}
+                        type="birthday"
+                        setEdit={props.setEdit}
+                    />
                 }
             </div>
         </div>

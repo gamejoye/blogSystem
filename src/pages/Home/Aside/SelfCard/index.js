@@ -29,8 +29,8 @@ function SelfCard(props) {
             onClick={() => {navigate('/about')}}
         >
             <p className="self-p">
-                <b>个人简介:&nbsp;&nbsp;</b>
-                {aboutMe}
+                <b>个人简介:</b>
+                <p>{aboutMe ? aboutMe:'暂无简介'}</p>
             </p>
         </div>
     )
