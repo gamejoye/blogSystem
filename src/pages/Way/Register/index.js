@@ -5,13 +5,11 @@ import './index.css'
 
 import { baseUrl } from "../../../constant";
 import { postInstance } from "../../../utils/apis/axiosConfig";
-import { useNavigate } from "react-router";
 
 function Register(props) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [repeatPassword, setRepeatPassword] = useState('');
-    const navigate = useNavigate();
     function handlerSubmit() {
         if(username.length < 6) {
             alert('用户名太短');

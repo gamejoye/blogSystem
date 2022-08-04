@@ -6,7 +6,6 @@ import './index.css'
 import { baseUrl } from "../../../constant";
 import { postInstance } from "../../../utils/apis/axiosConfig";
 import { useNavigate } from "react-router";
-import { getCookie } from "../../../utils/apis/getCookie";
 
 function Login(props) {
     const [username, setUsername] = useState('');
