@@ -7,13 +7,12 @@ import './index.css'
 
 import { map } from "../../../constant";
 
-const { Header } = Layout;
-
 function Logined(props) {
     const navigate = useNavigate();
     const username = props.username;
-    const handlerButton = (e) => {
-        const param = map[e.key];
+    const handlerButton = (value) => {
+        console.log(value);
+        const param = map[value];
         if (param === 'logout') {
             setTimeout(() => {
                 document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
@@ -24,19 +23,12 @@ function Logined(props) {
         navigate('/' + param);
     }
     return (
-        <Header>
-            <Menu
-                theme="dark"
-                mode="horizontal"
-                items={new Array(4).fill(null).map((_, index) => {
-                    return {
-                        key: index,
-                        label: map[index],
-                    };
-                })}
-                onClick={(e) => handlerButton(e)}
-            ></Menu>
-        </Header>
+        <ul className="menu">
+            <li><a onClick={(e) => handlerButton(e.target.innerHTML)}>主页</a></li>
+            <li><a onClick={(e) => handlerButton(e.target.innerHTML)}>标题</a></li>
+            <li ><a onClick={(e) => handlerButton(e.target.innerHTML)}>个人资料</a></li>
+            <li style={{float:'right'}}><a onClick={(e) => handlerButton(e.target.innerHTML)}>退出</a></li>
+        </ul>
     )
 }
 

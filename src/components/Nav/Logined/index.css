@@ -1,0 +1,25 @@
+.menu {
+    height: 64px;
+    list-style-type: none;
+    margin: 0;
+    padding: 0px;
+    overflow: hidden;
+    background-color: #333;
+}
+.menu li {
+    border-right: 1px solid #bbb;
+    padding-top: 13px;
+    height: 64px;
+    float: left;
+}
+.menu li a {
+    font-size: 25px;
+    height: 48px;
+    color: white;
+    padding: 16px 26px;
+    text-decoration: none;
+}
+.menu li a:hover {
+    background-color: #111;
+}
+
