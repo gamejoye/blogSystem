@@ -32,16 +32,21 @@ function Login(props) {
             <div className="login-second">
                 <h1>Login</h1>
                 <Input
+                    maxLength={30}
                     placeholder="Enter your username"
+                    value={username.trim().replace(/[^a-zA-Z0-9]/, "")}
                     onChange={(e) => { setUsername(e.target.value) }}
                     className="login-third"
                 />
                 <Input.Password placeholder="enter password"
+                    maxLength={30}
+                    value={password.trim().replace(/[^a-zA-Z0-9]/, "")}
                     onChange={(e) => { setPassword(e.target.value) }}
                     className="login-third"
                 />
                 <Button id="submit"
                     onClick={handlerSubmit}
+                    value={username.trim().replace(/[^a-zA-Z0-9]/, "")}
                     className="login-third"
                 >login</Button><br />
                 <p>没有用户?<a onClick={props.toRegister}>注册</a></p>

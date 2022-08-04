@@ -5,6 +5,7 @@ import './index.css'
 
 import { baseUrl } from "../../../constant";
 import { postInstance } from "../../../utils/apis/axiosConfig";
+import Password from "antd/lib/input/Password";
 
 function Register(props) {
     const [username, setUsername] = useState('');
@@ -42,15 +43,21 @@ function Register(props) {
             <div className="register-second">
                 <h1>Register</h1>
                 <Input
+                    maxLength={30}
                     placeholder="Enter your username"
+                    value={username.trim().replace(/[^a-zA-Z0-9]/, "")}
                     onChange={(e) => { setUsername(e.target.value) }}
                     className="register-third"
                 />
                 <Input.Password placeholder="enter password"
+                    maxLength={30}
+                    value={password.trim().replace(/[^a-zA-Z0-9]/, "")}
                     onChange={(e) => { setPassword(e.target.value) }}
                     className="register-third"
                 />
                 <Input.Password placeholder="enter password again"
+                    maxLength={30}
+                    value={repeatPassword.trim().replace(/[^a-zA-Z0-9]/, "")}
                     onChange={(e) => { setRepeatPassword(e.target.value); }}
                     className="register-third"
                 />
