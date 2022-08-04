@@ -1,11 +1,7 @@
 import React from "react";
 import { useState } from "react";
-import { Button, Input } from "antd";
 import './index.css'
 
-import { baseUrl } from "../../constant";
-import { postInstance } from "../../utils/apis/axiosConfig";
-import { useNavigate } from "react-router";
 import Login from "./Login";
 import Register from "./Register";
 

@@ -1,7 +1,6 @@
 import React from "react";
 import './index.css'
 
-import { Layout, Menu } from 'antd';
 import { useNavigate } from "react-router";
 import './index.css'
 

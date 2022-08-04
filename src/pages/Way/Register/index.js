@@ -5,7 +5,6 @@ import './index.css'
 
 import { baseUrl } from "../../../constant";
 import { postInstance } from "../../../utils/apis/axiosConfig";
-import Password from "antd/lib/input/Password";
 
 function Register(props) {
     const [username, setUsername] = useState('');
