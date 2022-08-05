@@ -1,5 +1,6 @@
 import React from "react";
 import './index.css'
+import { HomeOutlined } from "@ant-design/icons";
 
 import { useNavigate } from "react-router";
 import './index.css'
@@ -10,7 +11,6 @@ function Logined(props) {
     const navigate = useNavigate();
     const username = props.username;
     const handlerButton = (value) => {
-        console.log(value);
         const param = map[value];
         if (param === 'logout') {
             setTimeout(() => {
@@ -23,9 +23,9 @@ function Logined(props) {
     }
     return (
         <ul className="menu">
-            <li><a onClick={(e) => handlerButton(e.target.innerHTML)}>主页</a></li>
-            <li><a onClick={(e) => handlerButton(e.target.innerHTML)}>标题</a></li>
-            <li ><a onClick={(e) => handlerButton(e.target.innerHTML)}>个人资料</a></li>
+            <li className="nav-home"><a onClick={() => handlerButton("主页")}><HomeOutlined/></a></li>
+            <li><a onClick={() => handlerButton("文章")}>文章</a></li>
+            <li><a onClick={() => handlerButton("个人资料")}>个人资料</a></li>
             <li style={{float:'right'}}><a onClick={(e) => handlerButton(e.target.innerHTML)}>退出</a></li>
         </ul>
     )

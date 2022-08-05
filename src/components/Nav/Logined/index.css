@@ -11,12 +11,23 @@
     height: 64px;
     float: left;
 }
+
+.menu .nav-home {
+    padding-top: 20px;
+    height: 64px;
+    float: left;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
 .menu li a {
     font-size: 25px;
     color: white;
     padding: 16px 26px;
     text-decoration: none;
 }
+
+
 .menu li a:hover {
     border-radius:25px 25px 25px 25px;
     background-color: rgb(6, 54, 103);

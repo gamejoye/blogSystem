@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router";
 import { getInstance } from "../../utils/apis/axiosConfig";
 import './index.css'
+import Comments from "../Comments";
 
 import { baseUrl } from "../../constant";
 
@@ -26,6 +27,7 @@ function Post(props) {
             <div className="content">
                 <p className="p">{blog.content}</p>
             </div>
+            <Comments title={title}/>
         </div>
     )
 }
