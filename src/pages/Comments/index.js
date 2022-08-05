@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { baseUrl } from "../../constant";
 import { getCookie } from "../../utils/apis/getCookie";
+import './index.css'
 
 import CommentShow from "./CommentShow";
 
@@ -19,7 +20,6 @@ function Comments(props) {
             }
         }).then(
             (res) => {
-                console.log(res);
                 setComments(res.data);
             }
         )
@@ -33,7 +33,7 @@ function Comments(props) {
         )
     })
     return (
-        <div>
+        <div className="comments">
             {commentShows}
         </div>
     )

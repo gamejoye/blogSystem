@@ -3,7 +3,7 @@ import './index.css'
 function CommentShow(props) {
     const comment = props.comment;
     return (
-        <div>
+        <div className="comment">
             <div className="comment-header">
                 <h3>{comment.name}</h3>
             </div>

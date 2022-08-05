@@ -1,27 +1,28 @@
 .post {
-    font-size:25px;
     text-align: center;
+    width: 70%;
+    margin-left: 10%;
 }
 
 .header {
     margin-top: 2%;
     margin-left: 10%;
     margin-right: 10%;
-    margin-bottom: 2%;
 }
 
-.h1 {
-    
+.post .header .h1 {
+    font-size: 50px;
+}
+
+.post .content .p {
+    font-size: 25px;
 }
 
 .content {
-    width: 75%;
-    margin-left: 12.5%;
+    margin-left: 10%;
+    margin-right: 10%;
     border-radius:25px 25px 25px 25px;
     background-color: rgba(19, 13, 13, 0.158);
 }
 
-.p {
-    margin-left: 5%;
-    margin-right: 5%;
-}
+
