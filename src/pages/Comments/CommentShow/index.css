@@ -1,3 +1,11 @@
 .comments .ant-comment {
     color: white;
 }
+
+.comments .ant-comment-content-author-time {
+    color: white;
+}
+
+.comments .ant-comment-content-author-name {
+    color: white;
+}
