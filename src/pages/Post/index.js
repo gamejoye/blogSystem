@@ -21,13 +21,15 @@ function Post(props) {
     }, [1]);
     return (
         <div className="post">
-            <div className="header">
-                <h1 className="h1">{blog.title}</h1>
+            <div className="blog">
+                <div className="header">
+                    <h1 className="h1">{blog.title}</h1>
+                </div>
+                <div className="content">
+                    <p className="p">{blog.content}</p>
+                </div>
             </div>
-            <div className="content">
-                <p className="p">{blog.content}</p>
-            </div>
-            <Comments title={title}/>
+            <Comments title={title} />
         </div>
     )
 }

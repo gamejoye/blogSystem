@@ -1,16 +1,14 @@
 import React from "react";
+import { Comment, Avatar } from "antd";
 import './index.css'
 function CommentShow(props) {
     const comment = props.comment;
     return (
-        <div className="comment">
-            <div className="comment-header">
-                <h3>{comment.name}</h3>
-            </div>
-            <div className="commment-content">
-                <p>{comment.content}</p>
-            </div>
-        </div>
+        <Comment
+            author={comment.name}
+            content={comment.content}
+            avatar={<Avatar src="https://joeschmoe.io/api/v1/random" alt="Han Solo" />}
+        />
     )
 }
 
