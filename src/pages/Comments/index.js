@@ -1,24 +1,29 @@
-import { Avatar, Button, Comment, Form, Input, List } from 'antd';
+import { Button, Comment, Divider, Form, Input } from 'antd';
 import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import { UserOutlined } from '@ant-design/icons';
 import { postInstance, getInstance } from '../../utils/apis/axiosConfig';
 import { getCookie } from '../../utils/apis/getCookie';
 import { baseUrl } from '../../constant';
+import './index.css'
+
 const { TextArea } = Input;
 
 
 const CommentList = ({ comments }) => {
     const list = comments.map((comment, index) => {
-        console.log(comment);
+        console.log(comments)
         return (
-            <Comment
-                key={index}
-                content={comment.content}
-                author={comment.name}
-                datetime={comment.commentDay}
-                avatar={<UserOutlined/>}
-            />
+            <>
+                <Comment
+                    key={index}
+                    content={comment.content}
+                    author={comment.name}
+                    datetime={comment.commentDay}
+                    avatar={<UserOutlined />}
+                />
+                <Divider />
+            </>
         )
     })
     return (
@@ -30,14 +35,10 @@ const CommentList = ({ comments }) => {
 
 const Editor = ({ onChange, onSubmit, submitting, value }) => (
     <>
-        <Form.Item>
-            <TextArea rows={4} onChange={onChange} value={value} />
-        </Form.Item>
-        <Form.Item>
-            <Button htmlType="submit" loading={submitting} onClick={onSubmit} type="primary">
-                Add Comment
-            </Button>
-        </Form.Item>
+        <TextArea rows={3} onChange={onChange} value={value} placeholder='留下你的精彩评论吧~' />
+        <Button loading={submitting} onClick={onSubmit} type="primary">
+            发布
+        </Button>
     </>
 );
 
@@ -81,7 +82,6 @@ function CommentBox(props) {
                 ...comments,
                 {
                     name: username,
-                    avatar: <UserOutlined />,
                     content: <p>{value}</p>,
                     commentDay: moment().format('YYYY-MM-DD')
                 },
@@ -94,7 +94,7 @@ function CommentBox(props) {
     };
 
     return (
-        <>
+        <div className="comments">
             <Comment
                 avatar={<UserOutlined />}
                 content={
@@ -107,7 +107,7 @@ function CommentBox(props) {
                 }
             />
             {comments.length > 0 && <CommentList comments={comments} />}
-        </>
+        </div>
     )
 }
 

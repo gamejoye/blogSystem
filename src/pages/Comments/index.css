@@ -1,6 +1,22 @@
 .comments {
-    width: 30%;
-    float: left;
+    width: 40%;
     margin-left: 20%;
-    margin-top: 3%;
+}
+
+.comments .ant-input {
+    opacity:90%;
+    background-color: rgb(243, 246, 248);
+    margin-bottom: 2%;
+}
+
+.comments .ant-comment-content-author-name {
+    color: white;
+}
+
+.comments .ant-comment-content-author-time {
+    color: white;
+}
+
+.comments .ant-comment-content-detail {
+    color: white;
 }
