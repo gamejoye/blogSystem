@@ -3,27 +3,26 @@ import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import { UserOutlined } from '@ant-design/icons';
 import { postInstance, getInstance } from '../../utils/apis/axiosConfig';
-import { getCookie } from '../../utils/apis/getCookie';
+import { getUsername } from '../../utils/apis/getCookie';
 import { baseUrl } from '../../constant';
 import './index.css'
+import { connect } from 'react-redux';
 
 const { TextArea } = Input;
 
 
 const CommentList = ({ comments }) => {
     const list = comments.map((comment, index) => {
-        console.log(comments)
         return (
-            <>
+            <React.Fragment key={index}>
                 <Comment
-                    key={index}
                     content={comment.content}
                     author={comment.name}
                     datetime={comment.commentDay}
                     avatar={<UserOutlined />}
                 />
                 <Divider />
-            </>
+            </React.Fragment>
         )
     })
     return (
@@ -44,7 +43,7 @@ const Editor = ({ onChange, onSubmit, submitting, value }) => (
 
 function CommentBox(props) {
     const title = props.title;
-    const username = getCookie("username");
+    const username = props.username;
     const [comments, setComments] = useState([]);
     const [submitting, setSubmitting] = useState(false);
     const [value, setValue] = useState('');
@@ -111,4 +110,8 @@ function CommentBox(props) {
     )
 }
 
-export default CommentBox;
+export default connect((state) => {
+    return ({
+        username: state.user
+    })
+})(CommentBox);

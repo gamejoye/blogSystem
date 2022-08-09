@@ -2,10 +2,12 @@ import React from "react";
 import { useState } from "react";
 import { Button, Input } from "antd";
 import './index.css'
+import { setUser } from "../../../redux/actions";
 
 import { baseUrl } from "../../../constant";
 import { postInstance } from "../../../utils/apis/axiosConfig";
 import { useNavigate } from "react-router";
+import { connect } from "react-redux";
 
 function Login(props) {
     const [username, setUsername] = useState('');
@@ -19,7 +21,8 @@ function Login(props) {
             (res) => {
                 const isSuccess = res.data;
                 if (isSuccess !== 'failed') {
-                    document.cookie = "username=" + isSuccess.name;
+                    props.setUser(username);
+                    localStorage.setItem('username',username);
                     setTimeout(() => {navigate('/')},1000);
                 } else {
                     alert('用户名或密码错误');
@@ -54,4 +57,6 @@ function Login(props) {
         </div>
     )
 }
-export default Login;
+export default connect((state) => {
+    return ({})
+},{setUser})(Login);

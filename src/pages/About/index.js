@@ -1,15 +1,15 @@
 import React from "react";
 import { getInstance, postInstance } from "../../utils/apis/axiosConfig";
+import { setUser } from "../../redux/actions";
+import { connect } from "react-redux";
 import { baseUrl } from "../../constant";
 
 import { useEffect, useState } from "react";
-import { getCookie } from "../../utils/apis/getCookie";
 
 import AboutMe from "./AboutMe";
 
 function About(props) {
-    const username = getCookie("username");
-
+    const username = props.username;
     const [sex,setSex] = useState('');
     const [address,setAddress] = useState('');
     const [birthday,setBirthday] = useState('');
@@ -67,4 +67,8 @@ function About(props) {
     )
 }
 
-export default About;
+export default connect((state) => {
+    return ({
+        username:state.user
+    })
+})(About);

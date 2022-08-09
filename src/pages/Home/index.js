@@ -9,13 +9,11 @@ import SelfCard from "./Aside/SelfCard";
 import { getInstance } from "../../utils/apis/axiosConfig";
 import { baseUrl } from "../../constant";
 import { useNavigate } from "react-router-dom";
-import { getCookie } from "../../utils/apis/getCookie";
+import { connect } from "react-redux";
 
 function Home(props) {
-
-    const username = getCookie("username");
+    const username = props.username;
     const navigate = useNavigate();
-    if (username === "") { navigate('/login'); }
     const [blogs, setBlogs] = useState([]);
 
     useEffect(() => {
@@ -51,4 +49,8 @@ function Home(props) {
     )
 }
 
-export default (Home);
+export default connect((state => {
+    return ({
+        username:state.user
+    })
+}))(Home);

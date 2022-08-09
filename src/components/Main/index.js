@@ -9,6 +9,7 @@ import Way from "../../pages/Way";
 import About from "../../pages/About";
 
 class Main extends React.Component {
+    
     render() {
         return (
             <Suspense fallback={<div>Loading...</div>}>

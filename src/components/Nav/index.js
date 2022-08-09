@@ -1,20 +1,24 @@
 import React from "react";
 import { useNavigate } from "react-router";
+import { connect } from "react-redux";
 import './index.css'
 import NotLogin from "./NotLogin";
 import Logined from "./Logined";
-import { getCookie } from "../../utils/apis/getCookie";
 
-function Nav() {
+function Nav(props) {
     //标记一下，这里有点奇怪
-    const navigate = useNavigate();
-    const username = getCookie("username");
+    const navigate = useNavigate()
+    const username = props.username;
     return (
         <div>
-            {(username && <Logined/>) || <NotLogin/>}
+            {username && <Logined/> || <NotLogin/>}
         </div>
     )
 }
 
-export default Nav;
+export default connect((state) => {
+    return (
+        {username:state.user}
+    )
+})(Nav);
  

@@ -8,14 +8,14 @@ import Search from "./Search";
 
 import { getInstance } from "../../utils/apis/axiosConfig";
 import { baseUrl } from "../../constant";
-import { getCookie } from "../../utils/apis/getCookie";
+import { connect } from "react-redux";
 
 function Titles(props) {
     const [totalTitles, setTotalTitles] = useState([]);
     const [titles, setTitles] = useState([]);
     const [page, setPage] = useState('');
     const navigate = useNavigate();
-    const username = getCookie("username");
+    const username = props.username;
     useEffect(() => {
         getInstance.get(baseUrl + 'titles/byName', {
             params: {
@@ -54,4 +54,8 @@ function Titles(props) {
     )
 }
 
-export default (Titles);
+export default connect((state) => {
+    return ({
+        username: state.user
+    })
+})(Titles);

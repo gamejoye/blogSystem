@@ -3,6 +3,8 @@ import './index.css'
 import { HomeOutlined } from "@ant-design/icons";
 
 import { useNavigate } from "react-router";
+import { setUser } from "../../../redux/actions";
+import { connect } from "react-redux";
 import './index.css'
 
 import { map } from "../../../constant";
@@ -14,7 +16,7 @@ function Logined(props) {
         const param = map[value];
         if (param === 'logout') {
             setTimeout(() => {
-                document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+                props.setUser('');
                 navigate('/login');
             }, 1000);
             return;
@@ -31,4 +33,8 @@ function Logined(props) {
     )
 }
 
-export default Logined
+export default connect((state) => {
+    return ({
+        username: state.user
+    })
+},setUser)(Logined)
