@@ -1,6 +1,7 @@
 import React from "react";
 import './index.css'
-import { HomeOutlined } from "@ant-design/icons";
+import { HomeOutlined, UserOutlined } from "@ant-design/icons";
+import { username } from "../../constant";
 
 import { useNavigate } from "react-router";
 import './index.css'
@@ -15,12 +16,18 @@ function Nav(props) {
     }
     return (
         <ul className="menu">
-            <li className="nav-home"><a onClick={() => handlerButton("主页")}><HomeOutlined/></a></li>
+            <li className="nav-home"><a onClick={() => handlerButton("主页")}><HomeOutlined /></a></li>
             <li><a onClick={() => handlerButton("文章")}>文章</a></li>
-            <li><a onClick={() => handlerButton("个人资料")}>个人资料</a></li>
+            <div className="user">
+                <a onClick={() => handlerButton("个人资料")}><UserOutlined /> {username}</a>
+                <div className="user-content">
+                    <a>导航1</a>
+                    <a>导航2</a>
+                    <a>导航3</a>
+                </div>
+            </div>
         </ul>
     )
 }
 
 export default (Nav)
- 
