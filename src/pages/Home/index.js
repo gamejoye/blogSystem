@@ -10,9 +10,9 @@ import { getInstance } from "../../utils/apis/axiosConfig";
 import { baseUrl } from "../../constant";
 import { useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
+import { username } from "../../constant";
 
 function Home(props) {
-    const username = props.username;
     const navigate = useNavigate();
     const [blogs, setBlogs] = useState([]);
 
@@ -49,8 +49,4 @@ function Home(props) {
     )
 }
 
-export default connect((state => {
-    return ({
-        username:state.user
-    })
-}))(Home);
+export default (Home);

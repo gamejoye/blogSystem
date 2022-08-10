@@ -22,7 +22,6 @@ function Login(props) {
                 const isSuccess = res.data;
                 if (isSuccess !== 'failed') {
                     props.setUser(username);
-                    localStorage.setItem('username',username);
                     setTimeout(() => {navigate('/')},1000);
                 } else {
                     alert('用户名或密码错误');

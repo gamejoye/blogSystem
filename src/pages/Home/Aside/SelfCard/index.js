@@ -4,11 +4,10 @@ import { useNavigate } from "react-router";
 import './index.css'
 
 import { getInstance } from "../../../../utils/apis/axiosConfig";
-import { connect } from "react-redux";
+import { username } from "../../../../constant";
 import { baseUrl } from "../../../../constant";
 
 function SelfCard(props) {
-    const username = props.username
     const [aboutMe, setAboutMe] = useState('');
     const navigate = useNavigate();
     useEffect(() => {
@@ -36,8 +35,4 @@ function SelfCard(props) {
     )
 }
 
-export default connect((state) => {
-    return ({
-        username: state.user
-    })
-})(SelfCard)
+export default (SelfCard)

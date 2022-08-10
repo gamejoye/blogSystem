@@ -18,7 +18,6 @@ class Main extends React.Component {
                     <Route path="/titles" element={<Titles />}></Route>
                     <Route path="/post" element={<Post />}></Route>
                     <Route path="/creation" element={<Creation />}></Route>
-                    <Route path="/login" element={<Way action="login" />}></Route>
                     <Route path="/about" element={<About/>}></Route>
                     <Route path='*' element={<Navigate to='/' replace />} />
                 </Routes>

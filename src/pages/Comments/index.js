@@ -3,10 +3,8 @@ import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import { UserOutlined } from '@ant-design/icons';
 import { postInstance, getInstance } from '../../utils/apis/axiosConfig';
-import { getUsername } from '../../utils/apis/getCookie';
-import { baseUrl } from '../../constant';
+import { baseUrl, username } from '../../constant';
 import './index.css'
-import { connect } from 'react-redux';
 
 const { TextArea } = Input;
 
@@ -43,7 +41,6 @@ const Editor = ({ onChange, onSubmit, submitting, value }) => (
 
 function CommentBox(props) {
     const title = props.title;
-    const username = props.username;
     const [comments, setComments] = useState([]);
     const [submitting, setSubmitting] = useState(false);
     const [value, setValue] = useState('');
@@ -110,8 +107,4 @@ function CommentBox(props) {
     )
 }
 
-export default connect((state) => {
-    return ({
-        username: state.user
-    })
-})(CommentBox);
+export default (CommentBox);

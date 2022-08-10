@@ -5,7 +5,7 @@ import { useNavigate } from "react-router";
 
 import { postInstance } from "../../utils/apis/axiosConfig";
 import { baseUrl } from "../../constant";
-import { getUsername } from "../../utils/apis/getCookie";
+import { username } from "../../constant";
 import { connect } from "react-redux";
 
 function Creation(props) {
@@ -13,7 +13,6 @@ function Creation(props) {
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
     const [order, setOrder] = useState(1);
-    const username = props.username;
 
     function handlerSubmit() {
         postInstance.post(baseUrl+'blogs/'+'add',{
@@ -54,8 +53,4 @@ function Creation(props) {
     )
 }
 
-export default connect((state) => {
-    return ({
-        username: state.user
-    })
-})(Creation)
+export default (Creation)

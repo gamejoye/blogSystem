@@ -9,13 +9,13 @@ import Search from "./Search";
 import { getInstance } from "../../utils/apis/axiosConfig";
 import { baseUrl } from "../../constant";
 import { connect } from "react-redux";
+import { username } from "../../constant";
 
 function Titles(props) {
     const [totalTitles, setTotalTitles] = useState([]);
     const [titles, setTitles] = useState([]);
     const [page, setPage] = useState('');
     const navigate = useNavigate();
-    const username = props.username;
     useEffect(() => {
         getInstance.get(baseUrl + 'titles/byName', {
             params: {
@@ -54,8 +54,4 @@ function Titles(props) {
     )
 }
 
-export default connect((state) => {
-    return ({
-        username: state.user
-    })
-})(Titles);
+export default (Titles);

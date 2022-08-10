@@ -7,18 +7,10 @@ import Logined from "./Logined";
 
 function Nav(props) {
     //标记一下，这里有点奇怪
-    const navigate = useNavigate()
-    const username = props.username;
     return (
-        <div>
-            {username && <Logined/> || <NotLogin/>}
-        </div>
+        <Logined/>
     )
 }
 
-export default connect((state) => {
-    return (
-        {username:state.user}
-    )
-})(Nav);
+export default (Nav);
  
