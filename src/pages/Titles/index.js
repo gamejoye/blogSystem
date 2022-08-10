@@ -7,8 +7,6 @@ import TitleList from "./TitleList";
 import Search from "./Search";
 
 import { getInstance } from "../../utils/apis/axiosConfig";
-import { baseUrl } from "../../constant";
-import { connect } from "react-redux";
 import { username } from "../../constant";
 
 function Titles(props) {
@@ -17,7 +15,7 @@ function Titles(props) {
     const [page, setPage] = useState('');
     const navigate = useNavigate();
     useEffect(() => {
-        getInstance.get(baseUrl + 'titles/byName', {
+        getInstance.get('titles/byName', {
             params: {
                 username: username
             }

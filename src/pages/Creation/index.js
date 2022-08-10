@@ -4,9 +4,7 @@ import { useNavigate } from "react-router";
 
 
 import { postInstance } from "../../utils/apis/axiosConfig";
-import { baseUrl } from "../../constant";
 import { username } from "../../constant";
-import { connect } from "react-redux";
 
 function Creation(props) {
     const navigate = useNavigate();
@@ -15,7 +13,7 @@ function Creation(props) {
     const [order, setOrder] = useState(1);
 
     function handlerSubmit() {
-        postInstance.post(baseUrl+'blogs/'+'add',{
+        postInstance.post('blogs/'+'add',{
             username: username,
             title: title,
             content: content,

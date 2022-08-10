@@ -1,10 +1,10 @@
 import axios from "axios";
-import { baseUrl } from "../../constant";
+import { BASE_URL } from "../../constant";
 
 //get请求axios实例
 const getInstance = axios.create({
     timeout: 5000,
-    baseURL: baseUrl,
+    baseURL: BASE_URL,
     withCredentials: true,
 })
 
@@ -22,7 +22,7 @@ export {
 //post请求axios实例
 const postInstance = axios.create({
     timeout: 5000,
-    baseURL: baseUrl,
+    baseURL: BASE_URL,
     withCredentials: true
 })
 

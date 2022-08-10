@@ -5,7 +5,6 @@ import Home from '../../pages/Home';
 import Titles from "../../pages/Titles";
 import Post from "../../pages/Post";
 import Creation from "../../pages/Creation";
-import Way from "../../pages/Way";
 import About from "../../pages/About";
 
 class Main extends React.Component {

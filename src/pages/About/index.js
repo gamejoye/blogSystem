@@ -1,6 +1,5 @@
 import React from "react";
 import { getInstance, postInstance } from "../../utils/apis/axiosConfig";
-import { baseUrl } from "../../constant";
 import { username } from "../../constant";
 
 import { useEffect, useState } from "react";
@@ -15,7 +14,7 @@ function About(props) {
     const [isEdit, setEdit] = useState(0);
     const [preState, setPreState] = useState({});
     useEffect(() => {
-        getInstance.get(baseUrl + 'user/' + 'introduction', {
+        getInstance.get('user/' + 'introduction', {
             params: {
                 username: username
             }
@@ -34,7 +33,7 @@ function About(props) {
 
     function handlerSubmit(type,bit) {
         const data = type=='aboutMe'?aboutMe:type=='address'?address:type=='sex'?sex:birthday;
-        postInstance.post(baseUrl + 'user/' + 'edit', {
+        postInstance.post('user/' + 'edit', {
             username: username,
             [type]: data
         });

@@ -3,7 +3,7 @@ import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import { UserOutlined } from '@ant-design/icons';
 import { postInstance, getInstance } from '../../utils/apis/axiosConfig';
-import { baseUrl, username } from '../../constant';
+import { username } from '../../constant';
 import './index.css'
 
 const { TextArea } = Input;
@@ -46,7 +46,7 @@ function CommentBox(props) {
     const [value, setValue] = useState('');
 
     const handleCommit = () => {
-        postInstance.post(baseUrl + 'comments' + '/commit', {
+        postInstance.post('comments' + '/commit', {
             username: username,
             title: title,
             commentDay: moment().format('YYYY-MM-DD'),
@@ -55,7 +55,7 @@ function CommentBox(props) {
     }
 
     useEffect(() => {
-        getInstance.get(baseUrl + 'comments' + '/all', {
+        getInstance.get('comments' + '/all', {
             params: {
                 username: username,
                 title: title

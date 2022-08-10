@@ -1,16 +1,26 @@
 import React from "react";
-import { useNavigate } from "react-router";
-import { connect } from "react-redux";
 import './index.css'
-import NotLogin from "./NotLogin";
-import Logined from "./Logined";
+import { HomeOutlined } from "@ant-design/icons";
+
+import { useNavigate } from "react-router";
+import './index.css'
+
+import { map } from "../../constant";
 
 function Nav(props) {
-    //标记一下，这里有点奇怪
+    const navigate = useNavigate();
+    const handlerButton = (value) => {
+        const param = map[value];
+        navigate('/' + param);
+    }
     return (
-        <Logined/>
+        <ul className="menu">
+            <li className="nav-home"><a onClick={() => handlerButton("主页")}><HomeOutlined/></a></li>
+            <li><a onClick={() => handlerButton("文章")}>文章</a></li>
+            <li><a onClick={() => handlerButton("个人资料")}>个人资料</a></li>
+        </ul>
     )
 }
 
-export default (Nav);
+export default (Nav)
  

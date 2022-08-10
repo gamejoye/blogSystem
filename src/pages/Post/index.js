@@ -4,14 +4,13 @@ import { getInstance } from "../../utils/apis/axiosConfig";
 import './index.css'
 import Comments from "../Comments";
 
-import { baseUrl } from "../../constant";
 
 function Post(props) {
     const localtion = useLocation();
     const { title } = localtion.state;
     const [blog, setBlog] = useState({});
     useEffect(() => {
-        getInstance.get(baseUrl + 'blogs/' + 'title', {
+        getInstance.get('blogs/' + 'title', {
             params: {
                 titles: title
             }

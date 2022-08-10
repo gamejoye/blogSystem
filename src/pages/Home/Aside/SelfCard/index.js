@@ -5,13 +5,12 @@ import './index.css'
 
 import { getInstance } from "../../../../utils/apis/axiosConfig";
 import { username } from "../../../../constant";
-import { baseUrl } from "../../../../constant";
 
 function SelfCard(props) {
     const [aboutMe, setAboutMe] = useState('');
     const navigate = useNavigate();
     useEffect(() => {
-        getInstance.get(baseUrl + 'user/introduction/aboutMe', {
+        getInstance.get('user/introduction/aboutMe', {
             params: {
                 username: username
             }
