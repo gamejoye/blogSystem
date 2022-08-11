@@ -1,0 +1,40 @@
+pre {
+    width: 50%;
+    position: relative;
+    margin-bottom: 0px;
+    border: 1px solid #C3CCD0;
+    background: #FFF;
+    overflow: hidden;
+}
+
+code {
+    display: block;
+    padding: 12px 24px;
+    overflow-y: auto;
+    font-weight: 300;
+}
+
+.header {
+    margin-top: 2%;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+.header h1 {
+    text-align: center;
+    font-size: 50px;
+}
+
+.content p {
+    font-size: 25px;
+}
+
+.content {
+    margin-left: 10%;
+    margin-right: 10%;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    padding-left: 5%;
+    padding-right: 5%;
+    border-radius:25px 25px 25px 25px;
+    background-color: rgba(19, 13, 13, 0.158);
+}

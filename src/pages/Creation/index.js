@@ -13,7 +13,7 @@ function Creation(props) {
     const [order, setOrder] = useState(1);
 
     function handlerSubmit() {
-        postInstance.post('blogs/'+'add',{
+        postInstance.post('blogs/'+'addition',{
             username: username,
             title: title,
             content: content,

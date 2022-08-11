@@ -3,6 +3,7 @@ import { useLocation } from "react-router";
 import { getInstance } from "../../utils/apis/axiosConfig";
 import './index.css'
 import Comments from "../Comments";
+import Markdown from "../../components/Markdown";
 
 
 function Post(props) {
@@ -18,15 +19,12 @@ function Post(props) {
             (res) => { setBlog(res.data); }
         )
     }, [1]);
+    if(!blog.content) return <div>loading...</div>
     return (
         <div className="post">
             <div className="blog">
-                <div className="header">
-                    <h1 className="h1">{blog.title}</h1>
-                </div>
-                <div className="content">
-                    <p className="p">{blog.content}</p>
-                </div>
+                <Markdown content={blog.title} className="header"/>
+                <Markdown content={blog.content} className="content"/>
             </div>
             <Comments title={title} />
         </div>
