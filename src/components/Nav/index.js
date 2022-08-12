@@ -21,9 +21,7 @@ function Nav(props) {
             <div className="user">
                 <a onClick={() => handlerButton("个人资料")}><UserOutlined /> {username}</a>
                 <div className="user-content">
-                    <a>导航1</a>
-                    <a>导航2</a>
-                    <a>导航3</a>
+                    <a onClick={() => handlerButton("发文章")}>发文章</a>
                 </div>
             </div>
         </ul>
