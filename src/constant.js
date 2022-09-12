@@ -7,4 +7,3 @@ export const map = {
     '个人资料':'about',
     '发文章':'creation',
 }
-

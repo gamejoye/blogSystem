@@ -2,11 +2,10 @@ import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 
-
 import { postInstance } from "../../utils/apis/axiosConfig";
 import { username } from "../../constant";
 import TextArea from "antd/lib/input/TextArea";
-import { Button, Col, Divider, Row } from "antd";
+import { Button, Col, Row } from "antd";
 import './index.css'
 
 function Creation(props) {
@@ -15,7 +14,23 @@ function Creation(props) {
     const [content, setContent] = useState('');
     const [order, setOrder] = useState(1);
 
-    function handlerSubmit() {
+    //设置tab缩进
+    function handleKeyDown(e){
+        let sta = e.target.selectionStart;
+        let end = e.target.selectionEnd;
+        let prefix = e.target.value.substr(0,sta);
+        let suffix = e.target.value.substr(end);
+        console.log(e);
+        //keydown是tab键
+        if(e.keyCode == 9){
+            e.preventDefault();
+            let c = prefix+"    "+suffix;
+            e.target.value = c;
+            e.target.setSelectionRange(sta+4,sta+4);
+        }
+    }
+
+    function handleSubmit() {
         postInstance.post('blogs/' + 'addition', {
             username: username,
             title: title,
@@ -50,10 +65,11 @@ function Creation(props) {
                         rows={35}
                         placeholder="文章内容~"
                         onChange={(e) => setContent(e.target.value)}
+                        onKeyDown={(e) => handleKeyDown(e)}
                     />
                 </Col>
                 <Col span={4} offset={10}>
-                    <Button type="primary" onClick={() => handlerSubmit()}>发布博客</Button>
+                    <Button type="primary" onClick={() => handleSubmit()}>发布博客</Button>
                 </Col>
             </Row>
         </div>
