@@ -23,8 +23,8 @@ function Post(props) {
     return (
         <div className="post">
             <div className="blog">
-                <Markdown content={blog.title} className="header"/>
-                <Markdown content={blog.content} className="content"/>
+                <Markdown content={blog.title} _className="header"/>
+                <Markdown content={blog.content} _className="content"/>
             </div>
             <Comments title={title} />
         </div>

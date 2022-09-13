@@ -8,8 +8,8 @@ import './index.css'
 
 function Markdown(props) {
     const markdownContent = marked(props.content);
-    console.log(markdownContent)
-    const className = props.className;
+    //console.log(markdownContent)
+    const _className = props._className;
     marked.setOptions({
         renderer: new marked.Renderer(),
         gfm: true,
@@ -24,7 +24,7 @@ function Markdown(props) {
         }
     })
     return (
-        <div dangerouslySetInnerHTML={{ __html: markdownContent }} className={className}></div>
+        <div dangerouslySetInnerHTML={{ __html: markdownContent }} className={_className}></div>
     )
 }
 
