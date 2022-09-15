@@ -15,10 +15,10 @@ function Nav(props) {
         navigate('/' + param);
     }
     return (
-        <ul className="menu">
-            <li className="nav-home"><a onClick={() => handlerButton("主页")}><HomeOutlined /></a></li>
-            <li><a onClick={() => handlerButton("文章")}>文章</a></li>
-            <div className="user">
+        <ul className="primary_menu">
+            <li className="primary_base nav-home"><a onClick={() => handlerButton("主页")}><HomeOutlined /></a></li>
+            <li className="primary_base"><a onClick={() => handlerButton("文章")}>文章</a></li>
+            <div className="primary_base user">
                 <a onClick={() => handlerButton("个人资料")}><UserOutlined /> {username}</a>
                 <div className="user-content">
                     <a onClick={() => handlerButton("发文章")}>发文章</a>
