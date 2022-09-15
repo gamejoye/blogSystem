@@ -1,19 +1,18 @@
 import React from "react";
-import './index.css'
 
 import { useState, useEffect } from "react";
 
-import PostCard from "./PostCard";
+import Posts from "./Posts";
 import SelfCard from "./Aside/SelfCard";
 
 import { getInstance } from "../../utils/apis/axiosConfig";
-import { useNavigate } from "react-router-dom";
 import { username } from "../../constant";
+import './index.css'
 
 function Home(props) {
-    const navigate = useNavigate();
     const [blogs, setBlogs] = useState([]);
-
+    //count用于通知react应该更新blogs
+    const [count,setCount] = useState(0);
     useEffect(() => {
         getInstance.get('blogs/byName', {
             params: {
@@ -24,21 +23,11 @@ function Home(props) {
                 setBlogs(res.data);
             }
         )
-    }, [1])
-
-    const posts = blogs.map((blog, index) => {
-        return (
-            <PostCard
-                key = {index}
-                blog={blog}
-                onClick={() => { navigate('/post?title=' + blog.title, { state: { title: blog.title } }) }}
-            />
-        )
-    })
+    },[count])
     return (
         <div className="home">
             <div className="middle">
-                {posts}
+                <Posts blogs={blogs} count={count} setCount={setCount}/>
             </div>
             <div className="right">
                 <SelfCard/>
@@ -46,5 +35,4 @@ function Home(props) {
         </div>
     )
 }
-
 export default (Home);
