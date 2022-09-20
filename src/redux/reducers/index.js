@@ -1,8 +1,8 @@
 import { combineReducers } from "redux";
 import navShow from "./navShow";
-import user from "./user"
+import name from "./name"
 
 export default combineReducers({
     nav:navShow,
-    user: user
+    name: name
 })

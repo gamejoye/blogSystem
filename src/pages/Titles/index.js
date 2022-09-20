@@ -7,9 +7,10 @@ import TitleList from "./TitleList";
 import Search from "./Search";
 
 import { getInstance } from "../../utils/apis/axiosConfig";
-import { username } from "../../constant";
+import { connect } from "react-redux";
 
 function Titles(props) {
+    const username = props.name
     const [totalTitles, setTotalTitles] = useState([]);
     const [titles, setTitles] = useState([]);
     const [page, setPage] = useState('');
@@ -52,4 +53,8 @@ function Titles(props) {
     )
 }
 
-export default (Titles);
+export default connect(
+    (state) => ({
+        name: state.name
+    })
+)(Titles);

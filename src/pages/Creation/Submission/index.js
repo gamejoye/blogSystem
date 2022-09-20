@@ -1,9 +1,10 @@
 import React from "react";
 import { Col, Button } from "antd";
 import { postInstance } from "../../../utils/apis/axiosConfig";
-import { username } from "../../../constant";
+import { connect } from "react-redux";
 import { useNavigate } from "react-router";
 function Submisson(props) {
+    const username = props.name
     const navigate = useNavigate();
     function handleSubmit() {
         postInstance.post('blogs/' + 'addition', {
@@ -29,4 +30,8 @@ function Submisson(props) {
         </>
     )
 }
-export default Submisson;
+export default connect(
+    (state) => ({
+        name: state.name
+    })
+)(Submisson);

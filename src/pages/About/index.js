@@ -1,12 +1,13 @@
 import React from "react";
 import { getInstance, postInstance } from "../../utils/apis/axiosConfig";
-import { username } from "../../constant";
+import { connect } from "react-redux";
 
 import { useEffect, useState } from "react";
 
 import AboutMe from "./AboutMe";
 
 function About(props) {
+    const username = props.name;
     const [sex,setSex] = useState('');
     const [address,setAddress] = useState('');
     const [birthday,setBirthday] = useState('');
@@ -64,4 +65,8 @@ function About(props) {
     )
 }
 
-export default (About);
+export default connect(
+    (state) => ({
+        name: state.name
+    })
+)(About);

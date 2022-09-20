@@ -1,15 +1,16 @@
 import React from "react";
 
 import { useState, useEffect } from "react";
+import { connect } from "react-redux";
 
 import Posts from "./Posts";
 import SelfCard from "./Aside/SelfCard";
 
 import { getInstance } from "../../utils/apis/axiosConfig";
-import { username } from "../../constant";
 import './index.css'
 
 function Home(props) {
+    const username = props.name
     const [blogs, setBlogs] = useState([]);
     //count用于通知react应该更新blogs
     const [count,setCount] = useState(0);
@@ -23,7 +24,7 @@ function Home(props) {
                 setBlogs(res.data);
             }
         )
-    },[count])
+    },[count]);
     return (
         <div className="home">
             <div className="middle">
@@ -35,4 +36,8 @@ function Home(props) {
         </div>
     )
 }
-export default (Home);
+export default connect(
+    (state) => ({
+        name: state.name
+    })
+)(Home);

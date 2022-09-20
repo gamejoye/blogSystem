@@ -1,18 +1,25 @@
 import React from "react";
 import './index.css'
 import { HomeOutlined, UserOutlined } from "@ant-design/icons";
-import { username } from "../../constant";
 
+import { postInstance } from "../../utils/apis/axiosConfig";
+import { setName } from "../../redux/actions";
 import { useNavigate } from "react-router";
+import { connect } from "react-redux";
 import './index.css'
 
-import { map } from "../../constant";
+import { BASE_URL, map } from "../../constant";
 
 function Nav(props) {
+    const username = props.name;
     const navigate = useNavigate();
     const handlerButton = (value) => {
         const param = map[value];
-        navigate('/' + param);
+        navigate("/" + param);
+    }
+    const handleLogout = () => {
+        postInstance.post(BASE_URL+"user/logout");
+        props.setName("");
     }
     return (
         <ul className="primary_menu">
@@ -22,10 +29,15 @@ function Nav(props) {
                 <a onClick={() => handlerButton("个人资料")}><UserOutlined /> {username}</a>
                 <div className="user-content">
                     <a onClick={() => handlerButton("发文章")}>发文章</a>
+                    <a onClick={() => handleLogout()}>退出登陆</a>
                 </div>
             </div>
         </ul>
     )
 }
 
-export default (Nav)
+export default connect(
+    (state) => ({
+        name: state.name
+    }),{setName}
+)(Nav)
