@@ -1,0 +1,10 @@
+#prompt-button {
+    font-size: 25px;
+}
+#message {
+    text-align: center;
+}
+#prompt {
+    position: fixed;
+    display: none;
+}

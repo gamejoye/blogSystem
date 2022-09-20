@@ -1,20 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import PostCard from "./PostCard";
-import { useNavigate } from "react-router";
+import Prompt from "../../../components/Prompt";
+import { BASE_URL } from "../../../constant";
 function Posts(props) {
-    const navigate = useNavigate();
     const blogs = props.blogs;
-    function handleOnclick(blog) {
-        navigate('/post?title=' + blog.title, { state: { title: blog.title } })
-    }
+    const url = BASE_URL + "blogs/deletion";
+    const [id, setId] = useState(-1);
     const posts = blogs.map((blog, index) => {
         return (
-            <PostCard key={index} blog={blog} onClick={() => handleOnclick(blog)} count={props.count} setCount={props.setCount}  />
+            <PostCard
+                key={index}
+                blog={blog}
+                count={props.count}
+                setCount={props.setCount}
+                setId={setId}
+            />
         )
     });
     return (
         <>
             {posts}
+            <Prompt url={url} data={{id:id}} count={props.count} setCount={props.setCount}/>
         </>
     )
 }

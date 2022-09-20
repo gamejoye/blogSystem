@@ -13,7 +13,7 @@ function Home(props) {
     const username = props.name
     const [blogs, setBlogs] = useState([]);
     //count用于通知react应该更新blogs
-    const [count,setCount] = useState(0);
+    const [count, setCount] = useState(0);
     useEffect(() => {
         getInstance.get('blogs/byName', {
             params: {
@@ -24,14 +24,16 @@ function Home(props) {
                 setBlogs(res.data);
             }
         )
-    },[count]);
+    }, [count]);
     return (
-        <div className="home">
-            <div className="middle">
-                <Posts blogs={blogs} count={count} setCount={setCount}/>
-            </div>
-            <div className="right">
-                <SelfCard/>
+        <div>
+            <div className="home">
+                <div className="middle">
+                    <Posts blogs={blogs} count={count} setCount={setCount} />
+                </div>
+                <div className="right">
+                    <SelfCard />
+                </div>
             </div>
         </div>
     )

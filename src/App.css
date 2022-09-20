@@ -9,6 +9,13 @@
     overflow-y: scroll;
 }
 
+#prompt-root {
+    position: fixed;
+    z-index: 999;
+    margin-left: 45%;
+    margin-top: 20%;
+}
+
 #root {
     height: 100%;
 }

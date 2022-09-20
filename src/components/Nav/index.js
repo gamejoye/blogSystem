@@ -1,6 +1,7 @@
 import React from "react";
 import './index.css'
 import { HomeOutlined, UserOutlined } from "@ant-design/icons";
+import { message } from "antd";
 
 import { postInstance } from "../../utils/apis/axiosConfig";
 import { setName } from "../../redux/actions";
@@ -18,8 +19,13 @@ function Nav(props) {
         navigate("/" + param);
     }
     const handleLogout = () => {
-        postInstance.post(BASE_URL+"user/logout");
-        props.setName("");
+        postInstance.post(BASE_URL+"user/logout").then(
+            () => {
+                //等待服务端删除session之后再注销全局username
+                message.success("退出成功",1);
+                props.setName("");
+            }
+        );
     }
     return (
         <ul className="primary_menu">
