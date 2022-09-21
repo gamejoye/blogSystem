@@ -3,9 +3,9 @@ import React from 'react';
 import Main from './components/Main';
 import Nav from './components/Nav';
 import Previous from './components/Previous';
-import Prompt from './components/Prompt';
 import './App.css';
 import { setName } from './redux/actions';
+import { handleRemovePrompt } from './constant';
 import { connect } from 'react-redux';
 
 function App(props) {
@@ -14,7 +14,7 @@ function App(props) {
             <Previous/>
         )
     return (
-        <div className='app'>
+        <div className='app' onClick={handleRemovePrompt}>
             <Nav />
             <Main />
         </div>

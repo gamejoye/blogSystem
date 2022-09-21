@@ -10,9 +10,9 @@
 }
 
 #prompt-root {
+    width: 100%;
     position: fixed;
     z-index: 999;
-    margin-left: 45%;
     margin-top: 20%;
 }
 

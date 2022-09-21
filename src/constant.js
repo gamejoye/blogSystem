@@ -1,6 +1,6 @@
 export const BASE_URL = 'http://localhost:8080/MyBlog/';
 export const USER = {
-    name : 'gamejoye'
+    name: 'gamejoye'
 };
 
 export const map = {
@@ -18,8 +18,13 @@ export const strSplit = (dom) => {
     let prefix = value.substr(0, sta);
     let suffix = value.substr(end);
     return {
-        prefix : prefix,
-        suffix : suffix,
-        sta : sta
+        prefix: prefix,
+        suffix: suffix,
+        sta: sta
     }
+}
+
+export const handleRemovePrompt = () => {
+    document.getElementById("root").style.filter = 'brightness(1)';
+    document.getElementById("prompt").style.display = 'none';
 }

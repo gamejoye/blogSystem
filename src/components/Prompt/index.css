@@ -1,10 +1,22 @@
-#prompt-button {
-    font-size: 25px;
+#check button {
+    margin-left: 5px;
+    font-size: 15px;
 }
-#message {
+#message{
+    height: 110px;
+    margin-left: 35%;
+    margin-right: 35%;
+    background-color: rgba(27, 150, 195, 0.69);
+    border-radius:15px 15px 15px 15px;
+}
+#message #check{
     text-align: center;
 }
+#message h2 {
+    text-align: center;
+    padding-top: 2%;
+    padding-bottom: 5%;
+}
 #prompt {
-    position: fixed;
     display: none;
 }

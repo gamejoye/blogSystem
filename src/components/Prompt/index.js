@@ -1,5 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { createPortal } from "react-dom";
+import { handleRemovePrompt } from "../../constant";
 import { postInstance } from "../../utils/apis/axiosConfig";
 import './index.css';
 class Prompt extends React.Component {
@@ -16,8 +17,7 @@ class Prompt extends React.Component {
     }
     render() {
         const help = (type) => {
-            document.getElementById("root").style.filter = 'brightness(1)';
-            document.getElementById("prompt").style.display = 'none';
+            handleRemovePrompt();
             if (!type) return;
             postInstance.post(this.props.url, this.props.data).then(
                 (res) => {
@@ -27,8 +27,11 @@ class Prompt extends React.Component {
         }
         return createPortal(
             <div id="message">
-                <button onClick={() => help(false)}>取消</button>
-                <button onClick={() => help(true)}>确认</button>
+                <h2>确定要删除本篇博客吗</h2>
+                <div id="check">
+                    <button onClick={() => help(true)}>确认</button>
+                    <button onClick={() => help(false)}>取消</button>
+                </div>
             </div>,
             this.el
         )
