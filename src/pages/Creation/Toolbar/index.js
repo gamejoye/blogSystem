@@ -1,26 +1,41 @@
 import React from "react";
-import { strSplit } from "../../../constant";
-import { CODE_BLOCK, FIRST_HEADER, SECOND_HEADER, THIRD_HEADER, EDIT, PREVIEW } from './constant'
+import { insertHandle } from "../../../constant";
+import { CODE_BLOCK, FIRST_HEADER, SECOND_HEADER, THIRD_HEADER, EDIT, PREVIEW, IMAGE } from './constant'
+import { postInstance } from "../../../utils/apis/axiosConfig";
 import './index.css'
 function Toolbar(props) {
-    function handleOnclick(type) {
-        //console.log(type);
-        let insert;
+    let move = false;
+    function handleInsertData(type) {
+        let value;
         switch (type) {
             case CODE_BLOCK:
-                { insert = "\n```\n\n```\n"; break; }
+                { value = "\n```\n\n```\n"; break; }
             case FIRST_HEADER:
-                { insert = "\n# "; break; }
+                { value = "\n# "; break; }
             case SECOND_HEADER:
-                { insert = "\n## "; break; }
+                { value = "\n## "; break; }
             case THIRD_HEADER:
-                { insert = "\n### "; break }
+                { value = "\n### "; break }
             default:
-                insert = "";
+                value = "";
         };
+        let lastRange = props.lastRange;
+        if (!lastRange) return;
         let dom = document.getElementById("creationContent");
-        let { prefix, suffix } = strSplit(dom);
-        dom.value = prefix + insert + suffix;
+        insertHandle(dom, value, lastRange);
+    }
+    function handleInsertDom(type) {
+        if (type === IMAGE) {
+            let lastRange = props.lastRange;
+            if (!lastRange) return;
+            let file = document.getElementById("file").files[0];
+            let url = window.URL.createObjectURL(file);
+            let image = document.createElement("img");
+            image.src = url;
+            //image.className = "blog-img";
+            lastRange.insertNode(image);
+            props.formData.append(url, file);
+        }
     }
     function handleSetEdit(type) {
         let preview = document.getElementById("article_preview");
@@ -37,10 +52,12 @@ function Toolbar(props) {
         <ul className="secondary_menu">
             <li className="secondary_base"><a onClick={() => handleSetEdit(PREVIEW)}>预览</a></li>
             <li className="secondary_base"><a onClick={() => handleSetEdit(EDIT)}>编辑</a></li>
-            <li className="secondary_base"><a onClick={() => handleOnclick(CODE_BLOCK)}>代码块</a></li>
-            <li className="secondary_base"><a onClick={() => handleOnclick(FIRST_HEADER)}>一级标题</a></li>
-            <li className="secondary_base"><a onClick={() => handleOnclick(SECOND_HEADER)}>二级标题</a></li>
-            <li className="secondary_base"><a onClick={() => handleOnclick(THIRD_HEADER)}>三级标题</a></li>
+            <li className="secondary_base"><a onClick={() => handleInsertData(CODE_BLOCK)}>代码块</a></li>
+            <li className="secondary_base"><a onClick={() => handleInsertData(FIRST_HEADER)}>一级标题</a></li>
+            <li className="secondary_base"><a onClick={() => handleInsertData(SECOND_HEADER)}>二级标题</a></li>
+            <li className="secondary_base"><a onClick={() => handleInsertData(THIRD_HEADER)}>三级标题</a></li>
+            <li className="secondary_base"><input id="file" type="file" /></li>
+            <li className="secondary_base"><a onClick={() => handleInsertDom(IMAGE)}>确认</a></li>
         </ul>
     )
 }

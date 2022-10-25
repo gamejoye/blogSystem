@@ -4,3 +4,4 @@ export const SECOND_HEADER = "secondHeader";
 export const THIRD_HEADER = "thirdHeader";
 export const PREVIEW = "preview";
 export const EDIT = "edit";
+export const IMAGE = "image";

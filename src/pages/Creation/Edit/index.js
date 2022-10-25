@@ -1,40 +1,48 @@
 import React from "react";
-import { strSplit } from "../../../constant";
-import TextArea from "antd/lib/input/TextArea";
+import { insertHandle } from "../../../constant";
 import { Col } from "antd";
 import './index.css'
 function Edit(props) {
     //设置tab缩进
+    let move = false;
     function handleKeyDown(e) {
         let dom = e.target;
-        let { sta, prefix, suffix } = strSplit(dom);
         //keydown是tab键
         if (e.keyCode == 9) {
             e.preventDefault();
-            let c = prefix + "    " + suffix;
-            dom.value = c;
-            dom.setSelectionRange(sta + 4, sta + 4);
+            let lastRange = props.lastRange;
+            if(!lastRange) return;
+            insertHandle(dom, "\xa0\xa0\xa0\xa0", lastRange);
+        } else {
+            props.setLastRange(document.getSelection().getRangeAt(0));
         }
+    }
+    function handleOnInput(e) {
+        props.setContent(e.target.innerHTML);
+    }
+    function handleOnClick(e) {
+        props.setLastRange(document.getSelection().getRangeAt(0));
     }
     return (
         <>
             <Col span={14} offset={4}>
                 <br />
-                <TextArea
-                    className="head"
+                <div
+                    contentEditable={true}
+                    className="blog-head blog-text"
                     rows={1}
-                    placeholder="文章标题~"
-                    onChange={(e) => props.setTitle(e.target.value)}
+                    onInput={(e) => props.setTitle(e.target.innerText)}
                 />
             </Col>
             <Col span={14} offset={4}>
                 <br />
-                <TextArea
+                <div
+                    contentEditable={true}
                     id="creationContent"
-                    className="text"
+                    className="blog-content blog-text"
                     rows={35}
-                    placeholder="文章内容~"
-                    onChange={(e) => props.setContent(e.target.value)}
+                    onClick={(e) => handleOnClick(e)}
+                    onInput={(e) => handleOnInput(e)}
                     onKeyDown={(e) => handleKeyDown(e)}
                 />
             </Col>

@@ -1,3 +1,4 @@
+//export const BASE_URL = 'http://112.74.55.177/Blog/';
 export const BASE_URL = 'http://localhost:8080/MyBlog/';
 export const USER = {
     name: 'gamejoye'
@@ -10,18 +11,23 @@ export const map = {
     '发文章': 'creation',
 }
 
-//用于Creation的TextareaDom 获取光标前的字符和光标后的字符串
-export const strSplit = (dom) => {
-    let value = dom.value;
-    let sta = dom.selectionStart;
-    let end = dom.selectionEnd;
-    let prefix = value.substr(0, sta);
-    let suffix = value.substr(end);
-    return {
-        prefix: prefix,
-        suffix: suffix,
-        sta: sta
+export const insertHandle = (dom, value, range) => {
+    if(typeof value !== "string") {
+        range.insertNode(value);
+        return;
     }
+    if(range.startContainer.nodeName !== "#text") {
+        let node = document.createTextNode(value);
+        range.startContainer.appendChild(node);
+        range.setStart(node, node.length);
+        range.collapse(true);
+        return;
+    }
+    let offset = range.startOffset;
+    let container = range.startContainer;
+    container.insertData(offset, value);
+    range.setStart(container, offset + value.length);
+    range.collapse(true);
 }
 
 export const handleRemovePrompt = () => {

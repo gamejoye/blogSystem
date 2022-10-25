@@ -5,7 +5,6 @@ import Nav from './components/Nav';
 import Previous from './components/Previous';
 import './App.css';
 import { setName } from './redux/actions';
-import { handleRemovePrompt } from './constant';
 import { connect } from 'react-redux';
 
 function App(props) {
@@ -14,7 +13,7 @@ function App(props) {
             <Previous/>
         )
     return (
-        <div className='app' onClick={handleRemovePrompt}>
+        <div className='app'>
             <Nav />
             <Main />
         </div>

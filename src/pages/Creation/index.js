@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
-import { Divider, Row } from "antd";
+import { Row } from "antd";
 import Toolbar from "./Toolbar";
 import Edit from "./Edit";
 import ArticlePreview from "./ArticlePreviw";
@@ -11,17 +11,19 @@ function Creation(props) {
     const [title, setTitle] = useState('');
     const [articleContent, setContent] = useState('');
     const [order, setOrder] = useState(1);
+    const [lastRange, setLastRange] = useState(null);
+    const [formData] = useState(new FormData());
     return (
         <div>
-            <Toolbar/>
+            <Toolbar lastRange={lastRange} formData={formData} />
             <Row gutter={[16, 16]} id="article_edit">
-                <Edit setTitle={setTitle} setContent={setContent} setOrder={setOrder} />
+                <Edit setTitle={setTitle} setContent={setContent} setOrder={setOrder} lastRange={lastRange} setLastRange={setLastRange}  formData={formData} />
             </Row>
             <Row gutter={[16, 16]} id="article_preview">
-                <ArticlePreview articleContent={articleContent} />
+                <ArticlePreview articleContent={articleContent}/>
             </Row>
             <Row gutter={[16, 16]}>
-                <Submisson title={title} articleContent={articleContent} order={order} />
+                <Submisson title={title} articleContent={articleContent} order={order} formData={formData}/>
             </Row>
         </div>
     )

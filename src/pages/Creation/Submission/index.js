@@ -7,6 +7,7 @@ function Submisson(props) {
     const username = props.name
     const navigate = useNavigate();
     function handleSubmit() {
+        /*
         postInstance.post('blogs/' + 'addition', {
             username: username,
             title: props.title,
@@ -21,6 +22,29 @@ function Submisson(props) {
                 }
             }
         )
+        */
+       props.formData.append('content', props.articleContent);
+       console.log(props.articleContent);
+       postInstance.post('blogs/images/upload',props.formData).then(
+            (res) => {
+                console.log(props);
+                postInstance.post('blogs/' + 'addition', {
+                    username: username,
+                    title: props.title,
+                    content: res.data,
+                    order: props.order
+                }).then(
+                    (res) => {
+                        console.log(res.data);
+                        if (res.data === 'successfully added') {
+                            navigate('/home');
+                        } else {
+                            alert('This blog already exists, please change it to a new blog name');
+                        }
+                    }
+                )
+            }
+       )
     }
     return (
         <>

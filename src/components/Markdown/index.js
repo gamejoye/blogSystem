@@ -5,10 +5,10 @@ import hljs from "highlight.js";
 //import 'highlight.js/styles/monokai-sublime.css';
 import 'highlight.js/styles/atom-one-dark.css';
 import './index.css'
+import { transformImg } from '../../utils/apis/transformBlog';
 
 function Markdown(props) {
-    const markdownContent = marked(props.content);
-    //console.log(markdownContent)
+    const [markdownContent, setMarkdownContent] = useState(marked(transformImg(props.content)));
     const _className = props._className;
     marked.setOptions({
         renderer: new marked.Renderer(),
