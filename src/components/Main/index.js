@@ -1,25 +1,28 @@
-import React, { Suspense } from "react";
+import React, { lazy, Suspense } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
+import ErrorBoundary from "../ErrorBoundady";
 
-import Home from '../../pages/Home';
-import Titles from "../../pages/Titles";
-import Post from "../../pages/Post";
-import Creation from "../../pages/Creation";
-import About from "../../pages/About";
+const Home = lazy(() => import('../../pages/Home'));
+const Titles = lazy(() => import('../../pages/Titles'));
+const Post = lazy(() => import('../../pages/Post'));
+const Creation = lazy(() => import('../../pages/Creation'));
+const About = lazy(() => import('../../pages/About'));
 
 class Main extends React.Component {
-    
+
     render() {
         return (
             <Suspense fallback={<div>Loading...</div>}>
-                <Routes>
-                    <Route path="/" element={<Home />}></Route>
-                    <Route path="/titles" element={<Titles />}></Route>
-                    <Route path="/post" element={<Post />}></Route>
-                    <Route path="/creation" element={<Creation />}></Route>
-                    <Route path="/about" element={<About/>}></Route>
-                    <Route path='*' element={<Navigate to='/' replace />} />
-                </Routes>
+                <ErrorBoundary>
+                    <Routes>
+                        <Route path="/" element={<Home />}></Route>
+                        <Route path="/titles" element={<Titles />}></Route>
+                        <Route path="/post" element={<Post />}></Route>
+                        <Route path="/creation" element={<Creation />}></Route>
+                        <Route path="/about" element={<About />}></Route>
+                        <Route path='*' element={<Navigate to='/' replace />} />
+                    </Routes>
+                </ErrorBoundary>
             </Suspense>
         )
     }

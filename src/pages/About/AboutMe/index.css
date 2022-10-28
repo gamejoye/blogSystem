@@ -9,6 +9,10 @@
     color: aliceblue;
 }
 
+h1 {
+    color: white;
+}
+
 .ant-picker {
     border: 1px solid ;
 }

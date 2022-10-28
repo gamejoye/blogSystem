@@ -15,6 +15,14 @@ code {
     font-weight: 300;
 }
 
+.content * {
+    color: white;
+}
+
+.header * {
+    color: white;
+}
+
 .header {
     margin-top: 2%;
     margin-left: 10%;
