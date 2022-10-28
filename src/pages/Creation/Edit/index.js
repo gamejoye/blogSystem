@@ -1,5 +1,5 @@
 import React from "react";
-import { insertHandle } from "../../../constant";
+import { markdownInsert } from "../../../constant";
 import { Col } from "antd";
 import './index.css'
 function Edit(props) {
@@ -12,12 +12,16 @@ function Edit(props) {
             e.preventDefault();
             let lastRange = props.lastRange;
             if(!lastRange) return;
-            insertHandle(dom, "\xa0\xa0\xa0\xa0", lastRange);
+            markdownInsert(dom, "\xa0\xa0\xa0\xa0", lastRange);
         } else {
             props.setLastRange(document.getSelection().getRangeAt(0));
         }
     }
-    function handleOnInput(e) {
+    function handleHeadOnInput(e) {
+        props.setTitle(e.target.innerText)
+    }
+    function handleContentOnInput(e) {
+        props.setPreview(e.target.innerText);
         props.setContent(e.target.innerHTML);
     }
     function handleOnClick(e) {
@@ -31,7 +35,7 @@ function Edit(props) {
                     contentEditable={true}
                     className="blog-head blog-text"
                     rows={1}
-                    onInput={(e) => props.setTitle(e.target.innerText)}
+                    onInput={(e) => handleHeadOnInput(e)}
                 />
             </Col>
             <Col span={14} offset={4}>
@@ -42,7 +46,7 @@ function Edit(props) {
                     className="blog-content blog-text"
                     rows={35}
                     onClick={(e) => handleOnClick(e)}
-                    onInput={(e) => handleOnInput(e)}
+                    onInput={(e) => handleContentOnInput(e)}
                     onKeyDown={(e) => handleKeyDown(e)}
                 />
             </Col>

@@ -6,7 +6,7 @@ function ArticlePreview(props) {
         <>
             <Col span={14} offset={4}>
                 <br />
-                <Markdown content={props.articleContent} _className="content"></Markdown>
+                <Markdown content={props.articlePreview} _className="content"></Markdown>
             </Col>
         </>
     )

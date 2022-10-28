@@ -24,10 +24,10 @@ function Submisson(props) {
         )
         */
        props.formData.append('content', props.articleContent);
-       console.log(props.articleContent);
+       //console.log("1 : "+props.articleContent);
        postInstance.post('blogs/images/upload',props.formData).then(
             (res) => {
-                console.log(props);
+                //console.log("2 :"+res.data);
                 postInstance.post('blogs/' + 'addition', {
                     username: username,
                     title: props.title,
@@ -35,7 +35,6 @@ function Submisson(props) {
                     order: props.order
                 }).then(
                     (res) => {
-                        console.log(res.data);
                         if (res.data === 'successfully added') {
                             navigate('/home');
                         } else {

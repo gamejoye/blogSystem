@@ -1,7 +1,6 @@
 import React from "react";
-import { insertHandle } from "../../../constant";
+import { markdownInsert } from "../../../constant";
 import { CODE_BLOCK, FIRST_HEADER, SECOND_HEADER, THIRD_HEADER, EDIT, PREVIEW, IMAGE } from './constant'
-import { postInstance } from "../../../utils/apis/axiosConfig";
 import './index.css'
 function Toolbar(props) {
     let move = false;
@@ -9,30 +8,30 @@ function Toolbar(props) {
         let value;
         switch (type) {
             case CODE_BLOCK:
-                { value = "\n```\n\n```\n"; break; }
+                { value = "``` ```"; break; }
             case FIRST_HEADER:
-                { value = "\n# "; break; }
+                { value = "#\xa0"; break; }
             case SECOND_HEADER:
-                { value = "\n## "; break; }
+                { value = "##\xa0"; break; }
             case THIRD_HEADER:
-                { value = "\n### "; break }
+                { value = "###\xa0"; break }
             default:
                 value = "";
         };
         let lastRange = props.lastRange;
-        if (!lastRange) return;
+        if (!lastRange || !value) return;
         let dom = document.getElementById("creationContent");
-        insertHandle(dom, value, lastRange);
+        markdownInsert(dom, value, lastRange, props.setPreview, props.setContent);
     }
+
     function handleInsertDom(type) {
         if (type === IMAGE) {
             let lastRange = props.lastRange;
             if (!lastRange) return;
-            let file = document.getElementById("file").files[0];
+            let file = document.getElementById("img-upload").files[0];
             let url = window.URL.createObjectURL(file);
             let image = document.createElement("img");
             image.src = url;
-            //image.className = "blog-img";
             lastRange.insertNode(image);
             props.formData.append(url, file);
         }
@@ -56,7 +55,10 @@ function Toolbar(props) {
             <li className="secondary_base"><a onClick={() => handleInsertData(FIRST_HEADER)}>一级标题</a></li>
             <li className="secondary_base"><a onClick={() => handleInsertData(SECOND_HEADER)}>二级标题</a></li>
             <li className="secondary_base"><a onClick={() => handleInsertData(THIRD_HEADER)}>三级标题</a></li>
-            <li className="secondary_base"><input id="file" type="file" /></li>
+            <li className="secondary_base">
+                <label htmlFor="img-upload" className="image-upload">上传图片</label>
+                <input id="img-upload" type="file"></input>
+            </li>
             <li className="secondary_base"><a onClick={() => handleInsertDom(IMAGE)}>确认</a></li>
         </ul>
     )

@@ -8,7 +8,7 @@ import './index.css'
 import { transformImg } from '../../utils/apis/transformBlog';
 
 function Markdown(props) {
-    const [markdownContent, setMarkdownContent] = useState(marked(transformImg(props.content)));
+    const markdownContent = marked(transformImg(props.content))
     const _className = props._className;
     marked.setOptions({
         renderer: new marked.Renderer(),

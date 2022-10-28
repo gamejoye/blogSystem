@@ -11,23 +11,39 @@ export const map = {
     '发文章': 'creation',
 }
 
-export const insertHandle = (dom, value, range) => {
-    if(typeof value !== "string") {
-        range.insertNode(value);
-        return;
-    }
-    if(range.startContainer.nodeName !== "#text") {
-        let node = document.createTextNode(value);
-        range.startContainer.appendChild(node);
-        range.setStart(node, node.length);
+export const markdownInsert = (dom, value, range, setPreviewCallback, setContentCallback) => {
+    if (value === "\xa0\xa0\xa0\xa0") {
+        range.deleteContents();
+        let offset = range.startOffset;
+        let container = range.startContainer;
+        container.insertData(offset, value);
+        range.setStart(container, offset + value.length);
         range.collapse(true);
+        setPreviewCallback(dom.innerText);
         return;
     }
-    let offset = range.startOffset;
-    let container = range.startContainer;
-    container.insertData(offset, value);
-    range.setStart(container, offset + value.length);
-    range.collapse(true);
+    range.insertNode(document.createElement('div'));
+    if (typeof value !== "string") {
+        range.insertNode(value);
+    } else {
+        if (value === "``` ```") {
+            let _div1 = document.createElement('div');
+            _div1.innerText = "```";
+            let _div2 = document.createElement('div');
+            _div2.innerText = "code block";
+            let _div3 = document.createElement('div');
+            _div3.innerText = "```";
+            range.insertNode(_div1);
+            range.insertNode(_div2);
+            range.insertNode(_div3);
+        } else {
+            let _div1 = document.createElement('div');
+            _div1.innerText = value;
+            range.insertNode(_div1);
+        }
+    }
+    setPreviewCallback(dom.innerText);
+    setContentCallback(dom.innerHTML);
 }
 
 export const handleRemovePrompt = () => {

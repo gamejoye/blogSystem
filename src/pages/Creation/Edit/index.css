@@ -1,6 +1,6 @@
 .blog-head {
     background:transparent;
-    text-indent:75px; 
+    text-indent: 75px; 
     font-size: 26px;
     padding-top: 26px;
     padding-bottom: 26px;
@@ -12,6 +12,8 @@
     font-size: 16px;
     padding-top: 16px;
     padding-bottom: 16px;
+    padding-left: 25px;
+    padding-right: 25px;
 }
 
 .blog-text { 
@@ -22,7 +24,7 @@
     overflow-y: auto;
 }
 
-.blog-text img {
+.creation img {
     margin-left: 20%;
     margin-right: 20%;
     width: 60%;
