@@ -15,22 +15,26 @@ code {
     font-weight: 300;
 }
 
-.content * {
-    color: white;
-}
-
-.header * {
-    color: white;
-}
-
 .header {
     margin-top: 2%;
     margin-left: 10%;
     margin-right: 10%;
 }
+
 .header h1 {
+    color: white;
     text-align: center;
     font-size: 50px;
+}
+
+.content h1,
+.content h2,
+.content h3,
+.content h4,
+.content h5,
+.content h6,
+.content p {
+    color: white;
 }
 
 .content p {

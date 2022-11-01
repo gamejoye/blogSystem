@@ -1,11 +1,9 @@
 import React, { useEffect } from "react";
-import { useState } from "react";
 import { connect } from "react-redux";
 import { setName } from "../../redux/actions";
 import { getInstance,postInstance } from "../../utils/apis/axiosConfig";
 import { BASE_URL } from "../../constant";
 import { message } from "antd";
-import Prompt from "../Prompt";
 function Previous(props) {
     useEffect(() => {
         getInstance.get(BASE_URL+"user/username").then(

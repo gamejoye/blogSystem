@@ -1,5 +1,5 @@
-//export const BASE_URL = 'http://112.74.55.177/Blog/';
-export const BASE_URL = 'http://localhost:8080/MyBlog/';
+export const BASE_URL = process.env.NODE_ENV === "development" ? "http://localhost:8080/MyBlog/" : "http://localhost:8080/MyBlog/";
+export const IMG_BASE_URL = process.env.NODE_ENV === "development" ? "http://localhost:8080/MyBlog/" : "http://localhost:8080/MyBlog/";
 export const USER = {
     name: 'gamejoye'
 };

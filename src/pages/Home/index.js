@@ -1,13 +1,11 @@
-import React from "react";
-
+import React, { lazy } from "react";
 import { useState, useEffect } from "react";
 import { connect } from "react-redux";
-
-import Posts from "./Posts";
-import SelfCard from "./Aside/SelfCard";
-
 import { getInstance } from "../../utils/apis/axiosConfig";
 import './index.css'
+const Posts = lazy(() => import('./Posts'))
+const SelfCard = lazy(() => import('./Aside/SelfCard'))
+
 
 function Home(props) {
     const username = props.name

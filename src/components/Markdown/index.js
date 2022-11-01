@@ -1,11 +1,9 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { marked } from 'marked'
 import hljs from "highlight.js";
-//import 'highlight.js/styles/github.css';
-//import 'highlight.js/styles/monokai-sublime.css';
-import 'highlight.js/styles/atom-one-dark.css';
-import './index.css'
 import { transformImg } from '../../utils/apis/transformBlog';
+import 'highlight.js/styles/magula.css';
+import './index.css'
 
 function Markdown(props) {
     const markdownContent = marked(transformImg(props.content))

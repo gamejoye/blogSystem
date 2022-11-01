@@ -1,11 +1,12 @@
-import React, { useEffect } from "react";
+import React, { lazy, useEffect } from "react";
 import { useState } from "react";
 import { Row } from "antd";
-import Toolbar from "./Toolbar";
-import Edit from "./Edit";
-import ArticlePreview from "./ArticlePreviw";
-import Submisson from "./Submission";
 import './index.css'
+
+const Toolbar = lazy(() => import('./Toolbar'));
+const Edit = lazy(() => import('./Edit'));
+const ArticlePreview = lazy(() => import('./ArticlePreviw'));
+const Submission = lazy(() => import('./Submission'));
 
 function Creation(props) {
     const [title, setTitle] = useState('');
@@ -24,7 +25,7 @@ function Creation(props) {
                 <ArticlePreview articlePreview={articlePreview}/>
             </Row>
             <Row gutter={[16, 16]}>
-                <Submisson title={title} articleContent={articleContent} order={order} formData={formData}/>
+                <Submission title={title} articleContent={articleContent} order={order} formData={formData}/>
             </Row>
         </div>
     )

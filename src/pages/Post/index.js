@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, lazy } from "react";
 import { useLocation } from "react-router";
 import { getInstance } from "../../utils/apis/axiosConfig";
-import './index.css'
-import Comments from "../Comments";
 import Markdown from "../../components/Markdown";
+import './index.css'
+const Comments = lazy(() => import('../Comments'))
 
 
-function Post(props) {
+function Post() {
     const localtion = useLocation();
     const { title } = localtion.state;
     const [blog, setBlog] = useState({});
