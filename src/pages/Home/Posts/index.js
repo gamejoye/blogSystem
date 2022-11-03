@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import PostCard from "./PostCard";
-import Prompt from "../../../components/Prompt";
+import DeleteDialog from "../../Pop-up-window/DeleteDialog";
 import { BASE_URL } from "../../../constant";
 function Posts(props) {
     const blogs = props.blogs;
@@ -11,8 +11,6 @@ function Posts(props) {
             <PostCard
                 key={index}
                 blog={blog}
-                count={props.count}
-                setCount={props.setCount}
                 setId={setId}
             />
         )
@@ -20,7 +18,7 @@ function Posts(props) {
     return (
         <>
             {posts}
-            <Prompt url={url} data={{id:id}} count={props.count} setCount={props.setCount}/>
+            <DeleteDialog url={url} data={{id:id}} />
         </>
     )
 }

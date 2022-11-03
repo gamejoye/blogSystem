@@ -26,7 +26,7 @@ function Titles(props) {
                 setTotalTitles(res.data);
             }
         );
-    }, [1]);
+    });
 
     useEffect(() => {
         if (page.trim() == '') {

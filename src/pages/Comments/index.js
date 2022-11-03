@@ -56,7 +56,7 @@ function CommentBox(props) {
     }
 
     useEffect(() => {
-        getInstance.get('comments' + '/all', {
+        getInstance.get('comments/all', {
             params: {
                 username: username,
                 title: title
@@ -66,7 +66,7 @@ function CommentBox(props) {
                 setComments(res.data);
             }
         )
-    }, [1]);
+    });
 
     const handleSubmit = () => {
         if (!value) return;

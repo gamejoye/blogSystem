@@ -8,17 +8,21 @@
     overflow: hidden;
     background-color: rgba(72, 175, 244, 0.491);
 }
+
 .primary_base {
     padding-top: 20px;
     height: 64px;
 }
+
 .primary_menu li {
     float: left;
 }
+
 .primary_menu .user {
     margin-right: 10%;
     float: right;
 }
+
 .primary_menu .nav-home {
     float: left;
     margin-left: 10%;
@@ -31,8 +35,9 @@
     padding: 16px 26px;
     text-decoration: none;
 }
+
 .primary_menu .primary_base a:hover {
-    border-radius:25px 25px 25px 25px;
+    border-radius: 25px 25px 25px 25px;
     background-color: rgb(6, 54, 103);
 }
 
@@ -50,16 +55,16 @@
 
 .user-content {
     padding-top: 16px;
-    display:none;
-    position:absolute;
+    display: none;
+    position: absolute;
 }
 
 .user-content a {
-    text-decoration:none;
-    display:block;
+    text-decoration: none;
+    display: block;
 }
 
 .user-content a:hover {
-    border-radius:25px 25px 25px 25px;
+    border-radius: 25px 25px 25px 25px;
     background-color: rgb(6, 54, 103);
 }

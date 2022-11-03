@@ -1,17 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import Main from './components/Main';
 import Nav from './components/Nav';
-import Previous from './components/Previous';
 import './App.css';
 import { setName } from './redux/actions';
 import { connect } from 'react-redux';
 
-function App(props) {
-    if(!props.name)
-        return (
-            <Previous/>
-        )
+function App() {
     return (
         <div className='app'>
             <Nav />

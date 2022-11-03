@@ -1,22 +1,19 @@
-export const BASE_URL = process.env.NODE_ENV === "development" ? "http://localhost:8080/MyBlog/" : "http://localhost:8080/MyBlog/";
-export const IMG_BASE_URL = process.env.NODE_ENV === "development" ? "http://localhost:8080/MyBlog/" : "http://localhost:8080/MyBlog/";
-export const USER = {
-    name: 'gamejoye'
-};
-
-export const map = {
-    '主页': 'home',
-    '文章': 'titles',
-    '个人资料': 'about',
-    '发文章': 'creation',
-}
+export const BASE_URL = process.env.NODE_ENV === "development" ? "http://localhost:8080/MyBlog/" : "http://112.74.55.177/Blog/";
 
 export const markdownInsert = (dom, value, range, setPreviewCallback, setContentCallback) => {
     if (value === "\xa0\xa0\xa0\xa0") {
         range.deleteContents();
         let offset = range.startOffset;
         let container = range.startContainer;
-        container.insertData(offset, value);
+
+        if(container.nodeName === 'DIV') {
+            //div 节点
+            container.innerHTML = value;
+            container = container.childNodes[0];
+        } else {
+            //#text 节点
+            container.insertData(offset, value);
+        }
         range.setStart(container, offset + value.length);
         range.collapse(true);
         setPreviewCallback(dom.innerText);
@@ -46,7 +43,7 @@ export const markdownInsert = (dom, value, range, setPreviewCallback, setContent
     setContentCallback(dom.innerHTML);
 }
 
-export const handleRemovePrompt = () => {
+export const handleRemovePrompt = (dom) => {
     document.getElementById("root").style.filter = 'brightness(1)';
-    document.getElementById("prompt").style.display = 'none';
+    dom.style.display = 'none';
 }

@@ -12,13 +12,14 @@ function Edit(props) {
             e.preventDefault();
             let lastRange = props.lastRange;
             if(!lastRange) return;
-            markdownInsert(dom, "\xa0\xa0\xa0\xa0", lastRange);
-        } else {
-            props.setLastRange(document.getSelection().getRangeAt(0));
+            markdownInsert(dom, "\xa0\xa0\xa0\xa0", lastRange, props.setPreview);
         }
     }
+    function handleKeyUp(e) {
+        props.setLastRange(document.getSelection().getRangeAt(0));
+    }
     function handleHeadOnInput(e) {
-        props.setTitle(e.target.innerText)
+        props.setTitle(e.target.innerText);
     }
     function handleContentOnInput(e) {
         props.setPreview(e.target.innerText);
@@ -48,6 +49,7 @@ function Edit(props) {
                     onClick={(e) => handleOnClick(e)}
                     onInput={(e) => handleContentOnInput(e)}
                     onKeyDown={(e) => handleKeyDown(e)}
+                    onKeyUp={(e) => handleKeyUp(e)}
                 />
             </Col>
         </>

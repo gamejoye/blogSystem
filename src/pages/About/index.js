@@ -15,7 +15,7 @@ function About(props) {
     const [isEdit, setEdit] = useState(0);
     const [preState, setPreState] = useState({});
     useEffect(() => {
-        getInstance.get('user/' + 'introduction', {
+        getInstance.get('user/introduction', {
             params: {
                 username: username
             }
@@ -30,7 +30,7 @@ function About(props) {
                 setPreState(uInfo);
             }
         )
-    }, [1]);
+    });
 
     function handlerSubmit(type,bit) {
         const data = type=='aboutMe'?aboutMe:type=='address'?address:type=='sex'?sex:birthday;

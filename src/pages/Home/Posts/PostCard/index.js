@@ -13,7 +13,7 @@ function PostCard(props) {
         e.stopPropagation();
         props.setId(blog.id);
         document.getElementById("root").style.filter = 'brightness(0.5)';
-        document.getElementById("prompt").style.display = 'block';
+        document.getElementById("delete-dialog").style.display = 'block';
     }
     function handleOnclick() {
         navigate('/post?title=' + blog.title, { state: { title: blog.title } })

@@ -1,32 +1,33 @@
 import React from "react";
 import { createPortal } from "react-dom";
-import { handleRemovePrompt } from "../../constant";
-import { postInstance } from "../../utils/apis/axiosConfig";
+import { handleRemovePrompt } from "../../../constant";
+import { postInstance } from "../../../utils/apis/axiosConfig";
 import './index.css';
-class Prompt extends React.Component {
+class DeleteDialog extends React.Component {
     constructor(props) {
         super(props);
         this.el = document.createElement('div');
     }
     componentDidMount() {
         document.getElementById("prompt-root").appendChild(this.el);
-        this.el.id = "prompt";
     };
     componentWillUnmount() {
         document.getElementById("prompt-root").removeChild(this.el);
     }
     render() {
         const help = (type) => {
-            handleRemovePrompt();
+            handleRemovePrompt(document.getElementById("delete-dialog"));
             if (!type) return;
             postInstance.post(this.props.url, this.props.data).then(
                 (res) => {
-                    if (res.data == "succeed") this.props.setCount(this.props.count + 1);
+                    if (res.data == "succeed") {
+                        
+                    }
                 }
             )
         }
         return createPortal(
-            <div id="message">
+            <div id="delete-dialog">
                 <h2>确定要删除本篇博客吗</h2>
                 <div id="check">
                     <button onClick={() => help(true)}>确认</button>
@@ -37,4 +38,4 @@ class Prompt extends React.Component {
         )
     }
 }
-export default Prompt;
+export default DeleteDialog;

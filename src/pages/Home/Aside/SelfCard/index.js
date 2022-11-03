@@ -20,7 +20,7 @@ function SelfCard(props) {
                 res.data ? setAboutMe(res.data):setAboutMe('暂无简介');
             }
         )
-    }, [1]);
+    });
 
     return (
         <div

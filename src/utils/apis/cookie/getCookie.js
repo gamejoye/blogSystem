@@ -1,7 +1,4 @@
-import { getInstance } from "./axiosConfig";
-import { baseUrl } from "../../constant";
-
-export function getCookie(cookieName) {
+export const getCookie = (cookieName) => {
     var strCookie = document.cookie;
     var arrCookie = strCookie.split("; ");
     for (var i = 0; i < arrCookie.length; i++) {
