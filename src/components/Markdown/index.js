@@ -1,12 +1,11 @@
 import React from 'react'
 import { marked } from 'marked'
 import hljs from "highlight.js";
-import { transformImg } from '../../utils/apis/transformBlog';
 import 'highlight.js/styles/magula.css';
 import './index.css'
 
 function Markdown(props) {
-    const markdownContent = marked(transformImg(props.content))
+    const markdownContent = marked(props.content)
     const _className = props._className;
     marked.setOptions({
         renderer: new marked.Renderer(),

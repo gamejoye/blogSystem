@@ -3,15 +3,14 @@ import { Col, Button } from "antd";
 import { postInstance } from "../../../utils/apis/axiosConfig";
 import { connect } from "react-redux";
 import { useNavigate } from "react-router";
+import { transformImg } from "../../../utils/apis/transformBlog";
 function Submisson(props) {
     const username = props.name
     const navigate = useNavigate();
     function handleSubmit() {
-       props.formData.append('content', props.articleContent);
-       //console.log("1 : "+props.articleContent);
-       postInstance.post('files/blogs/images/upload',props.formData).then(
+        props.formData.append('content', props.articleContent);
+        postInstance.post('files/blogs/images/upload', props.formData).then(
             (res) => {
-                //console.log("2 :"+res.data);
                 postInstance.post('blogs/' + 'addition', {
                     username: username,
                     title: props.title,
@@ -27,7 +26,7 @@ function Submisson(props) {
                     }
                 )
             }
-       )
+        )
     }
     return (
         <>

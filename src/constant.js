@@ -8,7 +8,7 @@ export const markdownInsert = (dom, value, range, setPreviewCallback, setContent
 
         if(container.nodeName === 'DIV') {
             //div 节点
-            container.innerHTML = value;
+            container.textContent = value;
             container = container.childNodes[0];
         } else {
             //#text 节点
@@ -25,17 +25,17 @@ export const markdownInsert = (dom, value, range, setPreviewCallback, setContent
     } else {
         if (value === "``` ```") {
             let _div1 = document.createElement('div');
-            _div1.innerText = "```";
+            _div1.textContent = "```";
             let _div2 = document.createElement('div');
-            _div2.innerText = "code block";
+            _div2.textContent = "code block";
             let _div3 = document.createElement('div');
-            _div3.innerText = "```";
+            _div3.textContent = "```";
             range.insertNode(_div1);
             range.insertNode(_div2);
             range.insertNode(_div3);
         } else {
             let _div1 = document.createElement('div');
-            _div1.innerText = value;
+            _div1.textContent = value;
             range.insertNode(_div1);
         }
     }

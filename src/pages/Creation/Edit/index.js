@@ -4,7 +4,6 @@ import { Col } from "antd";
 import './index.css'
 function Edit(props) {
     //设置tab缩进
-    let move = false;
     function handleKeyDown(e) {
         let dom = e.target;
         //keydown是tab键
