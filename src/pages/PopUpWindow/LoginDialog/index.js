@@ -1,7 +1,6 @@
 import React from "react";
 import { createPortal } from "react-dom";
 import { handleRemovePrompt } from "../../../constant";
-import { CloseOutlined } from "@ant-design/icons";
 import Login from "./Login";
 import Register from "./Register";
 import './index.css'
@@ -28,12 +27,14 @@ class LoginDialog extends React.Component {
                 isLogin: !this.state.isLogin
             })
         }
-        const handleClose = () => {
+        const handleClose = (setError1, setError2) => {
+            setError1("");
+            setError2("");
             handleRemovePrompt(document.getElementById("login-dialog"));
         }
         const handleOnBlur = (e, msg, setError) => {
             let value = e.target.value;
-            if(value.length>=6 && value.length<=12) {
+            if (value.length >= 6 && value.length <= 12) {
                 setError("");
             } else {
                 setError(msg);
@@ -41,14 +42,11 @@ class LoginDialog extends React.Component {
         }
 
         return createPortal(
-            <div id="login-dialog">
-                <div className="close-bar">
-                    <CloseOutlined style={{ color: '#ffffff' }} className="close-btn" onClick={handleClose} />
-                </div> {
-                    (this.state.isLogin
-                        && <Login toAnother={handleToAnother} handleOnBlur={handleOnBlur} />)
-                    || <Register toAnother={handleToAnother} handleOnBlur={handleOnBlur} />
-                }
+            <div id="login-dialog"> {
+                (this.state.isLogin
+                    && <Login toAnother={handleToAnother} handleOnBlur={handleOnBlur} handleClose={handleClose} />)
+                || <Register toAnother={handleToAnother} handleOnBlur={handleOnBlur} handleClose={handleClose} />
+            }
             </div>,
             this.el
         )
