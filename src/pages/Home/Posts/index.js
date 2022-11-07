@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import PostCard from "./PostCard";
-import DeleteDialog from "../../Pop-up-window/DeleteDialog";
+import DeleteDialog from "../../PopUpWindow/DeleteDialog";
 import { BASE_URL } from "../../../constant";
 function Posts(props) {
     const blogs = props.blogs;

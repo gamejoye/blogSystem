@@ -3,7 +3,6 @@ import { Col, Button } from "antd";
 import { postInstance } from "../../../utils/apis/axiosConfig";
 import { connect } from "react-redux";
 import { useNavigate } from "react-router";
-import { transformImg } from "../../../utils/apis/transformBlog";
 function Submisson(props) {
     const username = props.name
     const navigate = useNavigate();

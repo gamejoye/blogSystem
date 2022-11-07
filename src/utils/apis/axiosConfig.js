@@ -11,7 +11,7 @@ const getInstance = axios.create({
 getInstance.interceptors.response.use(function (config) {
     return config;
 }, function (error) {
-    alert(error)
+    //alert(error)
     return Promise.reject(error);
 });
 
@@ -29,7 +29,7 @@ const postInstance = axios.create({
 postInstance.interceptors.request.use(function (config) {
     return config;
 }, function (error) {
-    alert(error)
+    //alert(error)
     return Promise.reject(error);
 });
 

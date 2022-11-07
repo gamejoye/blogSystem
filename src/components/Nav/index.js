@@ -10,7 +10,7 @@ import { connect } from "react-redux";
 import './index.css'
 
 import { BASE_URL } from "../../constant";
-import LoginDialog from "../../pages/Pop-up-window/LoginDialog";
+import LoginDialog from "../../pages/PopUpWindow/LoginDialog";
 import { removeCookie } from "../../utils/apis/cookie/removeCookie";
 
 const Tourist = (props) => {
