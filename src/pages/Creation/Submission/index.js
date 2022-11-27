@@ -1,10 +1,11 @@
 import React from "react";
 import { Col, Button } from "antd";
 import { postInstance } from "../../../utils/apis/axiosConfig";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
+import { selectName } from "../../../redux/selectors";
 function Submisson(props) {
-    const username = props.name
+    const username = useSelector(selectName);
     const navigate = useNavigate();
     function handleSubmit() {
         props.formData.append('content', props.articleContent);
@@ -14,7 +15,8 @@ function Submisson(props) {
                     username: username,
                     title: props.title,
                     content: res.data,
-                    order: props.order
+                    order: props.order,
+                    tags: JSON.stringify(props.tags)
                 }).then(
                     (res) => {
                         if (res.data === 'successfully added') {
@@ -35,8 +37,4 @@ function Submisson(props) {
         </>
     )
 }
-export default connect(
-    (state) => ({
-        name: state.name
-    })
-)(Submisson);
+export default Submisson;

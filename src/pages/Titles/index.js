@@ -7,10 +7,11 @@ import TitleList from "./TitleList";
 import Search from "./Search";
 
 import { getInstance } from "../../utils/apis/axiosConfig";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
+import { selectName } from "../../redux/selectors";
 
 function Titles(props) {
-    const username = props.name
+    const username = useSelector(selectName);
     const [totalTitles, setTotalTitles] = useState([]);
     const [titles, setTitles] = useState([]);
     const [page, setPage] = useState('');
@@ -26,7 +27,7 @@ function Titles(props) {
                 setTotalTitles(res.data);
             }
         );
-    });
+    }, [username]);
 
     useEffect(() => {
         if (page.trim() == '') {
@@ -53,8 +54,4 @@ function Titles(props) {
     )
 }
 
-export default connect(
-    (state) => ({
-        name: state.name
-    })
-)(Titles);
+export default Titles;

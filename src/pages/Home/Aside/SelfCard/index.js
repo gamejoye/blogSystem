@@ -4,10 +4,11 @@ import { useNavigate } from "react-router";
 import './index.css'
 
 import { getInstance } from "../../../../utils/apis/axiosConfig";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
+import { selectName } from "../../../../redux/selectors";
 
-function SelfCard(props) {
-    const username = props.name;
+function SelfCard() {
+    const username = useSelector(selectName);
     const [aboutMe, setAboutMe] = useState('');
     const navigate = useNavigate();
     useEffect(() => {
@@ -20,7 +21,7 @@ function SelfCard(props) {
                 res.data ? setAboutMe(res.data):setAboutMe('暂无简介');
             }
         )
-    });
+    }, [username]);
 
     return (
         <div
@@ -35,8 +36,4 @@ function SelfCard(props) {
     )
 }
 
-export default connect(
-    (state) => ({
-        name: state.name
-    })
-)(SelfCard)
+export default SelfCard;

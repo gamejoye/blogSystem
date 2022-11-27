@@ -1,10 +1,11 @@
-import { Button, Comment, Divider, Form, Input } from 'antd';
+import { Button, Comment, Divider, Form, Input, message } from 'antd';
 import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import { UserOutlined } from '@ant-design/icons';
 import { postInstance, getInstance } from '../../utils/apis/axiosConfig';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 import './index.css'
+import { selectName } from '../../redux/selectors';
 
 const { TextArea } = Input;
 
@@ -39,9 +40,8 @@ const Editor = ({ onChange, onSubmit, submitting, value }) => (
     </>
 );
 
-function CommentBox(props) {
-    const username = props.name;
-    const title = props.title;
+function CommentBox({title}) {
+    const username = useSelector(selectName);
     const [comments, setComments] = useState([]);
     const [submitting, setSubmitting] = useState(false);
     const [value, setValue] = useState('');
@@ -66,7 +66,7 @@ function CommentBox(props) {
                 setComments(res.data);
             }
         )
-    });
+    }, [username]);
 
     const handleSubmit = () => {
         if (!value) return;
@@ -83,6 +83,7 @@ function CommentBox(props) {
                     commentDay: moment().format('YYYY-MM-DD')
                 },
             ]);
+            message.success('评论成功!', 1);
         }, 1000);
     };
 
@@ -108,8 +109,4 @@ function CommentBox(props) {
     )
 }
 
-export default connect(
-    (state) => ({
-        name: state.name
-    })
-)(CommentBox);
+export default CommentBox;

@@ -1,7 +1,7 @@
 .selfcard {
-    margin: 3%;
+    margin: 5% 9%;
     height: 100px;
-    width: 70%;
+    width: 80%;
     border-radius:25px 25px 25px 25px;
     background-image: linear-gradient(rgba(0, 0, 0, 0.118), rgba(0, 0, 0, 0.118)), url('../../../../images/bg/bg4.jpeg');
     background-size: cover;

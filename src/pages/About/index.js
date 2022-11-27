@@ -1,13 +1,13 @@
 import React from "react";
 import { getInstance, postInstance } from "../../utils/apis/axiosConfig";
-import { connect } from "react-redux";
-
+import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-
 import AboutMe from "./AboutMe";
+import { selectName } from "../../redux/selectors";
 
 function About(props) {
-    const username = props.name;
+    
+    const username = useSelector(selectName);
     const [sex,setSex] = useState('');
     const [address,setAddress] = useState('');
     const [birthday,setBirthday] = useState('');
@@ -30,7 +30,7 @@ function About(props) {
                 setPreState(uInfo);
             }
         )
-    });
+    }, []);
 
     function handlerSubmit(type,bit) {
         const data = type=='aboutMe'?aboutMe:type=='address'?address:type=='sex'?sex:birthday;
@@ -65,8 +65,4 @@ function About(props) {
     )
 }
 
-export default connect(
-    (state) => ({
-        name: state.name
-    })
-)(About);
+export default About;

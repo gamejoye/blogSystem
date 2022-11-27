@@ -1,0 +1,14 @@
+.tags-container {
+    margin-top: 2%;
+}
+.tags-container>div {
+    color: white;
+    height: 30%;
+    font-size: 2vw;
+    border: 1px solid #bac7e1;
+    word-break: keep-all;
+}
+.tag {
+    margin: 1%;
+    background-color: rgb(47, 208, 176, 0.5);
+}

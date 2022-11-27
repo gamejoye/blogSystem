@@ -21,7 +21,7 @@ class DeleteDialog extends React.Component {
             postInstance.post(this.props.url, this.props.data).then(
                 (res) => {
                     if (res.data == "succeed") {
-                        
+                        this.props.update(this.props.tag+1);
                     }
                 }
             )

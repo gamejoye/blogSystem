@@ -1,16 +1,15 @@
 import React from "react";
-import './index.css'
 import { HomeOutlined, UserOutlined } from "@ant-design/icons";
 import { message } from "antd";
-
+import { selectName } from "../../redux/selectors";
 import { postInstance } from "../../utils/apis/axiosConfig";
 import { setName } from "../../redux/actions";
 import { useNavigate } from "react-router";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import './index.css'
 
 import { BASE_URL } from "../../constant";
-import LoginDialog from "../../pages/PopUpWindow/LoginDialog";
+import LoginDialog from "../../pages/Window/LoginDialog";
 import { removeCookie } from "../../utils/apis/cookie/removeCookie";
 
 const Tourist = (props) => {
@@ -28,20 +27,21 @@ const Tourist = (props) => {
     )
 }
 
-const Logon = (props) => {
+const Logon = ({name, handlerButton, handleLogout}) => {
     return (
         <>
-            <a onClick={() => props.handlerButton("about")}><UserOutlined /> {props.username}</a>
+            <a onClick={() => handlerButton("about")}><UserOutlined /> {name}</a>
             <div className="user-content">
-                <a onClick={() => props.handlerButton("creation")}>发文章</a>
-                <a onClick={() => props.handleLogout()}>退出登陆</a>
+                <a onClick={() => handlerButton("creation")}>发文章</a>
+                <a onClick={() => handleLogout()}>退出登陆</a>
             </div>
         </>
     )
 }
 
 function Nav(props) {
-    const username = props.name;
+    const name = useSelector(selectName);
+    const dispatch = useDispatch();
     const navigate = useNavigate();
     const handlerButton = (value) => {
         navigate("/" + value);
@@ -49,9 +49,9 @@ function Nav(props) {
     const handleLogout = () => {
         postInstance.post(BASE_URL + "user/logout").then(
             () => {
-                //等待服务端删除session之后再注销全局username
+                //等待服务端删除session之后再注销全局name
                 message.success("退出成功", 1);
-                props.setName("");
+                dispatch(setName(""));
                 removeCookie("user");
                 handlerButton("home");
             }
@@ -62,10 +62,10 @@ function Nav(props) {
             <li className="primary_base nav-home"><a onClick={() => handlerButton("home")}><HomeOutlined /></a></li>
             <li className="primary_base"><a onClick={() => handlerButton("titles")}>文章</a></li>
             <div className="primary_base user">
-                {(username && <Logon
+                {(name && <Logon
                     handlerButton={handlerButton}
                     handleLogout={handleLogout}
-                    username={username}
+                    name={name}
                     navigate={navigate}
                 />) || <Tourist
                         handlerButton={handlerButton}
@@ -76,8 +76,4 @@ function Nav(props) {
     )
 }
 
-export default connect(
-    (state) => ({
-        name: state.name
-    }), { setName }
-)(Nav)
+export default Nav;

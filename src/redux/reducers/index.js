@@ -1,8 +1,8 @@
 import { combineReducers } from "redux";
-import navShow from "./navShow";
-import name from "./name"
+import navShow from "./nav";
+import name from "./name";
 
 export default combineReducers({
-    nav:navShow,
-    name: name
+    nav: navShow,
+    name: name,
 })

@@ -2,6 +2,7 @@ import React, { lazy } from "react";
 import { useState } from "react";
 import { Row } from "antd";
 import './index.css'
+import Tags from "./Tags";
 
 const Toolbar = lazy(() => import('./Toolbar'));
 const Edit = lazy(() => import('./Edit'));
@@ -13,19 +14,23 @@ function Creation(props) {
     const [articleContent, setContent] = useState('');
     const [articlePreview, setPreview] = useState('');
     const [order, setOrder] = useState(1);
+    const [tags] = useState([]);
     const [lastRange, setLastRange] = useState(null);
     const [formData] = useState(new FormData());
     return (
         <div className="creation">
             <Toolbar lastRange={lastRange} formData={formData} setContent={setContent} setPreview={setPreview} />
             <Row gutter={[16, 16]} id="article_edit">
-                <Edit setTitle={setTitle} setContent={setContent} setOrder={setOrder} lastRange={lastRange} setLastRange={setLastRange} setPreview={setPreview}  formData={formData} />
+                <Edit setTitle={setTitle} setContent={setContent} setOrder={setOrder} lastRange={lastRange} setLastRange={setLastRange} setPreview={setPreview} formData={formData} />
             </Row>
             <Row gutter={[16, 16]} id="article_preview">
-                <ArticlePreview articlePreview={articlePreview}/>
+                <ArticlePreview articlePreview={articlePreview} />
+            </Row>
+            <Row>
+                <Tags tags={tags} />
             </Row>
             <Row gutter={[16, 16]}>
-                <Submission title={title} articleContent={articleContent} order={order} formData={formData}/>
+                <Submission title={title} articleContent={articleContent} order={order} tags={tags} formData={formData} />
             </Row>
         </div>
     )

@@ -2,18 +2,22 @@ import React, { useEffect, useState, lazy } from "react";
 import { useLocation } from "react-router";
 import { getInstance } from "../../utils/apis/axiosConfig";
 import Markdown from "../../components/Markdown";
+import { useSelector } from "react-redux";
+import { selectName } from "../../redux/selectors";
 import './index.css'
 const Comments = lazy(() => import('../Comments'))
 
 
 function Post() {
+    const name = useSelector(selectName);
     const localtion = useLocation();
     const { title } = localtion.state;
     const [blog, setBlog] = useState({});
     useEffect(() => {
         getInstance.get('blogs/' + 'title', {
             params: {
-                titles: title
+                titles: title,
+                name: name
             }
         }).then(
             (res) => { setBlog(res.data); }
@@ -30,4 +34,4 @@ function Post() {
         </div>
     )
 }
-export default Post;
+export default React.memo(Post);

@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import PostCard from "./PostCard";
-import DeleteDialog from "../../PopUpWindow/DeleteDialog";
+import DeleteDialog from "../../Window/DeleteDialog";
 import { BASE_URL } from "../../../constant";
-function Posts(props) {
-    const blogs = props.blogs;
+function Posts({blogs, update, tag}) {
     const url = BASE_URL + "blogs/deletion";
     const [id, setId] = useState(-1);
     const posts = blogs.map((blog, index) => {
@@ -18,7 +17,7 @@ function Posts(props) {
     return (
         <>
             {posts}
-            <DeleteDialog url={url} data={{id:id}} />
+            <DeleteDialog url={url} data={{id:id}} update={update} tag={tag} />
         </>
     )
 }

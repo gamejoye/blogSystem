@@ -1,0 +1,10 @@
+.close-btn {
+    padding: 5px 10px;
+    float: right;
+}
+
+.error-msg {
+    height: 15px;
+    font-size: 5px;
+    color: red;
+}
