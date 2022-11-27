@@ -1,6 +1,6 @@
 import React from "react";
 import { HomeOutlined, UserOutlined } from "@ant-design/icons";
-import { message } from "antd";
+import { Divider, message } from "antd";
 import { selectName } from "../../redux/selectors";
 import { postInstance } from "../../utils/apis/axiosConfig";
 import { setName } from "../../redux/actions";
@@ -31,7 +31,7 @@ const Logon = ({name, handlerButton, handleLogout}) => {
     return (
         <>
             <a onClick={() => handlerButton("about")}><UserOutlined /> {name}</a>
-            <div className="user-content">
+            <div className="pull-down">
                 <a onClick={() => handlerButton("creation")}>发文章</a>
                 <a onClick={() => handleLogout()}>退出登陆</a>
             </div>
@@ -58,10 +58,10 @@ function Nav(props) {
         );
     }
     return (
-        <ul className="primary_menu">
-            <li className="primary_base nav-home"><a onClick={() => handlerButton("home")}><HomeOutlined /></a></li>
-            <li className="primary_base"><a onClick={() => handlerButton("titles")}>文章</a></li>
-            <div className="primary_base user">
+        <ul className="menu">
+            <li className="home base"><a onClick={() => handlerButton("home")}><HomeOutlined /></a></li>
+            <li className="base"><a onClick={() => handlerButton("titles")}>文章</a></li>
+            <div className="user base">
                 {(name && <Logon
                     handlerButton={handlerButton}
                     handleLogout={handleLogout}

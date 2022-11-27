@@ -1,70 +1,70 @@
-.primary_menu {
+.menu {
     height: 80px;
-    list-style-type: none;
     border-bottom: 1px solid;
     border-color: rgb(65, 166, 239);
     margin: 0;
     padding: 0px;
-    overflow: hidden;
     background-color: rgba(72, 175, 244, 0.491);
 }
 
-.primary_base {
-    padding-top: 20px;
-    height: 64px;
+.menu .base {
+    font-size: 2.5vw;
+    padding: 10px 15px 10px;
 }
 
-.primary_menu li {
+.menu li {
+    list-style: none;
     float: left;
 }
 
-.primary_menu .user {
+.menu .home {
+    float: left;
+    margin-left: 10%;
+    margin-right: 10%;
+    padding: 10px 25px 10px;
+}
+
+.menu .user {
+    position: relative;
+    display: inline-block;
     margin-right: 10%;
     float: right;
 }
 
-.primary_menu .nav-home {
-    float: left;
-    margin-left: 10%;
-    margin-right: 10%;
-}
-
-.primary_menu .primary_base a {
-    font-size: 25px;
+.base>a {
     color: white;
-    padding: 16px 26px;
     text-decoration: none;
 }
 
-.primary_menu .primary_base a:hover {
-    border-radius: 25px 25px 25px 25px;
-    background-color: rgb(6, 54, 103);
+.base>a:hover {
+    color: white;
 }
 
-.primary_menu .user .user-content a {
-    font-size: 1vw;
-}
-
-.primary_menu .user .user-content {
-    padding-left: 24px;
-}
-
-.user:hover .user-content {
-    display: block;
-}
-
-.user-content {
-    padding-top: 16px;
+.pull-down {
     display: none;
     position: absolute;
+    background-color: rgba(255, 255, 255, 0.844);
+    border-radius: 5px;
+    margin-top: 10px;
 }
 
-.user-content a {
-    text-decoration: none;
+.pull-down a {
+    font-size: 2vw;
+    color: rgb(80, 78, 78);
+    padding: 12px 26px;
     display: block;
 }
 
-.user-content a:hover {
-    border-radius: 25px 25px 25px 25px;
+.pull-down a:hover {
+    color: rgb(28, 28, 28);
+    background-color: white;
+}
+
+.user:hover .pull-down {
+    display: block;
+}
+
+.menu>*:hover {
+    border-radius: 25px;
     background-color: rgb(6, 54, 103);
 }
