@@ -1,21 +1,20 @@
 import React from "react";
 import { HomeOutlined, UserOutlined } from "@ant-design/icons";
-import { Divider, message } from "antd";
+import { message } from "antd";
 import { selectName } from "../../redux/selectors";
-import { postInstance } from "../../utils/apis/axiosConfig";
+import { postInstance } from "../../utils/apis/axios/axiosConfig";
 import { setName } from "../../redux/actions";
 import { useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
-import './index.css'
-
 import { BASE_URL } from "../../constant";
 import LoginDialog from "../../pages/Window/LoginDialog";
 import { removeCookie } from "../../utils/apis/cookie/removeCookie";
+import { handleShowPrompt } from "../../utils/actions";
+import './index.css'
 
 const Tourist = (props) => {
     const handleLogin = () => {
-        document.getElementById("root").style.filter = 'brightness(0.5)';
-        document.getElementById("login-dialog").style.display = 'block';
+        handleShowPrompt(document.getElementById("login-dialog"));
         document.getElementById("username").focus();
         props.handlerButton("home");
     }
@@ -27,7 +26,7 @@ const Tourist = (props) => {
     )
 }
 
-const Logon = ({name, handlerButton, handleLogout}) => {
+const Logon = ({ name, handlerButton, handleLogout }) => {
     return (
         <>
             <a onClick={() => handlerButton("about")}><UserOutlined /> {name}</a>
@@ -60,8 +59,14 @@ function Nav(props) {
     return (
         <ul className="menu">
             <li className="home base"><a onClick={() => handlerButton("home")}><HomeOutlined /></a></li>
-            <li className="base"><a onClick={() => handlerButton("titles")}>文章</a></li>
-            <div className="user base">
+            <div className="list base">
+                <a style={{'cursor':'default'}}>文章</a>
+                <div className="pull-down">
+                    <a onClick={() => handlerButton("classification")}>分类</a>
+                    <a onClick={() => handlerButton("titles")}>搜索</a>
+                </div>
+            </div>
+            <div className="list base settings">
                 {(name && <Logon
                     handlerButton={handlerButton}
                     handleLogout={handleLogout}

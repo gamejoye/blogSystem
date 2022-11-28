@@ -2,22 +2,22 @@ import React, { useState } from "react";
 import PostCard from "./PostCard";
 import DeleteDialog from "../../Window/DeleteDialog";
 import { BASE_URL } from "../../../constant";
-function Posts({blogs, update, tag}) {
+function Posts({ totalBlogs }) {
     const url = BASE_URL + "blogs/deletion";
-    const [id, setId] = useState(-1);
-    const posts = blogs.map((blog, index) => {
+    const [blog, setBlog] = useState({});
+    const posts = totalBlogs.map((blog, index) => {
         return (
             <PostCard
                 key={index}
                 blog={blog}
-                setId={setId}
+                setBlog={setBlog}
             />
         )
     });
     return (
         <>
             {posts}
-            <DeleteDialog url={url} data={{id:id}} update={update} tag={tag} />
+            <DeleteDialog url={url} data={blog}/>
         </>
     )
 }

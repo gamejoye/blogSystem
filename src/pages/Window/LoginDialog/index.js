@@ -1,55 +1,45 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
-import { handleRemovePrompt } from "../../../constant";
+import { handleRemovePrompt } from "../../../utils/actions";
 import Login from "./Login";
 import Register from "./Register";
 import './index.css'
 
-class LoginDialog extends React.Component {
+function LoginDialog() {
+    const [el] = useState(document.createElement('div'));
+    const [isLogin, setIsLogin] = useState(true);
+    useEffect(() => {
+        document.getElementById("prompt-root").appendChild(el);
+        return () => {
+            document.getElementById("prompt-root").removeChild(el);
+        }
+    })
+    const handleToAnother = (e) => {
+        e.preventDefault();
+        setIsLogin(!isLogin);
+    }
+    const handleClose = (setError1, setError2) => {
+        setError1("");
+        setError2("");
+        handleRemovePrompt(document.getElementById("login-dialog"));
+    }
+    const handleOnBlur = (e, msg, setError) => {
+        let value = e.target.value;
+        if (value.length >= 6 && value.length <= 12) {
+            setError("");
+        } else {
+            setError(msg);
+        }
+    }
 
-    constructor(props) {
-        super(props);
-        this.el = document.createElement('div');
-        this.state = {
-            isLogin: true
+    return createPortal(
+        <div id="login-dialog"> {
+            (isLogin
+                && <Login toAnother={handleToAnother} handleOnBlur={handleOnBlur} handleClose={handleClose} />)
+            || <Register toAnother={handleToAnother} handleOnBlur={handleOnBlur} handleClose={handleClose} />
         }
-    }
-    componentDidMount() {
-        document.getElementById("prompt-root").appendChild(this.el);
-    };
-    componentWillUnmount() {
-        document.getElementById("prompt-root").removeChild(this.el);
-    }
-    render() {
-        const handleToAnother = (e) => {
-            e.preventDefault();
-            this.setState({
-                isLogin: !this.state.isLogin
-            })
-        }
-        const handleClose = (setError1, setError2) => {
-            setError1("");
-            setError2("");
-            handleRemovePrompt(document.getElementById("login-dialog"));
-        }
-        const handleOnBlur = (e, msg, setError) => {
-            let value = e.target.value;
-            if (value.length >= 6 && value.length <= 12) {
-                setError("");
-            } else {
-                setError(msg);
-            }
-        }
-
-        return createPortal(
-            <div id="login-dialog"> {
-                (this.state.isLogin
-                    && <Login toAnother={handleToAnother} handleOnBlur={handleOnBlur} handleClose={handleClose} />)
-                || <Register toAnother={handleToAnother} handleOnBlur={handleOnBlur} handleClose={handleClose} />
-            }
-            </div>,
-            this.el
-        )
-    }
+        </div>,
+        el
+    )
 }
 export default (LoginDialog);

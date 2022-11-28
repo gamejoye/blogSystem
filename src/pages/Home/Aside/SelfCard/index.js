@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 import './index.css'
 
-import { getInstance } from "../../../../utils/apis/axiosConfig";
+import { getInstance } from "../../../../utils/apis/axios/axiosConfig";
 import { useSelector } from "react-redux";
 import { selectName } from "../../../../redux/selectors";
 

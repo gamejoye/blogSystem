@@ -1,8 +1,12 @@
 import { combineReducers } from "redux";
-import navShow from "./nav";
-import name from "./name";
+import { navReducer } from "./navReducer";
+import { nameReducer } from "./userInfoReducer";
+import { blogsReducer } from "./blogsReducer";
+import { tagReducer } from "./tagReducer";
 
 export default combineReducers({
-    nav: navShow,
-    name: name,
+    nav: navReducer,
+    name: nameReducer,
+    tag: tagReducer,
+    blogs: blogsReducer
 })

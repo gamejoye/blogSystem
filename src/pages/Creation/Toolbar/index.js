@@ -1,5 +1,5 @@
 import React from "react";
-import { markdownInsert } from "../../../constant";
+import { markdownInsert } from "../../../utils/actions";
 import { CODE_BLOCK, FIRST_HEADER, SECOND_HEADER, THIRD_HEADER, EDIT, PREVIEW, IMAGE } from './constant'
 import './index.css'
 function Toolbar(props) {

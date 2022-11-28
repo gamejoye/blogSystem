@@ -1,5 +1,5 @@
 import axios from "axios";
-import { BASE_URL } from "../../constant";
+import { BASE_URL } from "../../../constant";
 
 //get请求axios实例
 const getInstance = axios.create({

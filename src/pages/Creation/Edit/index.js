@@ -1,5 +1,5 @@
-import React from "react";
-import { markdownInsert } from "../../../constant";
+import React, { useState } from "react";
+import { markdownInsert } from "../../../utils/actions";
 import { Col } from "antd";
 import './index.css'
 function Edit(props) {
@@ -17,8 +17,21 @@ function Edit(props) {
     function handleKeyUp(e) {
         props.setLastRange(document.getSelection().getRangeAt(0));
     }
-    function handleHeadOnInput(e) {
+    //检查标题长度合法性
+    function handleHeadOnKeyDown(e) {
+        const innerText = e.target.innerText;
+        if(innerText.length >= 25 && e.keyCode != 8) {
+            e.preventDefault();
+            return;
+        }
         props.setTitle(e.target.innerText);
+    }
+    //防止复制粘贴导致超出标题长度限制
+    function checkInput(e) {
+        const innerText = e.target.innerText;
+        if(innerText.length > 25) {
+            e.target.innerText = innerText.substring(0, 25);
+        }
     }
     function handleContentOnInput(e) {
         props.setPreview(e.target.innerText);
@@ -31,15 +44,17 @@ function Edit(props) {
         <>
             <Col span={14} offset={4}>
                 <br />
+                <p className="warn"><b>WARN！！！</b>(标题最多25个字符)</p>
                 <div
                     contentEditable={true}
                     className="blog-head blog-text"
                     rows={1}
-                    onInput={(e) => handleHeadOnInput(e)}
+                    onInput={(e) => checkInput(e)}
+                    onKeyDown={(e) => handleHeadOnKeyDown(e)}
                 />
             </Col>
             <Col span={14} offset={4}>
-                <br />
+                <p className="warn"><b>WARN！！！</b>(请注意插入图片时，光标应该在一行空行上)</p>
                 <div
                     contentEditable={true}
                     id="creationContent"

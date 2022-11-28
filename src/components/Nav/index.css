@@ -24,11 +24,14 @@
     padding: 10px 25px 10px;
 }
 
-.menu .user {
+.settings {
+    float: right;
+}
+
+.menu .list {
     position: relative;
     display: inline-block;
     margin-right: 10%;
-    float: right;
 }
 
 .base>a {
@@ -41,15 +44,18 @@
 }
 
 .pull-down {
-    display: none;
     position: absolute;
     background-color: rgba(255, 255, 255, 0.844);
     border-radius: 5px;
+    min-width: 160px;
     margin-top: 10px;
+    overflow: hidden;
+    height: 0;
+    transition: 0.2s;
 }
 
 .pull-down a {
-    font-size: 2vw;
+    font-size: 1.5vw;
     color: rgb(80, 78, 78);
     padding: 12px 26px;
     display: block;
@@ -60,8 +66,9 @@
     background-color: white;
 }
 
-.user:hover .pull-down {
-    display: block;
+.list:hover .pull-down {
+    z-index: 10;
+    height: 120px;
 }
 
 .menu>*:hover {

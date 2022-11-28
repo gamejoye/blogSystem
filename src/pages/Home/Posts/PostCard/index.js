@@ -5,13 +5,12 @@ import './index.css'
 import { Divider } from "antd";
 import { useNavigate } from "react-router";
 
-function PostCard(props) {
-    const blog = props.blog;
+function PostCard({blog, setBlog}) {
     const navigate = useNavigate();
     function handleDelete(e) {
         //阻止事件冒泡 防止执行父元素定义的事件
         e.stopPropagation();
-        props.setId(blog.id);
+        setBlog(blog);
         document.getElementById("root").style.filter = 'brightness(0.5)';
         document.getElementById("delete-dialog").style.display = 'block';
     }

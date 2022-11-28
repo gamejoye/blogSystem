@@ -1,25 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
 import { Col, Button } from "antd";
-import { postInstance } from "../../../utils/apis/axiosConfig";
-import { useSelector } from "react-redux";
+import { postInstance } from "../../../utils/apis/axios/axiosConfig";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { selectName } from "../../../redux/selectors";
-function Submisson(props) {
+import { addBlog } from "../../../redux/actions";
+function Submisson({ tags, title, order, formData, articleContent }) {
     const username = useSelector(selectName);
+    const dispatch = useDispatch();
     const navigate = useNavigate();
+    const [obj] = useState({});
+    const blog = {
+        username: username,
+        title: title,
+        order: order,
+    }
     function handleSubmit() {
-        props.formData.append('content', props.articleContent);
-        postInstance.post('files/blogs/images/upload', props.formData).then(
+        formData.append('content', articleContent);
+        postInstance.post('files/blogs/images/upload', formData).then(
             (res) => {
+                obj.content = res.data;
                 postInstance.post('blogs/' + 'addition', {
-                    username: username,
-                    title: props.title,
+                    ...blog,
                     content: res.data,
-                    order: props.order,
-                    tags: JSON.stringify(props.tags)
+                    tags: JSON.stringify(tags)
                 }).then(
                     (res) => {
                         if (res.data === 'successfully added') {
+                            dispatch(addBlog({
+                                ...blog,
+                                content: obj.content,
+                                tags
+                            }));
                             navigate('/home');
                         } else {
                             alert('This blog already exists, please change it to a new blog name');

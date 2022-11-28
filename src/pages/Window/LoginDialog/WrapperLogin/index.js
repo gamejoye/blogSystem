@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { handleRemovePrompt } from "../../../../constant";
-import { postInstance } from "../../../../utils/apis/axiosConfig";
+import { handleRemovePrompt } from "../../../../utils/actions";
+import { postInstance } from "../../../../utils/apis/axios/axiosConfig";
 import { message } from "antd";
 import { CloseOutlined } from "@ant-design/icons";
 import './index.css'
