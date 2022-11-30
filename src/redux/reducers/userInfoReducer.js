@@ -1,14 +1,15 @@
-import { getCookie } from "../../utils/apis/cookie/getCookie";
 import { createSlice } from "@reduxjs/toolkit";
+/*
 const options = {
-    name: 'name',
-    initialState: getCookie("user"),
+    name: 'userInfo',
+    initialState: [],
     reducers: {
-        setName: (state, action) => {
+        setUserInfo: (state, action) => {
             state = action.payload;
         }
     }
 }
-export const nameSlice = createSlice(options);
-export const { setName } = nameSlice.actions;
-export default nameSlice.reducer;
+export const userInfoSlice = createSlice(options);
+export const { setUserInfo } = userInfoSlice.actions;
+export default userInfoSlice.reducer;
+*/

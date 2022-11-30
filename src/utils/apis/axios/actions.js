@@ -10,3 +10,14 @@ export const loadBlogs = (name, dispatch, setAllBlogsAction) => {
         }
     )
 }
+export const loadUserInfo = (name, dispatch, setUserInfo) => {
+    getInstance.get('user/introduction', {
+        params: {
+            username: name
+        }
+    }).then(
+        (res) => {
+            dispatch(setUserInfo(res.data));
+        }
+    )
+}

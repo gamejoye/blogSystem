@@ -3,7 +3,7 @@ import { HomeOutlined, UserOutlined } from "@ant-design/icons";
 import { message } from "antd";
 import { selectName } from "../../redux/selectors";
 import { postInstance } from "../../utils/apis/axios/axiosConfig";
-import { setName } from "../../redux/reducers/userInfoReducer";
+import { setName } from "../../redux/reducers/nameReducer";
 import { useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { BASE_URL } from "../../constant";

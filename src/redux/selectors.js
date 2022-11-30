@@ -1,12 +1,15 @@
 export const selectName = state => state.name;
+export const selectUserInfo = state => state.userInfo;
 export const selectNav = state => state.nav;
 export const selectAllBlogs = state => {
     return state.blogs;
 }
 export const selectFilterBlogs = state => {
     const tags = state.selectedTags;
+    const name = state.name;
     const allBlogs = state.blogs;
-    if (tags.length === 0) return allBlogs
+    if(!name) return [];
+    if (tags.length === 0) return allBlogs;
     return allBlogs.filter(blog => {
         for(const tag of tags) {
             if(blog.tags.includes(tag)) return true;
