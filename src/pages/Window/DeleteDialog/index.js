@@ -2,7 +2,7 @@ import { message } from "antd";
 import React, { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { useDispatch } from "react-redux";
-import { removeBlog, removeShowBlog } from "../../../redux/actions";
+import { removeBlog } from "../../../redux/reducers/blogsReducer";
 import { handleRemovePrompt } from "../../../utils/actions";
 import { postInstance } from "../../../utils/apis/axios/axiosConfig";
 import './index.css';

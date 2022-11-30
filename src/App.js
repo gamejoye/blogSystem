@@ -3,7 +3,7 @@ import Main from './components/Main';
 import Nav from './components/Nav';
 import { loadBlogs } from './utils/apis/axios/actions';
 import { useDispatch, useSelector } from 'react-redux';
-import { setAllBlogs } from './redux/actions';
+import { setAllBlogs } from './redux/reducers/blogsReducer';
 import { selectName } from './redux/selectors';
 import './App.css';
 

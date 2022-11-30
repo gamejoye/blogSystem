@@ -4,10 +4,15 @@ export const selectAllBlogs = state => {
     return state.blogs;
 }
 export const selectFilterBlogs = state => {
-    const tag = state.tag;
+    const tags = state.selectedTags;
     const allBlogs = state.blogs;
-    if (!tag) return allBlogs;
-    return allBlogs.filter(blog => blog.tags.includes(tag));
+    if (tags.length === 0) return allBlogs
+    return allBlogs.filter(blog => {
+        for(const tag of tags) {
+            if(blog.tags.includes(tag)) return true;
+        }
+        return false;
+    });
 }
 export const selectBlogByTitle = (state, title) => {
     return state.blogs.filter(blog =>

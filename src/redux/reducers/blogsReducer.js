@@ -1,15 +1,27 @@
-import { ADD_BLOG, REMOVE_BLOG, SET_ALL_BLOGS } from "../constant";
-const initial = [];
-export const blogsReducer = (state=initial, action) => {
-    const {type, data} = action;
-    switch(type) {
-        case SET_ALL_BLOGS:
-            return data;
-        case REMOVE_BLOG:
-            return state.filter(blog => blog.id != data.id);
-        case ADD_BLOG:
-            return [...state, data];
-        default:
-            return state;
+import { createSlice } from "@reduxjs/toolkit";
+const options = {
+    name: 'blogs',
+    initialState: [],
+    reducers: {
+        setAllBlogs: (state, action) => {
+            const { payload } = action;
+            payload.forEach(blog => {
+                state.push(blog);
+            });
+        },
+        addBlog: (state, action) => {
+            const { payload } = action;
+            state.push(payload);
+        },
+        removeBlog: (state, action) => {
+            const { payload } = action;
+            const idx = state.findIndex(blog => blog.id == payload.id);
+            if (idx != -1) {
+                state.splice(idx, 1);
+            }
+        }
     }
 }
+export const blogSlice = createSlice(options);
+export const { setAllBlogs, addBlog, removeBlog } = blogSlice.actions;
+export default blogSlice.reducer;

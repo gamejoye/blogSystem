@@ -4,7 +4,7 @@ import { postInstance } from "../../../utils/apis/axios/axiosConfig";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { selectName } from "../../../redux/selectors";
-import { addBlog } from "../../../redux/actions";
+import { addBlog } from "../../../redux/reducers/blogsReducer";
 function Submisson({ tags, title, order, formData, articleContent }) {
     const username = useSelector(selectName);
     const dispatch = useDispatch();

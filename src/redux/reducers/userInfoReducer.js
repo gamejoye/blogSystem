@@ -1,11 +1,14 @@
-import { SET_NAME } from "../constant";
 import { getCookie } from "../../utils/apis/cookie/getCookie";
-export const nameReducer = (preState=getCookie("user"), action) => {
-    const {type, data} = action;
-    switch(type) {
-        case SET_NAME:
-            return data;
-        default:
-            return preState;
+import { createSlice } from "@reduxjs/toolkit";
+const options = {
+    name: 'name',
+    initialState: getCookie("user"),
+    reducers: {
+        setName: (state, action) => {
+            state = action.payload;
+        }
     }
 }
+export const nameSlice = createSlice(options);
+export const { setName } = nameSlice.actions;
+export default nameSlice.reducer;

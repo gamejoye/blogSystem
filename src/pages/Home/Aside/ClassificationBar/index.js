@@ -1,14 +1,23 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { setTag } from "../../../../redux/actions";
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { addTag, removeTag } from "../../../../redux/reducers/tagReducer";
 import './index.css'
 function Tag({ idx, children }) {
     const dispatch = useDispatch();
-    const handleOnclick = () => {
-        dispatch(setTag(children));
+    const [isSelected, setIsSelected] = useState(false);
+    const handleOnclick = (e) => {
+        const dom = e.target;
+        if(isSelected) {
+            dispatch(removeTag(children));
+            dom.className = 'class-tag';
+        } else {
+            dispatch(addTag(children));
+            dom.className = 'class-tag selected-tag';
+        }
+        setIsSelected(!isSelected);
     }
     return (
-        <span className="class-tag" key={idx} onClick={handleOnclick}>
+        <span className="class-tag" key={idx} onClick={(e) => handleOnclick(e)}>
             {children}
         </span>
     )
