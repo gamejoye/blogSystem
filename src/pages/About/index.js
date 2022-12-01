@@ -1,69 +1,49 @@
 import React from "react";
-import { getInstance, postInstance } from "../../utils/apis/axios/axiosConfig";
-import { useSelector } from "react-redux";
-import { useEffect, useState } from "react";
-import AboutMe from "./AboutMe";
-import { selectName, selectUserInfo } from "../../redux/selectors";
+import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
+import SexButton from "./SexButton";
+import AboutMe from './AboutMe';
+import Birthday from "./Birthday";
+import { selectUserInfo } from "../../redux/selectors";
+import { Divider } from "antd";
+import { updateUserInfo } from "../../utils/apis/axios/actions";
+import { setAboutMe as aboutMeAction, setSex as sexAction, setBirthday as birthdayAction } from "../../redux/reducers/userInfoReducer";
 
-function About(props) {
-
-    const username = useSelector(selectName);
-    const [sex, setSex] = useState('');
-    const [address, setAddress] = useState('');
-    const [birthday, setBirthday] = useState('');
-    const [aboutMe, setAboutMe] = useState('');
-    const [isEdit, setEdit] = useState(0);
-    const [preState, setPreState] = useState({});
-    //const { sex, address, birthday, aboutMe } = useSelector(selectUserInfo);
-    useEffect(() => {
-        getInstance.get('user/introduction', {
-            params: {
-                username: username
-            }
-        }
-        ).then(
-            (res) => {
-                const uInfo = res.data;
-                setAboutMe(uInfo.aboutMe);
-                setAddress(uInfo.address);
-                setBirthday(uInfo.birthday);
-                setSex(uInfo.sex);
-                setPreState(uInfo);
-            }
-        )
-    }, []);
-
-    function handlerSubmit(type, bit) {
-        const data = type == 'aboutMe' ? aboutMe : type == 'address' ? address : type == 'sex' ? sex : birthday;
-        postInstance.post('user/' + 'edit', {
-            username: username,
-            [type]: data
-        });
-        setPreState({ username, sex, address, birthday, aboutMe });
-        setEdit(isEdit ^ (1 << bit));
-    }
-
-    function handlerCancel(type, bit) {
-        if (type === "aboutMe") setAboutMe(preState.aboutMe);
-        else if (type === "sex") setSex(preState.sex);
-        else if (type === "birthday") setBirthday(preState.birthday);
-        else if (type === "address") setAddress(preState.address);
-        setEdit(isEdit ^ (1 << bit));
+function About() {
+    const information = useSelector(selectUserInfo);
+    const dispatch = useDispatch();
+    const setSex = (sex) => dispatch(sexAction(sex));
+    const setAboutMe = (text) => dispatch(aboutMeAction(text));
+    const setBirthday = (birthday) => dispatch(birthdayAction(birthday));
+    const [aboutMeEdit, setAboutMeEdit] = useState(false);
+    const [sexButtonEdit, setSexButtonEdit] = useState(false);
+    const [birthdayEdit, setBirthdayEdit] = useState(false);
+    const handleSubmit = (setEdit) => {
+        setEdit(false);
+        //axios请求
+        updateUserInfo(information);
+    };
+    const handleCancel = (setEdit) => {
+        setEdit(false);
     }
     return (
         <div>
             <AboutMe
-                isEdit={isEdit}
-                setEdit={setEdit}
-                setAboutMe={setAboutMe}
-                setSex={setSex}
-                setBirthday={setBirthday}
-                preState={preState}
-                handlerCancel={handlerCancel}
-                handlerSubmit={handlerSubmit}
+                aboutMe={information.aboutMe} setAboutMe={setAboutMe}
+                handleCancel={() => handleCancel(setAboutMeEdit)} handleSubmit={() => handleSubmit(setAboutMeEdit)}
+                edit={aboutMeEdit} setEdit={setAboutMeEdit}
+            /><Divider/>
+            <SexButton
+                sex={information.sex} setSex={setSex}
+                handleCancel={() => handleCancel(setSexButtonEdit)} handleSubmit={() => handleSubmit(setSexButtonEdit)}
+                edit={sexButtonEdit} setEdit={setSexButtonEdit}
+            /><Divider/>
+            <Birthday
+                birthday={information.birthday} setBirthday={setBirthday}
+                handleCancel={() => handleCancel(setBirthdayEdit)} handleSubmit={() => handleSubmit(setBirthdayEdit)}
+                edit={birthdayEdit} setEdit={setBirthdayEdit}
             />
         </div>
     )
 }
-
 export default About;

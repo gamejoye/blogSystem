@@ -2,7 +2,7 @@ import React from "react";
 import { BASE_URL } from "../../../../constant";
 import { message } from "antd";
 import { useDispatch } from "react-redux";
-import { setName } from "../../../../redux/reducers/nameReducer";
+import { setName } from "../../../../redux/reducers/userInfoReducer";
 import { setCookie } from "../../../../utils/apis/cookie/setCookie";
 import { loginWrapper } from "../WrapperLogin";
 function Login(props) {

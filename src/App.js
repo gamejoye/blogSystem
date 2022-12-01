@@ -6,14 +6,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setAllBlogs } from './redux/reducers/blogsReducer';
 import { selectName } from './redux/selectors';
 import './App.css';
-import { setUserInfo } from './redux/reducers/nameReducer';
+import { setUserInfo } from './redux/reducers/userInfoReducer';
 
 function App() {
     const name = useSelector(selectName);
     const dispatch = useDispatch();
     useEffect(() => {
+        loadUserInfo(name, dispatch, setUserInfo);
         loadBlogs(name, dispatch, setAllBlogs);
-        //loadUserInfo(name, dispatch, setUserInfo);
     }, [name]);
     return (
         <div className='app'>

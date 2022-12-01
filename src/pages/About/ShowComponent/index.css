@@ -1,8 +1,8 @@
-.para  {
+.show-container  {
     margin: 1%;
     margin-left: 3%;
 }
 
-.p {
+.show-container>p {
     display: inline;
 }

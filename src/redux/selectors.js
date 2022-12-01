@@ -1,12 +1,13 @@
-export const selectName = state => state.name;
+export const selectName = state => state.userInfo.name;
 export const selectUserInfo = state => state.userInfo;
+export const selectAboutMe = state => state.userInfo.aboutMe;
 export const selectNav = state => state.nav;
 export const selectAllBlogs = state => {
     return state.blogs;
 }
 export const selectFilterBlogs = state => {
     const tags = state.selectedTags;
-    const name = state.name;
+    const name = state.userInfo.name;
     const allBlogs = state.blogs;
     if(!name) return [];
     if (tags.length === 0) return allBlogs;

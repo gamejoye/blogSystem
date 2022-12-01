@@ -1,4 +1,4 @@
-import { getInstance } from "./axiosConfig"
+import { getInstance, postInstance } from "./axiosConfig"
 export const loadBlogs = (name, dispatch, setAllBlogsAction) => {
     getInstance.get('blogs/byName', {
         params: {
@@ -18,6 +18,13 @@ export const loadUserInfo = (name, dispatch, setUserInfo) => {
     }).then(
         (res) => {
             dispatch(setUserInfo(res.data));
+        }
+    )
+}
+export const updateUserInfo = (data) => {
+    postInstance.post('user/edit', data).then(
+        (res) => {
+            
         }
     )
 }
