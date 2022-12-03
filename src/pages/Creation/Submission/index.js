@@ -1,6 +1,5 @@
-import React, { useState } from "react";
-import { Col, Button } from "antd";
-import { postInstance } from "../../../utils/apis/axios/axiosConfig";
+import React from "react";
+import { Col, Button, message } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { selectName } from "../../../redux/selectors/userInfoSelector";
@@ -9,37 +8,22 @@ function Submisson({ tags, title, order, formData, articleContent }) {
     const username = useSelector(selectName);
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const [obj] = useState({});
     const blog = {
         username: username,
         title: title,
         order: order,
+        tags: JSON.stringify(tags),
+        //content: 在服务端格式转换后会添加进来
     }
-    function handleSubmit() {
+    const handleSubmit = async () => {
         formData.append('content', articleContent);
-        postInstance.post('files/blogs/images/upload', formData).then(
-            (res) => {
-                obj.content = res.data;
-                postInstance.post('blogs/' + 'addition', {
-                    ...blog,
-                    content: res.data,
-                    tags: JSON.stringify(tags)
-                }).then(
-                    (res) => {
-                        if (res.data === 'successfully added') {
-                            dispatch(addBlog({
-                                ...blog,
-                                content: obj.content,
-                                tags
-                            }));
-                            navigate('/home');
-                        } else {
-                            alert('This blog already exists, please change it to a new blog name');
-                        }
-                    }
-                )
-            }
-        )
+        const ok = await dispatch(addBlog({formData, blog})).unwrap();
+        if(ok !== "failed") {
+            message.success('博客上传成功', 1);
+            navigate('/');
+        } else {
+            message.error('博客上传发生错误', 1);
+        }
     }
     return (
         <>

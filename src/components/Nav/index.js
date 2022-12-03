@@ -2,7 +2,7 @@ import React from "react";
 import { HomeOutlined, UserOutlined } from "@ant-design/icons";
 import { message } from "antd";
 
-import { postInstance } from "../../utils/apis/axios/axiosConfig";
+import { postInstance } from "../../utils/apis/axios/config";
 import { setName } from "../../redux/reducers/userInfoReducer";
 import { useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";

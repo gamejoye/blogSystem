@@ -2,7 +2,7 @@ import { Button, Comment, Divider, Form, Input, message } from 'antd';
 import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import { UserOutlined } from '@ant-design/icons';
-import { postInstance, getInstance } from '../../utils/apis/axios/axiosConfig';
+import { postInstance, getInstance } from '../../utils/apis/axios/config';
 import { useSelector } from 'react-redux';
 import './index.css'
 import { selectName } from '../../redux/selectors/userInfoSelector';

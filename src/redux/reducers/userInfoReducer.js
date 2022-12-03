@@ -1,10 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getUserInfo } from "../../utils/apis/axios/actions";
+import { getUserInfo } from "../../utils/apis/axios/api";
 import { getCookie } from "../../utils/apis/cookie/getCookie";
 export const loadUserInfo = createAsyncThunk('userInfo/loadUserInfo', async (name) => {
     const userInfo = (await getUserInfo('user/introduction', name)).data;
     return userInfo;
-})
+});
 const initial = {
     status: '',
     info: {
@@ -20,20 +20,8 @@ const options = {
     name: 'userInfo',
     initialState: initial,
     reducers: {
-        setName: (state, action) => {
-            state.info.name = action.payload;
-        },
-        setSex: (state, action) => {
-            state.info.sex = action.payload;
-        },
-        setBirthday: (state, action) => {
-            state.info.birthday = action.payload;
-        },
-        setAboutMe: (state, action) => {
-            state.info.aboutMe = action.payload;
-        },
-        setAddresss: (state, action) => {
-            state.info.addresss = action.payload;
+        setUserInfo: (state, action) => {
+            state.info = action.payload;
         }
     },
     extraReducers(builder) {
@@ -52,5 +40,5 @@ const options = {
     }
 }
 export const userInfoSlice = createSlice(options);
-export const { setName, setAboutMe, setAddresss, setBirthday, setSex } = userInfoSlice.actions;
+export const { setUserInfo, setName, setAboutMe, setAddresss, setBirthday, setSex } = userInfoSlice.actions;
 export default userInfoSlice.reducer;

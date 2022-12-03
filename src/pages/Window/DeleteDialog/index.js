@@ -4,7 +4,7 @@ import { createPortal } from "react-dom";
 import { useDispatch } from "react-redux";
 import { removeBlog } from "../../../redux/reducers/blogsReducer";
 import { handleRemovePrompt } from "../../../utils/actions";
-import { postInstance } from "../../../utils/apis/axios/axiosConfig";
+import { postInstance } from "../../../utils/apis/axios/config";
 import './index.css';
 function DeleteDialog({url, data}) {
     const [el] = useState(document.createElement('div'));
@@ -14,7 +14,7 @@ function DeleteDialog({url, data}) {
         return () => {
             document.getElementById("prompt-root").removeChild(el);
         }
-    })
+    });
     const help = (type) => {
         handleRemovePrompt(document.getElementById("delete-dialog"));
         if (!type) return;

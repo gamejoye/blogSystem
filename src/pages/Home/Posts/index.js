@@ -7,10 +7,10 @@ function Posts({ totalBlogs }) {
     const url = BASE_URL + "blogs/deletion";
     const navigate = useNavigate();
     const [blog, setBlog] = useState({});
-    const handleOnclick = (blog) => {
+    const handleOnclick = blog => {
         navigate('/post?title=' + blog.title, { state: { title: blog.title } })
     }
-    const handleDelete = (e) => {
+    const handleDelete = e => blog => {
         //阻止事件冒泡 防止执行父元素定义的事件
         e.stopPropagation();
         setBlog(blog);
@@ -22,8 +22,8 @@ function Posts({ totalBlogs }) {
             <PostCard
                 key={index}
                 blog={blog}
-                handleOnclick={() => handleOnclick(blog)}
-                handleDelete={(e) => handleDelete(e, blog)}
+                handleOnclick={handleOnclick}
+                handleDelete={handleDelete}
             />
         )
     });
