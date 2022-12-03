@@ -6,5 +6,5 @@ import userInfoReducer from "./userInfoReducer";
 export default combineReducers({
     userInfo: userInfoReducer,
     selectedTags: tagReducer,
-    blogs: blogsReducer
+    blogsState: blogsReducer
 })

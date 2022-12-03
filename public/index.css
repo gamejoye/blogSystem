@@ -1,0 +1,7 @@
+body {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.118), rgba(0, 0, 0, 0.118)), url('./media/bg2.jpeg');
+    background-position: center 0;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}

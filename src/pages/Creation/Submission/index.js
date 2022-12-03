@@ -3,7 +3,7 @@ import { Col, Button } from "antd";
 import { postInstance } from "../../../utils/apis/axios/axiosConfig";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
-import { selectName } from "../../../redux/selectors";
+import { selectName } from "../../../redux/selectors/userInfoSelector";
 import { addBlog } from "../../../redux/reducers/blogsReducer";
 function Submisson({ tags, title, order, formData, articleContent }) {
     const username = useSelector(selectName);

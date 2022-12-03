@@ -1,9 +1,4 @@
 .app {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.118), rgba(0, 0, 0, 0.118)), url('./images/bg/bg3.jpeg');
-    background-position: center 0;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
     height: 100%;
     overflow-x: hidden;
     overflow-y: scroll;

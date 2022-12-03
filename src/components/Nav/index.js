@@ -1,7 +1,7 @@
 import React from "react";
 import { HomeOutlined, UserOutlined } from "@ant-design/icons";
 import { message } from "antd";
-import { selectName } from "../../redux/selectors";
+
 import { postInstance } from "../../utils/apis/axios/axiosConfig";
 import { setName } from "../../redux/reducers/userInfoReducer";
 import { useNavigate } from "react-router";
@@ -11,6 +11,7 @@ import LoginDialog from "../../pages/Window/LoginDialog";
 import { removeCookie } from "../../utils/apis/cookie/removeCookie";
 import { handleShowPrompt } from "../../utils/actions";
 import './index.css'
+import { selectName } from "../../redux/selectors/userInfoSelector";
 
 const Tourist = (props) => {
     const handleLogin = () => {

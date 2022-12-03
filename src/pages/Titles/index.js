@@ -4,7 +4,8 @@ import { useEffect } from "react";
 import TitleList from "./TitleList";
 import Search from "./Search";
 import { useSelector } from "react-redux";
-import { selectName, selectTitles } from "../../redux/selectors";
+import { selectName } from "../../redux/selectors/userInfoSelector";
+import { selectTitles } from "../../redux/selectors/titleSelector";
 
 function Titles() {
     const username = useSelector(selectName);

@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router";
-import { selectTitlesByTag } from "../../redux/selectors";
+import { selectTitlesByTag } from "../../redux/selectors/titleSelector";
 import '../Classification/index.css'
 function BlogDetail() {
     const localtion = useLocation();

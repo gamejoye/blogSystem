@@ -1,8 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router";
-import './index.css'
 import { useSelector } from "react-redux";
-import { selectAboutMe, selectName } from "../../../../redux/selectors";
+import { selectAboutMe, selectName } from "../../../../redux/selectors/userInfoSelector";
+import './index.css'
 
 function SelfCard() {
     const username = useSelector(selectName);

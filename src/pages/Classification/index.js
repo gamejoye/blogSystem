@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
-import { selectTags } from "../../redux/selectors";
+import { selectTags } from "../../redux/selectors/tagSelector";
 import './index.css'
 function Classification() {
     const tags = useSelector(selectTags);

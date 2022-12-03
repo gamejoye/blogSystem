@@ -4,7 +4,7 @@ import { useState } from "react";
 import SexButton from "./SexButton";
 import AboutMe from './AboutMe';
 import Birthday from "./Birthday";
-import { selectUserInfo } from "../../redux/selectors";
+import { selectUserInfo } from "../../redux/selectors/userInfoSelector";
 import { Divider } from "antd";
 import { updateUserInfo } from "../../utils/apis/axios/actions";
 import { setAboutMe as aboutMeAction, setSex as sexAction, setBirthday as birthdayAction } from "../../redux/reducers/userInfoReducer";

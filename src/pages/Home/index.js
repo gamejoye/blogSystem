@@ -3,7 +3,9 @@ import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import './index.css'
 import Classification from "./Aside/ClassificationBar";
-import { selectFilterBlogs, selectName, selectTags } from "../../redux/selectors";
+import { selectFilterBlogs } from "../../redux/selectors/blogSelector";
+import { selectName } from "../../redux/selectors/userInfoSelector";
+import { selectTags } from "../../redux/selectors/tagSelector";
 const Posts = lazy(() => import('./Posts'))
 const SelfCard = lazy(() => import('./Aside/SelfCard'))
 

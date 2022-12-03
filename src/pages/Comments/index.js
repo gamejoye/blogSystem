@@ -5,7 +5,7 @@ import { UserOutlined } from '@ant-design/icons';
 import { postInstance, getInstance } from '../../utils/apis/axios/axiosConfig';
 import { useSelector } from 'react-redux';
 import './index.css'
-import { selectName } from '../../redux/selectors';
+import { selectName } from '../../redux/selectors/userInfoSelector';
 
 const { TextArea } = Input;
 
