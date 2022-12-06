@@ -1,11 +1,10 @@
 import React from "react";
 import { useNavigate } from "react-router";
 import { useSelector } from "react-redux";
-import { selectAboutMe, selectName } from "../../../../redux/selectors/userInfoSelector";
+import { selectAboutMe } from "../../../../redux/selectors/userInfoSelector";
 import './index.css'
 
 function SelfCard() {
-    const username = useSelector(selectName);
     const aboutMe = useSelector(selectAboutMe);
     const navigate = useNavigate();
     return (
@@ -21,4 +20,4 @@ function SelfCard() {
     )
 }
 
-export default SelfCard;
+export default React.memo(SelfCard);

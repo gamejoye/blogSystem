@@ -1,21 +1,25 @@
 import React, { lazy } from "react";
-import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import './index.css'
 import Classification from "./Aside/ClassificationBar";
-import { selectFilterBlogs } from "../../redux/selectors/blogSelector";
+import { selectAllBlogs, selectFilterBlogs } from "../../redux/selectors/blogSelector";
 import { selectName } from "../../redux/selectors/userInfoSelector";
-import { selectTags } from "../../redux/selectors/tagSelector";
+import { selectAllTags } from "../../redux/selectors/blogSelector";
+import { removeAllTags } from "../../redux/reducers/selectedTagsReducer";
 const Posts = lazy(() => import('./Posts'))
 const SelfCard = lazy(() => import('./Aside/SelfCard'))
 
 
 function Home() {
+    const dispatch = useDispatch();
     const username = useSelector(selectName);
-    const tags = useSelector(selectTags);
+    const tags = useSelector(selectAllTags);
+    const allBlogs = useSelector(selectAllBlogs);
     const totalBlogs = useSelector(selectFilterBlogs);
     useEffect(() => {
-    }, [username, totalBlogs]);
+        dispatch(removeAllTags());
+    }, [username, allBlogs]);
     return (
         <div>
             <div className="home">

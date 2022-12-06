@@ -1,10 +1,10 @@
 import { combineReducers } from "redux";
 import blogsReducer from "./blogsReducer";
-import tagReducer from "./tagReducer";
+import selectedTagsReducer from "./selectedTagsReducer";
 import userInfoReducer from "./userInfoReducer";
 
 export default combineReducers({
     userInfo: userInfoReducer,
-    selectedTags: tagReducer,
+    selectedTags: selectedTagsReducer,
     blogsState: blogsReducer
 })

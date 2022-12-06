@@ -13,11 +13,11 @@ import { handleShowPrompt } from "../../utils/actions";
 import './index.css'
 import { selectName } from "../../redux/selectors/userInfoSelector";
 
-const Tourist = (props) => {
+const Tourist = ({handlerButton}) => {
     const handleLogin = () => {
         handleShowPrompt(document.getElementById("login-dialog"));
         document.getElementById("username").focus();
-        props.handlerButton("home");
+        handlerButton("home");
     }
     return (
         <>
@@ -39,7 +39,7 @@ const Logon = ({ name, handlerButton, handleLogout }) => {
     )
 }
 
-function Nav(props) {
+function Nav() {
     const name = useSelector(selectName);
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -82,4 +82,4 @@ function Nav(props) {
     )
 }
 
-export default Nav;
+export default React.memo(Nav);

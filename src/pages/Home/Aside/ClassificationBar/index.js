@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { addTag, removeTag } from "../../../../redux/reducers/tagReducer";
+import { addTag, removeTag } from "../../../../redux/reducers/selectedTagsReducer";
 import './index.css'
 function Tag({ idx, children }) {
     const dispatch = useDispatch();

@@ -1,10 +1,10 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
-import { selectTags } from "../../redux/selectors/tagSelector";
+import { selectAllTags } from "../../redux/selectors/blogSelector";
 import './index.css'
 function Classification() {
-    const tags = useSelector(selectTags);
+    const tags = useSelector(selectAllTags);
     const navigate = useNavigate();
     const handleTagOnClick = (tag) => {
         navigate('/blogDetail?tag=' + tag, { state: { tag: tag } });

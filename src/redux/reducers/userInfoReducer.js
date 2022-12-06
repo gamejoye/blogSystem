@@ -22,6 +22,9 @@ const options = {
     reducers: {
         setUserInfo: (state, action) => {
             state.info = action.payload;
+        },
+        setName: (state, action) => {
+            state.info.name = action.payload
         }
     },
     extraReducers(builder) {
@@ -40,5 +43,5 @@ const options = {
     }
 }
 export const userInfoSlice = createSlice(options);
-export const { setUserInfo, setName, setAboutMe, setAddresss, setBirthday, setSex } = userInfoSlice.actions;
+export const { setUserInfo, setName } = userInfoSlice.actions;
 export default userInfoSlice.reducer;

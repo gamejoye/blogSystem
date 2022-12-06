@@ -5,34 +5,42 @@ import TitleList from "./TitleList";
 import Search from "./Search";
 import { useSelector } from "react-redux";
 import { selectName } from "../../redux/selectors/userInfoSelector";
-import { selectTitles } from "../../redux/selectors/titleSelector";
+import { selectTitles } from "../../redux/selectors/blogSelector";
+import { useNavigate } from "react-router";
 
 function Titles() {
     const username = useSelector(selectName);
     const totalTitles = useSelector(selectTitles);
+    const navigate = useNavigate();
     const [titles, setTitles] = useState([]);
-    const [page, setPage] = useState('');
+    const [searchTerm, setSearchTerm] = useState('');
+    const handleTitleOnClick = (title) => {
+        navigate('/post?title=' + title, { state: { title: title } })
+    }
     useEffect(() => {
         setTitles(totalTitles);
-    }, [username]);
+    }, [username, totalTitles]);
 
     useEffect(() => {
-        if (page.trim() == '') {
+        if (searchTerm.trim() == '') {
             setTitles(totalTitles);
             return;
         }
-        setTitles(totalTitles.filter(title => 
-            title.includes(page)
+        setTitles(totalTitles.filter(title =>
+            title.toUpperCase().includes(searchTerm.toUpperCase())
         ));
-    }, [page]);
+    }, [searchTerm]);
 
     return (
         <div>
             <Search
-                page={page}
-                setPage={setPage}
+                searchTerm={searchTerm}
+                setSearchTerm={setSearchTerm}
             ></Search>
-            <TitleList titles={titles}></TitleList>
+            <TitleList
+                handleOnClick={handleTitleOnClick}
+                titles={titles}
+            />
         </div>
     )
 }

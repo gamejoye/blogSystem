@@ -1,44 +1,19 @@
-export const markdownInsert = (dom, value, range, setPreviewCallback, setContentCallback) => {
-    if (value === "\xa0\xa0\xa0\xa0") {
-        range.deleteContents();
-        let offset = range.startOffset;
-        let container = range.startContainer;
-
-        if(container.nodeName === 'DIV') {
-            //div 节点
-            container.textContent = value;
-            container = container.childNodes[0];
-        } else {
-            //#text 节点
-            container.insertData(offset, value);
-        }
-        range.setStart(container, offset + value.length);
-        range.collapse(true);
-        setPreviewCallback(dom.innerText);
-        return;
+export const transform = nodes => {
+    let data = "";
+    let preNodeName = null;
+    for(let node of nodes) {
+        if(node.nodeName === '#text') {
+            if(preNodeName !== null) data = data.concat('\n');
+            data = data.concat(node.data);
+        } else if(node.nodeName === 'DIV' || node.nodeName === 'P') {
+            data = data.concat('\n').concat(transform(node.childNodes));
+        } else if(node.nodeName === 'IMG') {
+            const url = node.src;
+            data = data.concat('\n').concat(`![](${url})`);
+        } 
+        preNodeName = node.nodeName;
     }
-    range.insertNode(document.createElement('div'));
-    if (typeof value !== "string") {
-        range.insertNode(value);
-    } else {
-        if (value === "``` ```") {
-            let _div1 = document.createElement('div');
-            _div1.textContent = "```";
-            let _div2 = document.createElement('div');
-            _div2.textContent = "code block";
-            let _div3 = document.createElement('div');
-            _div3.textContent = "```";
-            range.insertNode(_div1);
-            range.insertNode(_div2);
-            range.insertNode(_div3);
-        } else {
-            let _div1 = document.createElement('div');
-            _div1.textContent = value;
-            range.insertNode(_div1);
-        }
-    }
-    setPreviewCallback(dom.innerText);
-    setContentCallback(dom.innerHTML);
+    return data;
 }
 
 export const handleRemovePrompt = (dom) => {

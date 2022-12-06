@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, createEntityAdapter } from "@reduxjs/toolkit";
 import { getAllBlogs, postBlog } from "../../utils/apis/axios/api";
 export const loadBlogs = createAsyncThunk('blogs/loadBlogs', async (name) => {
     const blogs = (await getAllBlogs('blogs/byName', name)).data;
@@ -8,19 +8,20 @@ export const addBlog = createAsyncThunk('blogs/addBlog', async ({ formData, blog
     const payload = (await postBlog('files/blogs/images/upload', formData, 'blogs/addition', blog)).data;
     return payload;
 })
+export const blogsAdpater = createEntityAdapter();
+const initialState = blogsAdpater.getInitialState({
+    status: 'idle',
+    error: null
+});
 const options = {
     name: 'blogsState',
-    initialState: {
-        status: 'idle',
-        blogs: [],
-        error: null
-    },
+    initialState,
     reducers: {
         removeBlog: (state, action) => {
             const { payload } = action;
-            const idx = state.blogs.findIndex(blog => blog.id == payload.id);
-            if (idx != -1) {
-                state.blogs.splice(idx, 1);
+            const blog = state.entities[payload.id];
+            if(blog) {
+                blogsAdpater.removeOne(state, blog.id);
             }
         }
     },
@@ -30,8 +31,9 @@ const options = {
                 state.status = 'loading';
             })
             .addCase(loadBlogs.fulfilled, (state, action) => {
+                const { payload } = action;
                 state.status = 'succeeded';
-                state.blogs = action.payload;
+                blogsAdpater.addMany(state, payload);
             })
             .addCase(loadBlogs.rejected, (state, action) => {
                 state.status = 'falied';
@@ -39,7 +41,7 @@ const options = {
             })
             .addCase(addBlog.fulfilled, (state, action) => {
                 const { payload } = action;
-                if (payload !== "failed") state.blogs.push(payload);
+                if (payload !== "failed") blogsAdpater.addOne(state, payload);
             })
     }
 }
