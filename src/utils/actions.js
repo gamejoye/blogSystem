@@ -10,7 +10,9 @@ export const transform = nodes => {
         } else if(node.nodeName === 'IMG') {
             const url = node.src;
             data = data.concat('\n').concat(`![](${url})`);
-        } 
+        } else {
+            data = data.concat(transform(node.childNodes));
+        }
         preNodeName = node.nodeName;
     }
     return data;
