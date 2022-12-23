@@ -10,7 +10,7 @@ import { BASE_URL } from "../../constant";
 import LoginDialog from "../../pages/Window/LoginDialog";
 import { removeCookie } from "../../utils/apis/cookie/removeCookie";
 import { handleShowPrompt } from "../../utils/actions";
-import './index.css'
+import './index.scss'
 import { selectName } from "../../redux/selectors/userInfoSelector";
 
 const Tourist = ({handlerButton}) => {

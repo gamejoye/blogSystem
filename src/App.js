@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { loadBlogs } from './redux/reducers/blogsReducer';
 import { loadUserInfo } from './redux/reducers/userInfoReducer';
 import { selectName } from './redux/selectors/userInfoSelector';
-import './App.css';
+import './App.scss';
 
 function App() {
     const name = useSelector(selectName);

@@ -8,18 +8,20 @@
     border-radius: 25px;
     border: 2px solid rgba(10, 143, 210, 0.158);
 }
+
 .content-show {
     text-align: center;
     margin: 1% 0%;
-    color: white;
     font-size: 3vw;
     border-radius: 25px;
+
+    &:hover {
+        cursor: pointer;
+        background-color: rgb(6, 54, 103);
+    }
 }
-.tag-show{
+
+.tag-show {
     display: inline-block;
     width: 50%;
-}
-.content-show:hover {
-    cursor: pointer;
-    background-color: rgb(6, 54, 103);
 }

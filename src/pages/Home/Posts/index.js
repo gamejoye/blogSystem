@@ -3,8 +3,9 @@ import PostCard from "./PostCard";
 import DeleteDialog from "../../Window/DeleteDialog";
 import { BASE_URL } from "../../../constant";
 import { useNavigate } from "react-router";
+
+const url = BASE_URL + "blogs/deletion";
 function Posts({ totalBlogs }) {
-    const url = BASE_URL + "blogs/deletion";
     const navigate = useNavigate();
     const [blog, setBlog] = useState({});
     const handleOnclick = blog => {

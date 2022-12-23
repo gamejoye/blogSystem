@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { selectAllTags } from "../../redux/selectors/blogSelector";
-import './index.css'
+import './index.scss'
 function Classification() {
     const tags = useSelector(selectAllTags);
     const navigate = useNavigate();

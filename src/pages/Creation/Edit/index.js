@@ -1,8 +1,7 @@
 import React from "react";
-import { Col } from "antd";
 import CreationHeader from "./Header";
 import CreationBody from "./Body";
-import './index.css'
+import './index.scss'
 function Edit({ setLastRange, setPreview, setTitle }) {
     const handleContentKeyUp = () => {
         setLastRange(document.getSelection().getRangeAt(0));

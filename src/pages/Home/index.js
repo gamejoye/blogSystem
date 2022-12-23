@@ -1,12 +1,12 @@
 import React, { lazy } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import './index.css'
 import Classification from "./Aside/ClassificationBar";
 import { selectAllBlogs, selectFilterBlogs } from "../../redux/selectors/blogSelector";
 import { selectName } from "../../redux/selectors/userInfoSelector";
 import { selectAllTags } from "../../redux/selectors/blogSelector";
 import { removeAllTags } from "../../redux/reducers/selectedTagsReducer";
+import './index.scss'
 const Posts = lazy(() => import('./Posts'))
 const SelfCard = lazy(() => import('./Aside/SelfCard'))
 

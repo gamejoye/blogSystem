@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router";
 import { selectTitlesByTag } from "../../redux/selectors/blogSelector";
-import '../Classification/index.css'
+import '../Classification/index.scss'
 function BlogDetail() {
     const localtion = useLocation();
     const navigate = useNavigate();

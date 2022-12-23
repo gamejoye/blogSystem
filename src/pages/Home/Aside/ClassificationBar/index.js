@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { addTag, removeTag } from "../../../../redux/reducers/selectedTagsReducer";
-import './index.css'
+import './index.scss'
 function Tag({ idx, children }) {
     const dispatch = useDispatch();
     const [isSelected, setIsSelected] = useState(false);

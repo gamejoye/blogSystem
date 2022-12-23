@@ -3,7 +3,7 @@ import { useLocation } from "react-router";
 import Markdown from "../../components/Markdown";
 import { useSelector } from "react-redux";
 import { selectBlogByTitle } from "../../redux/selectors/blogSelector";
-import './index.css'
+import './index.scss'
 const Comments = lazy(() => import('../Comments'))
 
 

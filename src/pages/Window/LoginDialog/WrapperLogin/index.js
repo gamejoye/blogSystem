@@ -3,7 +3,7 @@ import { handleRemovePrompt } from "../../../../utils/actions";
 import { postInstance } from "../../../../utils/apis/axios/config";
 import { message } from "antd";
 import { CloseOutlined } from "@ant-design/icons";
-import './index.css'
+import './index.scss'
 export const loginWrapper = (
     url,
     way,

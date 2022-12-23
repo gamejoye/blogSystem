@@ -1,6 +1,5 @@
 import React from "react";
 import { Divider } from "antd";
-import './index.css'
 
 function TitleList({ handleOnClick, titles }) {
     const titleItems = titles.map((title, index) => {

@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { removeBlog } from "../../../redux/reducers/blogsReducer";
 import { handleRemovePrompt } from "../../../utils/actions";
 import { postInstance } from "../../../utils/apis/axios/config";
-import './index.css';
+import './index.scss';
 function DeleteDialog({url, data}) {
     const [el] = useState(document.createElement('div'));
     const dispatch = useDispatch();

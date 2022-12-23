@@ -3,7 +3,7 @@ import { createPortal } from "react-dom";
 import { handleRemovePrompt } from "../../../utils/actions";
 import Login from "./Login";
 import Register from "./Register";
-import './index.css'
+import './index.scss'
 
 function LoginDialog() {
     const [el] = useState(document.createElement('div'));

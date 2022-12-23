@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router";
 import { useSelector } from "react-redux";
 import { selectAboutMe } from "../../../../redux/selectors/userInfoSelector";
-import './index.css'
+import './index.scss'
 
 function SelfCard() {
     const aboutMe = useSelector(selectAboutMe);

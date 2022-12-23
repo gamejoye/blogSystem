@@ -1,6 +1,6 @@
 import React from "react";
 import { EDIT, PREVIEW } from './constant'
-import './index.css'
+import './index.scss'
 function Toolbar({lastRange, formData}) {
     const insertDOM = type => text => () => {
         if (!lastRange) return;

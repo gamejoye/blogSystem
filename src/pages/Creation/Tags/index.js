@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Col } from "antd";
-import './index.css'
+import './index.scss'
 function Tags({ tags }) {
     const move = (container, keyCode, offset) => {
         if (keyCode === 38) return false;

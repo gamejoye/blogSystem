@@ -1,6 +1,6 @@
 import React from "react";
 import { Col } from "antd";
-import '../index.css';
+import '../index.scss';
 function CreationHeader({checkInput, handleOnKeyDown}) {
     return (
         <>
