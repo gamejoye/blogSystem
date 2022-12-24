@@ -21,16 +21,14 @@ function Home() {
         dispatch(removeAllTags());
     }, [username, allBlogs]);
     return (
-        <div>
-            <div className="home">
-                <div className="middle">
-                    <Posts totalBlogs={totalBlogs} />
-                </div>
-                {username && (<div className="right">
-                    <SelfCard />
-                    <Classification totalBlogs={totalBlogs} tags={tags} />
-                </div>)}
+        <div className="home">
+            <div className="middle">
+                <Posts totalBlogs={totalBlogs} />
             </div>
+            {username && (<div className="right">
+                <SelfCard />
+                <Classification totalBlogs={totalBlogs} tags={tags} />
+            </div>)}
         </div>
     )
 }

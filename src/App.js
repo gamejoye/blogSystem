@@ -6,6 +6,7 @@ import { loadBlogs } from './redux/reducers/blogsReducer';
 import { loadUserInfo } from './redux/reducers/userInfoReducer';
 import { selectName } from './redux/selectors/userInfoSelector';
 import './App.scss';
+import 'antd/dist/antd.css';
 
 function App() {
     const name = useSelector(selectName);

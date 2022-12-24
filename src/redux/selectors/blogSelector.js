@@ -5,7 +5,7 @@ import { selectName } from "./userInfoSelector";
 export const { selectAll: selectAllBlogs } = blogsAdpater.getSelectors(state => state.blogsState);
 export const selectBlogByTitle = createSelector(
     [selectAllBlogs, (_state, title) => title],
-    (blogs, title) => blogs.filter(blog => blog.title === title)
+    (blogs, title) => blogs.find(blog => blog.title === title)
 )
 export const selectAllTags = createSelector(
     [selectAllBlogs],

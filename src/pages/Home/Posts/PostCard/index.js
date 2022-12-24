@@ -1,6 +1,5 @@
 import React from "react";
 import Markdown from "../../../../components/Markdown";
-import 'antd/dist/antd.css';
 import './index.scss'
 import { Divider } from "antd";
 
