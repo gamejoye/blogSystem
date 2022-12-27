@@ -1,7 +1,6 @@
 import React, { lazy } from "react";
 import { useState } from "react";
 import { Row } from "antd";
-import './index.css'
 import Tags from "./Tags";
 
 const Toolbar = lazy(() => import('./Toolbar'));
@@ -11,25 +10,49 @@ const Submission = lazy(() => import('./Submission'));
 
 function Creation(props) {
     const [title, setTitle] = useState('');
-    const [preview, setPreview] = useState('');
+    const [content, setContent] = useState('');
+    const [isEdit, setIsEdit] = useState(true);
     const [order, setOrder] = useState(1);
     const [tags] = useState([]);
     const [lastRange, setLastRange] = useState(null);
     const [formData] = useState(new FormData());
     return (
         <div className="creation">
-            <Toolbar lastRange={lastRange} formData={formData} setPreview={setPreview} />
-            <Row gutter={[16, 16]} id="article_edit">
-                <Edit setTitle={setTitle} setOrder={setOrder} lastRange={lastRange} setLastRange={setLastRange} setPreview={setPreview} formData={formData} />
-            </Row>
-            <Row gutter={[16, 16]} id="article_preview">
-                <ArticlePreview preview={preview} />
-            </Row>
-            <Row>
-                <Tags tags={tags} />
-            </Row>
+            <Toolbar
+                lastRange={lastRange}
+                formData={formData}
+                setContent={setContent}
+                setIsEdit={setIsEdit}
+            />
+            {isEdit && (<>
+                <Row gutter={[16, 16]}>
+                    <Edit
+                        setTitle={setTitle}
+                        setOrder={setOrder}
+                        setContent={setContent}
+                        lastRange={lastRange}
+                        setLastRange={setLastRange}
+                        formData={formData}
+                    />
+                </Row>
+                <Row>
+                    <Tags
+                        tags={tags}
+                    />
+                </Row>
+            </>) || (<Row gutter={[16, 16]}>
+                <ArticlePreview
+                    title={title}
+                    content={content}
+                />
+            </Row>)}
             <Row gutter={[16, 16]}>
-                <Submission title={title} order={order} tags={tags} formData={formData} />
+                <Submission
+                    title={title}
+                    order={order}
+                    tags={tags}
+                    formData={formData}
+                />
             </Row>
         </div>
     )

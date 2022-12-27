@@ -7,6 +7,10 @@ export const selectBlogByTitle = createSelector(
     [selectAllBlogs, (_state, title) => title],
     (blogs, title) => blogs.find(blog => blog.title === title)
 )
+export const selectPrevAndNextBlogByTitle = createSelector(
+    [selectAllBlogs, (_state, title) => title],
+    (blogs, title) => selectBlogsOnLeftAndRightByTitle(blogs)(title)
+)
 export const selectAllTags = createSelector(
     [selectAllBlogs],
     (blogs) => {
@@ -39,3 +43,8 @@ export const selectTitlesByTag = createSelector(
         return titles;
     }
 )
+
+const selectBlogsOnLeftAndRightByTitle = blogs => title => {
+    let index = blogs.findIndex(blog => blog.title === title);
+    return [blogs[index - 1] ? blogs[index - 1].title : null, blogs[index + 1] ? blogs[index + 1].title : null];
+}

@@ -1,20 +1,20 @@
 export const transform = nodes => {
     let data = "";
     let preNodeName = null;
-    for(let node of nodes) {
-        if(node.nodeName === '#text') {
+    nodes.forEach(node => {
+        const nodeName = node.nodeName;
+        if(nodeName === 'IMG') console.log(node)
+        if(nodeName === '#text') {
             if(preNodeName !== null) data = data.concat('\n');
             data = data.concat(node.data);
-        } else if(node.nodeName === 'DIV' || node.nodeName === 'P') {
-            data = data.concat('\n').concat(transform(node.childNodes));
-        } else if(node.nodeName === 'IMG') {
-            const url = node.src;
-            data = data.concat('\n').concat(`![](${url})`);
         } else {
+            const display = window.getComputedStyle(node).display;
+            if(display !== 'inline') data = data.concat('\n');
+            if(nodeName === 'IMG') data = data.concat(`![](${node.src})`);
             data = data.concat(transform(node.childNodes));
         }
         preNodeName = node.nodeName;
-    }
+    })
     return data;
 }
 

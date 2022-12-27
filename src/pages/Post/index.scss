@@ -7,6 +7,25 @@
         margin-right: 20%;
         width: 60%;
     }
+    a {
+        &:hover {
+            color: white;
+            cursor: pointer;
+        }
+        span {
+            color: gray;
+        }
+    }
+}
+
+.prev-page {
+    float: left;
+    margin-left: 10%;
+}
+
+.next-page {
+    float: right;
+    margin-right: 20%;
 }
 
 .blog {
