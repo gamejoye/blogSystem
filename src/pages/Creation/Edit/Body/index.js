@@ -7,7 +7,7 @@ function CreationBody({handleKeyUp, handleOnInput, handleOnClick}) {
             <Col span={14} offset={4}>
                 <p className="warn"><b>WARN！！！</b>(请注意插入图片时，光标应该在一行空行上)</p>
                 <div
-                    contentEditable={true}
+                    contentEditable="plaintext-only"
                     id="creationContent"
                     className="blog-content blog-text"
                     rows={35}

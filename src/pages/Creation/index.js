@@ -2,6 +2,7 @@ import React, { lazy } from "react";
 import { useState } from "react";
 import { Row } from "antd";
 import Tags from "./Tags";
+import './index.scss';
 
 const Toolbar = lazy(() => import('./Toolbar'));
 const Edit = lazy(() => import('./Edit'));
@@ -11,7 +12,6 @@ const Submission = lazy(() => import('./Submission'));
 function Creation(props) {
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
-    const [isEdit, setIsEdit] = useState(true);
     const [order, setOrder] = useState(1);
     const [tags] = useState([]);
     const [lastRange, setLastRange] = useState(null);
@@ -22,30 +22,28 @@ function Creation(props) {
                 lastRange={lastRange}
                 formData={formData}
                 setContent={setContent}
-                setIsEdit={setIsEdit}
             />
-            {isEdit && (<>
-                <Row gutter={[16, 16]}>
-                    <Edit
-                        setTitle={setTitle}
-                        setOrder={setOrder}
-                        setContent={setContent}
-                        lastRange={lastRange}
-                        setLastRange={setLastRange}
-                        formData={formData}
-                    />
-                </Row>
-                <Row>
-                    <Tags
-                        tags={tags}
-                    />
-                </Row>
-            </>) || (<Row gutter={[16, 16]}>
+            <Row gutter={[16, 16]} className="edit">
+                <Edit
+                    setTitle={setTitle}
+                    setOrder={setOrder}
+                    setContent={setContent}
+                    lastRange={lastRange}
+                    setLastRange={setLastRange}
+                    formData={formData}
+                />
+            </Row>
+            <Row className="edit">
+                <Tags
+                    tags={tags}
+                />
+            </Row>
+            <Row gutter={[16, 16]} className="preview">
                 <ArticlePreview
                     title={title}
                     content={content}
                 />
-            </Row>)}
+            </Row>
             <Row gutter={[16, 16]}>
                 <Submission
                     title={title}

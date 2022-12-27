@@ -1,7 +1,7 @@
 import React from "react";
 import { EDIT, PREVIEW } from './constant'
 import './index.scss'
-function Toolbar({lastRange, formData, setIsEdit}) {
+function Toolbar({lastRange, formData}) {
     const insertDOM = type => text => () => {
         if (!lastRange) return;
         const el = document.createElement(type);
@@ -22,7 +22,10 @@ function Toolbar({lastRange, formData, setIsEdit}) {
         insertIMG(url)();
     }
     function handleSetEdit(type) {
-        setIsEdit(type !== PREVIEW);
+        const editComponents = document.querySelectorAll('.edit');
+        const previewComponents = document.querySelectorAll('.preview');
+        editComponents.forEach(editComponent => editComponent.style.display = type === PREVIEW ? 'none' : 'block');
+        previewComponents.forEach(previewComponent => previewComponent.style.display = type === PREVIEW ? 'block' : 'none');
     }
     return (
         <ul className="secondary_menu">
