@@ -25,8 +25,8 @@ function Post() {
     return (
         <div className="post">
             <div className="blog">
-                <Markdown content={blog ? blog.title : ''} _className="header" />
-                <Markdown isPost={true} content={blog ? blog.content : ''} _className="content" />
+                <Markdown content={blog ? blog.title : ''} className="header" />
+                <Markdown content={blog ? blog.content : ''} className="content" />
             </div>
             <a className="prev-page" onClick={() => handleLinkOnClick(prev)}>上一篇: {prev ? prev : <span>没有了</span>}</a>
             <a className="next-page" onClick={() => handleLinkOnClick(next)}>下一篇: {next ? next : <span>没有了</span>}</a>
@@ -34,4 +34,4 @@ function Post() {
         </div>
     )
 }
-export default (Post);
+export default React.memo(Post);
