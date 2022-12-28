@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { selectName } from "../../../redux/selectors/userInfoSelector";
 import { addBlog } from "../../../redux/reducers/blogsReducer";
-import { transform } from "../../../utils/actions";
+import { transformBlog } from "../../../utils/actions/transformBlog";
 function Submisson({ tags, title, order, formData }) {
     const username = useSelector(selectName);
     const dispatch = useDispatch();
@@ -17,7 +17,7 @@ function Submisson({ tags, title, order, formData }) {
         //content: 在服务端格式转换后会添加进来
     }
     const handleSubmit = async () => {
-        const content = transform(document.getElementById("creationContent").childNodes)
+        const content = transformBlog(document.getElementById("creationContent").childNodes)
         formData.append('content', content);
         const ok = await dispatch(addBlog({formData, blog})).unwrap();
         if(ok !== "failed") {

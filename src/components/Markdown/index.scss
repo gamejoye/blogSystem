@@ -5,7 +5,7 @@ pre {
     border: 1px solid #C3CCD0;
     background: rgba(255, 255, 255, 0.6);
     overflow: hidden;
-    border-radius:25px 25px 25px 25px;
+    border-radius: 25px 25px 25px 25px;
 }
 
 code {
@@ -15,19 +15,17 @@ code {
     font-weight: 300;
 }
 
+
+
 .header {
     margin-top: 2%;
     margin-left: 10%;
     margin-right: 10%;
-}
 
-.header h1 {
-    text-align: center;
-    font-size: 50px;
-}
-
-.content p {
-    font-size: 25px;
+    h1 {
+        text-align: center;
+        font-size: 50px;
+    }
 }
 
 .content {
@@ -37,6 +35,20 @@ code {
     padding-bottom: 5%;
     padding-left: 5%;
     padding-right: 5%;
-    border-radius:25px 25px 25px 25px;
+    border-radius: 25px 25px 25px 25px;
     background-color: rgba(19, 13, 13, 0.158);
+
+    p {
+        font-size: 25px;
+    }
+
+    .img-loading {
+        filter: blur(10px);
+        clip-path: inset(0);
+    }
+    
+    .img-loaded {
+        filter: blur(0px);
+        transition: filter 0.5s linear;
+    }
 }

@@ -2,7 +2,7 @@ import React from "react";
 import CreationHeader from "./Header";
 import CreationBody from "./Body";
 import './index.scss'
-import { transform } from "../../../utils/actions";
+import { transformBlog } from "../../../utils/actions/transformBlog";
 function Edit({ setLastRange, setContent, setTitle }) {
     const handleContentKeyUp = () => {
         setLastRange(document.getSelection().getRangeAt(0));
@@ -24,7 +24,7 @@ function Edit({ setLastRange, setContent, setTitle }) {
         setTitle(e.target.innerText);
     }
     const handleContentOnInput = (e) => {
-        setContent(transform(document.getElementById("creationContent").childNodes));
+        setContent(transformBlog(document.getElementById("creationContent").childNodes));
     }
     const handleContentOnClick = () => {
         setLastRange(document.getSelection().getRangeAt(0));
