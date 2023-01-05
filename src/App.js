@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import Main from './components/Main';
 import Nav from './components/Nav';
+import Footer from './components/Footer/Footer';
 import { useDispatch, useSelector } from 'react-redux';
 import { loadBlogs } from './redux/reducers/blogsReducer';
 import { loadUserInfo } from './redux/reducers/userInfoReducer';
@@ -22,6 +23,7 @@ function App() {
         <div className='app'>
             <Nav />
             <Main />
+            <Footer />
         </div>
     )
 }
