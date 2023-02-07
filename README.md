@@ -1,4 +1,5 @@
 # BlogSystem
+_BlogSystemAdmin:_ [博客后台](https://github.com/gamejoye/blogSystemAdmin-React)
 
 - 2022.10.25
 
@@ -23,3 +24,6 @@ _提取出loginWrapper组件减少复写 添加分类栏功能_
 
 - 2022.12.7
 _之前Creation组件上传blog的内容转换是在spring后端，然后出现了一些bug，这次改到前端进行内容转换_
+
+- 2023.2.7
+_删除了一些博客后台管理才有的一些功能_
