@@ -15,7 +15,7 @@ class Main extends React.Component {
     render() {
         return (
             <main>
-                <Suspense fallback={<div className="suspense">Loading...</div>}>
+                <Suspense fallback={<></>}>
                     <ErrorBoundary>
                         <Routes>
                             <Route path="/" element={<Home />}></Route>

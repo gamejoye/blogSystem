@@ -1,16 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PostCard from "./PostCard";
 import { useNavigate } from "react-router";
 import { useSelector } from "react-redux";
-import { selectFilterTagsBlogs } from "../../../redux/selectors/blogSelector";
+import { selectAllBlogs, selectFilterTagsBlogs } from "../../../redux/selectors/blogSelector";
 import { IBlog } from "../../../types";
 function Posts() {
     const navigate = useNavigate();
-    const totalBlogs = useSelector(selectFilterTagsBlogs);
+    const blogs = useSelector(selectAllBlogs);
     const handleOnClick = (blog: IBlog) => {
         navigate(`/post/${blog.id}`)
     }
-    const posts = totalBlogs.map((blog) => {
+    const posts = blogs.map((blog) => {
         return (
             <PostCard
                 key={blog.id}

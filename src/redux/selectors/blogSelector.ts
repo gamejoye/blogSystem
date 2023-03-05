@@ -9,6 +9,7 @@ export const selectBlogById = createSelector(
     [selectAllBlogs, (_state, id: number) => id],
     (blogs, id) => blogs.find(blog => blog.id === id)
 )
+export const selectBlogStatus = (state: IRootState) => state.blogsState.status;
 export const selectPrevAndNextBlogById = createSelector(
     [selectAllBlogs, (_state, id: number) => id],
     (blogs, id) => selectBlogsOnLeftAndRightById(blogs)(id)

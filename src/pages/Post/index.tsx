@@ -6,19 +6,12 @@ import { selectBlogById, selectPrevAndNextBlogById } from "../../redux/selectors
 import './index.scss'
 import lazyMarkdownImg from "../../utils/actions/lazyMarkdownImg";
 import { IRootState } from "../../redux/store";
-const CommentBox = lazy(() => import('../CommentBox'))
+import CommentBox from "../../components/CommentBox";
 
 
 function Post() {
-    const navigate = useNavigate();
     const blogId = parseInt(useParams()?.blogId ?? "0");
     const blog = useSelector((state: IRootState) => selectBlogById(state, blogId));
-    const [prev, next] = useSelector((state: IRootState) => selectPrevAndNextBlogById(state, blogId));
-    const handleLinkOnClick = (id: number | null) => {
-        if (id) {
-            navigate(`/post/${id}`);
-        }
-    }
     useEffect(() => {
         lazyMarkdownImg();
     });
@@ -28,8 +21,6 @@ function Post() {
                 <Markdown content={blog ? blog.title : ''} className="header" isPreview={false} />
                 <Markdown content={blog ? blog.content : ''} className="content" isPreview={false} />
             </div>
-            <a className="prev-page" onClick={() => handleLinkOnClick(prev)}>上一篇: {prev ? prev : <span>没有了</span>}</a>
-            <a className="next-page" onClick={() => handleLinkOnClick(next)}>下一篇: {next ? next : <span>没有了</span>}</a>
             <CommentBox blogId={blogId} />
         </div>
     )

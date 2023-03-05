@@ -39,7 +39,7 @@ export const blogSlice = createSlice({
                 blogsAdpater.addMany(state, payload);
             })
             .addCase(loadBlogs.rejected, (state, action) => {
-                state.status = 'falied';
+                state.status = 'failed';
                 const { message } = action.error;
                 state.error = message ? message : "";
             })

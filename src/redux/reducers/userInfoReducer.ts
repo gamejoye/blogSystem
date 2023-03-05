@@ -13,7 +13,7 @@ interface IInitial {
 }
 
 const initial: IInitial = {
-    status: '',
+    status: 'idle',
     info: {
         name: 'gamejoye',
         sex: '',
@@ -37,7 +37,7 @@ export const userInfoSlice = createSlice({
                 state.info = action.payload;
             })
             .addCase(loadUserInfo.rejected, (state, action) => {
-                state.status = 'falied';
+                state.status = 'failed';
                 const { message } = action.error;
                 state.error = message ? message : "";
             })
