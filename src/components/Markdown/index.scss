@@ -1,58 +1,32 @@
 pre {
     width: 100%;
     position: relative;
-    margin-bottom: 0px;
-    border: 1px solid #C3CCD0;
-    background: rgba(255, 255, 255, 0.6);
-    overflow: hidden;
-    border-radius: 25px 25px 25px 25px;
-}
-
-code {
-    display: block;
     padding: 12px 24px;
-    overflow-y: auto;
-    font-weight: 300;
+    background: rgba(128, 128, 128, 0.612);
+    overflow: hidden;
 }
 
 
+:not(pre) > code {
+    overflow-y: auto;
+    background-color: gray;
+    padding-left: 3px;
+    padding-right: 3px;
+}
 
 .header {
-    margin-top: 2%;
-    margin-left: 10%;
-    margin-right: 10%;
-
     h1 {
         text-align: center;
-        font-size: 50px;
+        font-size: 40px;
     }
 }
 
 .content {
-    margin-left: 10%;
-    margin-right: 10%;
-    padding-top: 5%;
-    padding-bottom: 5%;
-    padding-left: 5%;
-    padding-right: 5%;
-    border-radius: 25px 25px 25px 25px;
-    background-color: rgba(19, 13, 13, 0.158);
-
-    p {
-        font-size: 25px;
-    }
-
-    li {
-        * {
-            font-size: 16px;
-        }
-    }
-
     .img-loading {
         filter: blur(10px);
         clip-path: inset(0);
     }
-    
+
     .img-loaded {
         filter: blur(0px);
         transition: filter 0.5s linear;

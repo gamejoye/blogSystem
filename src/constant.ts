@@ -1,1 +1,1 @@
-export const BASE_URL = process.env.NODE_ENV === "development" ? "http://localhost:8080/MyBlog/" : "https://gamejoye.top/Blog/";
+export const BASE_URL = process.env.NODE_ENV === "development" ? "http://localhost:8080/Blog/" : "https://gamejoye.top/Blog/";

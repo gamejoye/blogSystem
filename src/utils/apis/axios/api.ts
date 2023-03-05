@@ -1,10 +1,10 @@
 import { getInstance, postInstance, putInstance } from "./config";
 import { IBlog, IComment, IUserInfo } from "../../../types";
 export const getAllBlogs = (name: string) => {
-    return getInstance.get(`blog/name/${name}`);
+    return getInstance.get(`blog/name/gamejoye`);
 }
 export const getUserInfo = (name: string) => {
-    return getInstance.get('user/introduction/gamejoye')
+    return getInstance.get('user/introduction/gamejoye');
 };
 export const getAllComments = (name: string, blogId: number) => {
     return getInstance.get(`blog/${blogId}/comment`)
