@@ -45,7 +45,7 @@
         }
     }
 
-    &>:hover {
+    &>:not(.settings):hover {
         border-radius: 25px;
         background-color: rgb(6, 54, 103);
     }
@@ -54,6 +54,8 @@
 .settings {
     float: right;
     margin-right: 10%;
+    padding-top: 8px;
+    padding-bottom: 8px;
 }
 
 .pull-down {

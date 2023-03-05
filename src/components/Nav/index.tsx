@@ -2,12 +2,13 @@ import React from "react";
 import { HomeOutlined, UserOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router";
 import { useSelector } from "react-redux";
-import { selectName } from "../../redux/selectors/userInfoSelector";
+import { selectUserInfo } from "../../redux/selectors/userInfoSelector";
 import './index.scss'
+import { Avatar } from "antd";
 
 
 function Nav() {
-    const name = useSelector(selectName);
+    const userInfo = useSelector(selectUserInfo);
     const navigate = useNavigate();
     const handleButton = (value: string) => {
         navigate(`${value}`);
@@ -24,8 +25,13 @@ function Nav() {
                     <a onClick={() => handleButton("titles")}>搜索</a>
                 </div>
             </div>
-            <div className="settings base">
-                <a onClick={() => handleButton("about")}><UserOutlined /> {name}</a>
+            <div className="settings">
+                <a onClick={() => handleButton("about")}>
+                    <Avatar
+                        size={64}
+                        src={userInfo.avatarUrl}
+                    />
+                </a>
             </div>
         </ul>
     )

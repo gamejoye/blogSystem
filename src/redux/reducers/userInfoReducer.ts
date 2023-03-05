@@ -16,6 +16,7 @@ const initial: IInitial = {
     status: 'idle',
     info: {
         name: 'gamejoye',
+        avatarUrl: '',
         sex: '',
         address: '',
         birthday: '',

@@ -9,6 +9,7 @@ interface IBlog {
 
 interface IUserInfo {
     name: string;
+    avatarUrl: string;
     sex: string;
     address: string;
     birthday: string;

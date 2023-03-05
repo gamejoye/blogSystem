@@ -1,13 +1,15 @@
 import React from "react";
-import { Comment, Divider } from "antd";
-import { UserOutlined } from "@ant-design/icons";
+import { Comment } from "antd";
 import { IComment } from "../../types";
+import { useSelector } from "react-redux";
+import { selectUserInfo } from "../../redux/selectors/userInfoSelector";
 
 interface IProps {
     comments: IComment[]
 }
 
 const CommentList = ({ comments }: IProps) => {
+    const userInfo = useSelector(selectUserInfo);
     const list = comments.map((comment, index) => {
         return (
             <React.Fragment key={index}>
@@ -15,9 +17,8 @@ const CommentList = ({ comments }: IProps) => {
                     content={comment.content}
                     author={comment.name}
                     datetime={comment.commentDay}
-                    avatar={<UserOutlined />}
+                    avatar={<img src={userInfo.avatarUrl} />}
                 />
-                <Divider />
             </React.Fragment>
         )
     })
