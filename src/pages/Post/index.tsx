@@ -23,7 +23,7 @@ function Post() {
         const newItems: IAnchorItem[] = [];
         document.querySelectorAll('h2').forEach(entry => {
             const item: IAnchorItem = {
-                key: entry.id,
+                key: '' + entry.id,
                 href: '#' + entry.id,
                 title: '' + entry.textContent
             }

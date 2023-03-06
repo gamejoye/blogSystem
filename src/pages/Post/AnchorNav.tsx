@@ -1,24 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import { IAnchorItem } from "./types";
 import './index.scss'
+import { Anchor, Button, ConfigProvider } from "antd";
 
 interface IProps {
     anchorItems: IAnchorItem[]
 }
 const AnchorNav = ({ anchorItems }: IProps) => {
-    const anchorLinks = anchorItems.map(anchorItem => {
-        return (
-            <div className="anchor-link" key={anchorItem.key}>
-                <a className="anchor-link-title" href={anchorItem.href}>
-                    {anchorItem.title}
-                </a>
-            </div>
-        )
-    })
     return (
-        <div className="anchor-container">
-            {anchorLinks}
-        </div>
+        <ConfigProvider
+            theme={{
+                token: {
+                    colorTextBase: 'white'
+                }
+            }}
+        >
+            <div className="anchor-container-fixed">
+                <Anchor
+                    targetOffset={200}
+                    getContainer={() => document.querySelector('main') as HTMLElement}
+                    items={anchorItems}
+                />
+            </div>
+        </ConfigProvider>
     )
 }
 export default AnchorNav;
