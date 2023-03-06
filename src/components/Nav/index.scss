@@ -1,10 +1,14 @@
 .menu {
-    height: 80px;
-    border-bottom: 1px solid;
-    border-color: rgba(72, 175, 244, 0.5);
+    position: sticky;
+    width: 100%;
+    height: 64px;
+    top: 0;
+    z-index: 99;
+    border-color: gray;
     margin: 0;
-    padding: 0px;
-    background-color: rgba(72, 175, 244, 0.5);
+    padding: 0;
+    background-color: rgba(98, 159, 220, 0.5);
+    transition: 0.2s;
 
     .base {
         font-size: 2.5vw;
@@ -15,7 +19,6 @@
 
             &:hover {
                 color: white;
-
             }
         }
     }
@@ -30,6 +33,9 @@
         margin-left: 10%;
         margin-right: 10%;
         padding: 10px 25px 10px;
+        &:hover {
+            cursor: pointer;
+        }
     }
 
     .list {
@@ -56,6 +62,9 @@
     margin-right: 10%;
     padding-top: 8px;
     padding-bottom: 8px;
+    &:hover {
+        cursor: pointer;
+    }
 }
 
 .pull-down {

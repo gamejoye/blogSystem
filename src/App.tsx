@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useLayoutEffect } from 'react';
 import Main from './components/Main';
 import Nav from './components/Nav';
 import Footer from './components/Footer/Footer';
@@ -7,11 +7,29 @@ import { loadBlogs, removeAllBlogs } from './redux/reducers/blogsReducer';
 import { loadUserInfo } from './redux/reducers/userInfoReducer';
 import { selectUserInfo, selectUserInfoStatus } from './redux/selectors/userInfoSelector';
 import './App.scss';
-import 'antd/dist/antd.css';
+import 'antd/dist/reset.css';
 import { useAppDispatch } from './redux/store';
 import { selectBlogStatus } from './redux/selectors/blogSelector';
+import useScrollTransition from './utils/hooks/useTransitionVisiable';
+
 
 function App() {
+    useScrollTransition(
+        '.menu',
+        'main',
+        {
+            heightPx: 64,
+            isDownHidden: true
+        }
+    )
+    useScrollTransition(
+        '.footer',
+        'main',
+        {
+            heightPx: 64,
+            isDownHidden: false
+        }
+    )
     const userInfo = useSelector(selectUserInfo);
     const blogStatus = useSelector(selectBlogStatus);
     const userInfoStatus = useSelector(selectUserInfoStatus);
@@ -34,7 +52,6 @@ function App() {
     if (userInfoStatus === 'failed') {
         throw new Error('个人信息获取失败');
     }
-    console.log(blogStatus, ' ', userInfoStatus)
     useEffect(() => {
         return () => {
             dispatch(removeAllBlogs());

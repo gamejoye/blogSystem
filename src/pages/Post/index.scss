@@ -1,20 +1,37 @@
 .post {
     width: 100%;
     height: 100%;
+    display: flex;
+    flex-wrap: wrap;
 
-    img {
-        margin-left: 20%;
-        margin-right: 20%;
-        width: 60%;
+    .blog {
+        max-width: 70%;
+        img {
+            margin-left: 20%;
+            margin-right: 20%;
+            width: 60%;
+        }
+
+        a {
+            &:hover {
+                color: white;
+                cursor: pointer;
+            }
+
+            span {
+                color: gray;
+            }
+        }
     }
-    a {
-        &:hover {
-            color: white;
-            cursor: pointer;
-        }
-        span {
-            color: gray;
-        }
+
+    .anchor-container {
+        width: 20%;
+        height: auto;
+        position: fixed;
+        margin-left: 80%;
+        text-align: center;
+        padding: 5% 2%;
+
     }
 }
 

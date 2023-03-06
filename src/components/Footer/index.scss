@@ -1,9 +1,10 @@
 .footer {
-    margin-top: 2%;
-    padding-top: 1%;
+    height: 64px;
     font-size: 1rem;
     text-align: center;
     background-color: rgba(26, 27, 28, 0.5);
+    transition: 0.2s;
+    visibility: hidden;
     span {
         padding: 4px;
         display: block;

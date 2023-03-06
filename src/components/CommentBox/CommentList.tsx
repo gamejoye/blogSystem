@@ -1,5 +1,5 @@
 import React from "react";
-import { Comment } from "antd";
+import { Comment } from "@ant-design/compatible";
 import { IComment } from "../../types";
 import { useSelector } from "react-redux";
 import { selectUserInfo } from "../../redux/selectors/userInfoSelector";
