@@ -2,14 +2,14 @@ pre {
     width: 100%;
     position: relative;
     padding: 12px 24px;
-    background: rgba(128, 128, 128, 0.612);
+    background: #f7f7f7;
     overflow: hidden;
 }
 
 
 :not(pre) > code {
     overflow-y: auto;
-    background-color: gray;
+    background-color: #f0f0f0;
     padding-left: 3px;
     padding-right: 3px;
 }

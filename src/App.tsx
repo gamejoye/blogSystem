@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect } from 'react';
+import React, { useEffect } from 'react';
 import Main from './components/Main';
 import Nav from './components/Nav';
 import Footer from './components/Footer/Footer';
@@ -10,26 +10,9 @@ import './App.scss';
 import 'antd/dist/reset.css';
 import { useAppDispatch } from './redux/store';
 import { selectBlogStatus } from './redux/selectors/blogSelector';
-import useScrollTransition from './utils/hooks/useTransitionVisiable';
-
+import { ConfigProvider, Layout } from 'antd';
 
 function App() {
-    useScrollTransition(
-        '.menu',
-        'main',
-        {
-            heightPx: 64,
-            isDownHidden: true
-        }
-    )
-    useScrollTransition(
-        '.footer',
-        'main',
-        {
-            heightPx: 64,
-            isDownHidden: false
-        }
-    )
     const userInfo = useSelector(selectUserInfo);
     const blogStatus = useSelector(selectBlogStatus);
     const userInfoStatus = useSelector(selectUserInfoStatus);
@@ -58,11 +41,23 @@ function App() {
         }
     }, []);
     return (
-        <div className='app'>
-            <Nav />
-            <Main />
-            <Footer />
-        </div>
+        <ConfigProvider
+            theme={{
+                token: {
+                    colorTextBase: 'black',
+                    colorBgLayout: '#f7f7f7',
+                    colorBgContainer: '#ffff',
+                    colorFillContent: 'red',
+                    borderRadius: 5,
+                },
+            }}
+        >
+            <Layout className='app'>
+                <Nav />
+                <Main />
+                <Footer />
+            </Layout>
+        </ConfigProvider>
     )
 }
 export default App;

@@ -1,27 +1,20 @@
-.border-container {
-    padding: 20px;
-    background-color: rgba(10, 143, 210, 0.3);
-    margin-top: 5%;
-    margin-left: 25%;
-    margin-right: 25%;
-    width: 50%;
-    border-radius: 25px;
-    border: 2px solid rgba(10, 143, 210, 0.158);
+.classification-container {
+    padding: 24px;
+    margin-top: 32px;
+    margin-left: 35%;
+    margin-right: 35%;
+    width: 30%;
+    background-color: #ffff;
 }
-
-.content-show {
+.tag-item {
     text-align: center;
-    margin: 1% 0%;
-    font-size: 3vw;
-    border-radius: 25px;
-
+    margin: 0 8px;
+    background-color: #f5f5f5;
     &:hover {
         cursor: pointer;
-        background-color: rgb(6, 54, 103);
+        background-color: #f0f0f0;
     }
 }
-
-.tag-show {
-    display: inline-block;
-    width: 50%;
+.tag-count {
+    float: right;
 }

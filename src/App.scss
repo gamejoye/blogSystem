@@ -1,24 +1,7 @@
 .app {
-    height: 100%;
     overflow-x: hidden;
     overflow-y: scroll;
-    & * {
-        color: white;
-    }
 }
-
-
-#prompt-root {
-    width: 100%;
-    position: fixed;
-    z-index: 999;
-    margin-top: 15%;
-}
-
-#root {
-    height: 100%;
-}
-
 
 input[type="file"] {
     display: none;
@@ -26,9 +9,5 @@ input[type="file"] {
 
 body {
     margin: 0;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.118), rgba(0, 0, 0, 0.118)), url('./images/bg/bg2.jpeg');
-    background-position: center 0;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+    background-color: #f7f7f7;
 }

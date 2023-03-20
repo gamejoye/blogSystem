@@ -3,6 +3,8 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import BlogDetail from "../../pages/BlogDetail";
 import ErrorBoundary from "../ErrorBoundady";
 import './index.scss'
+import { Layout } from "antd";
+const { Content } = Layout
 
 const Home = lazy(() => import('../../pages/Home'));
 const Titles = lazy(() => import('../../pages/Titles'));
@@ -14,7 +16,7 @@ class Main extends React.Component {
 
     render() {
         return (
-            <main>
+            <Content>
                 <Suspense fallback={<></>}>
                     <ErrorBoundary>
                         <Routes>
@@ -28,7 +30,7 @@ class Main extends React.Component {
                         </Routes>
                     </ErrorBoundary>
                 </Suspense>
-            </main>
+            </Content>
         )
     }
 }

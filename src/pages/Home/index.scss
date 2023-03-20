@@ -1,6 +1,5 @@
 .middle {
-    width: 85%;
-    text-align: center;
+    width: 45%;
 }
 
 .home {
@@ -9,7 +8,13 @@
     display: flex;
 }
 
+.left {
+    width: 25%;
+    padding: 32px;
+}
+
 .right {
-    height: 100%;
-    width: 35%;
+    width: 25%;
+    margin-right: 5%;
+    padding: 32px;
 }

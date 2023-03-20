@@ -1,23 +1,44 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
-import { selectAllTags } from "../../redux/selectors/blogSelector";
+import { selectAllBlogs, selectAllTags } from "../../redux/selectors/blogSelector";
 import './index.scss'
+import { List, Statistic, Tag } from "antd";
 function Classification() {
-    const tags = useSelector(selectAllTags);
+    const blogs = useSelector(selectAllBlogs);
+    const items = useSelector(selectAllTags).map(
+        tag => {
+            return {
+                tag,
+                blogCount: blogs.filter(blog => blog.tags.includes(tag)).length
+            }
+        }
+    );
     const navigate = useNavigate();
     const handleTagOnClick = (tag: string) => {
         navigate(`/blogDetail/${tag}`);
     }
     return (
-        <div className="border-container">
-            {tags.map((tag, idx) => {
-                return (
-                    <div className="content-show tag-show" onClick={() => handleTagOnClick(tag)} key={idx}>
-                        {tag}
-                    </div>
-                )
-            })}
+        <div className="classification-container">
+            <List
+                size="large"
+                grid={{ column: 2 }}
+                dataSource={items}
+                renderItem={(item) => {
+                    return (
+                        <List.Item
+                            className="tag-item"
+                            style={{ padding: 8 }}
+                            onClick={() => handleTagOnClick(item.tag)}
+                        >
+                            {item.tag}
+                            <Tag className="tag-count">
+                                {item.blogCount}
+                            </Tag>
+                        </List.Item>
+                    )
+                }}
+            />
         </div>
     )
 }

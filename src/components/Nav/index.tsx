@@ -1,41 +1,65 @@
-import React, { useEffect } from "react";
-import { HomeOutlined, UserOutlined } from "@ant-design/icons";
+import React from "react";
+import { Menu, MenuProps } from 'antd';
+import { GithubFilled, HomeOutlined, SettingFilled, UserOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router";
 import { useSelector } from "react-redux";
 import { selectUserInfo } from "../../redux/selectors/userInfoSelector";
 import './index.scss'
-import { Avatar } from "antd";
-
-
+import { Avatar, Dropdown, Space } from "antd";
+import { Layout } from "antd";
+import { GITHUB_URL } from "../../constant";
+const { Header } = Layout
 function Nav() {
     const userInfo = useSelector(selectUserInfo);
     const navigate = useNavigate();
-    const handleButton = (value: string) => {
+    const handleNavigate = (value: string) => {
         navigate(`${value}`);
     }
+    const handleButton: MenuProps['onClick'] = (e) => {
+        handleNavigate(e.key);
+    };
+    const articleItems: any[] = [
+        {
+            label: '分类',
+            key: 'classification',
+        },
+        {
+            label: '搜索',
+            key: 'titles',
+        },
+    ];
     return (
-        <>
-            <ul className="menu">
-                <div className="home base">
-                    <a onClick={() => handleButton("home")}><HomeOutlined /></a>
-                </div>
-                <div className="list base">
-                    <a style={{ 'cursor': 'default' }}>文章</a>
-                    <div className="pull-down">
-                        <a onClick={() => handleButton("classification")}>分类</a>
-                        <a onClick={() => handleButton("titles")}>搜索</a>
-                    </div>
-                </div>
-                <div className="settings">
-                    <a onClick={() => handleButton("about")}>
-                        <Avatar
-                            size={48}
-                            src={userInfo.avatarUrl}
-                        />
-                    </a>
-                </div>
-            </ul>
-        </>
+        <Header className="header">
+            <Menu className="header-menu" style={{
+                boxShadow: '0px 0px 2px 5px #f5f5f5',
+            }}>
+                <a className="home base"
+                    onClick={() => handleNavigate("home")}
+                >
+                    <HomeOutlined />
+                </a>
+                <Dropdown
+                    menu={{
+                        items: articleItems,
+                        onClick: handleButton
+                    }}
+                >
+                    <Space>
+                        <div className="base">articles</div>
+                    </Space>
+                </Dropdown>
+                <a className="base"
+                    onClick={() => handleNavigate("about")}
+                >
+                    about
+                </a>
+                <a className="base right-item"
+                    href={GITHUB_URL}
+                >
+                    <GithubFilled />
+                </a>
+            </Menu>
+        </Header>
     )
 }
 

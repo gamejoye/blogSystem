@@ -1,24 +1,16 @@
-import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
-import SexButton from "./SexButton";
-import AboutMe from './AboutMe';
-import Birthday from "./Birthday";
-import { selectUserInfo } from "../../redux/selectors/userInfoSelector";
-import { Divider } from "antd";
+import React from "react";
+import RightAside from "./RightAside";
+import LeftAside from "./LeftAside";
+import './index.scss'
+import MiddleDetail from "./MiddleDetail";
+
 
 const About = () => {
-    const information = useSelector(selectUserInfo);
     return (
-        <div>
-            <AboutMe
-                aboutMe={information.aboutMe}
-            /><Divider />
-            <SexButton
-                sex={information.sex}
-            /><Divider />
-            <Birthday
-                birthday={information.birthday}
-            />
+        <div className="about-container">
+            <LeftAside />
+            <MiddleDetail />
+            <RightAside />
         </div>
     )
 }

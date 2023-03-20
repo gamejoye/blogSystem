@@ -1,20 +1,24 @@
-.aboutMe  {
-    color: black;
+.about-container {
+    margin-top: 32px;
+    display: flex;
 }
 
-.calendar {
+.sub-left-about-container {
+    width: 20%;
+    margin-left: 5%;
+    padding: 32px;
+}
+
+.sub-middle-about-container {
+    background-color: #ffff;
+    width: 50%;
+    padding: 32px;
+}
+
+.sub-right-about-container {
+    background-color: #ffff;
     width: 15%;
-    background-color: rgba(19, 13, 13, 0.158);
-}
-
-.ant-picker {
-    border: 1px solid ;
-}
-
-.ant-picker-input > input {
-    text-align: center;
-}
-
-.edit {
-   display: none; 
+    margin-left: 5%;
+    margin-right: 5%;
+    padding: 32px;
 }

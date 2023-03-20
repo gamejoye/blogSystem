@@ -6,7 +6,7 @@ export const getAllBlogs = (name: string) => {
 export const getUserInfo = (name: string) => {
     return getInstance.get('user/introduction/gamejoye');
 };
-export const getAllComments = (name: string, blogId: number) => {
+export const getAllComments = (blogId: number) => {
     return getInstance.get(`blog/${blogId}/comment/all`)
 }
 export const postBlog = (formData: FormData, blog: IBlog) => {

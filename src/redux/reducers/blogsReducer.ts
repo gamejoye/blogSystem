@@ -35,6 +35,7 @@ export const blogSlice = createSlice({
             })
             .addCase(loadBlogs.fulfilled, (state, action) => {
                 const { payload } = action;
+                
                 state.status = 'succeeded';
                 blogsAdpater.addMany(state, payload);
             })
