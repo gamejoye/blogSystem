@@ -1,6 +1,5 @@
 import React, { lazy, Suspense } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
-import BlogDetail from "../../pages/BlogDetail";
 import ErrorBoundary from "../ErrorBoundady";
 import './index.scss'
 import { Layout } from "antd";
@@ -11,6 +10,8 @@ const Titles = lazy(() => import('../../pages/Titles'));
 const Post = lazy(() => import('../../pages/Post'));
 const About = lazy(() => import('../../pages/About'));
 const Classification = lazy(() => import('../../pages/Classification'))
+const MessageBoard = lazy(() => import('../../pages/MessageBoard'))
+const BlogDetail = lazy(() => import('../../pages/BlogDetail'))
 
 class Main extends React.Component {
 
@@ -26,6 +27,7 @@ class Main extends React.Component {
                             <Route path="/about" element={<About />}></Route>
                             <Route path="/classification" element={<Classification />}></Route>
                             <Route path="/blogDetail/:tag" element={<BlogDetail />}></Route>
+                            <Route path="/message-board" element={<MessageBoard />}></Route>
                             <Route path='*' element={<Navigate to='/' replace />} />
                         </Routes>
                     </ErrorBoundary>

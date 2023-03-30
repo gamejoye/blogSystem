@@ -6,3 +6,5 @@ export const GITHUB_URL = "https://github.com/gamejoye";
 export const QQ_EMAIL = "3032535923@qq.com";
 // gmail邮箱
 export const GMAIL = "gamejoye@gmail.com";
+
+export const MESSAGE_DATETIME_FORMAT = "YYYY-MM-DD HH:mm:ss";

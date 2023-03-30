@@ -48,14 +48,13 @@ function Nav() {
                         <div className="base">articles</div>
                     </Space>
                 </Dropdown>
-                <a className="base"
-                    onClick={() => handleNavigate("about")}
-                >
+                <a className="base" onClick={() => handleNavigate("about")}>
                     about
                 </a>
-                <a className="base right-item"
-                    href={GITHUB_URL}
-                >
+                <a className="base" onClick={() => handleNavigate("message-board")}>
+                    messageBoard
+                </a>
+                <a className="base right-item" href={GITHUB_URL}>
                     <GithubFilled />
                 </a>
             </Menu>

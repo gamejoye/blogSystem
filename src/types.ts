@@ -28,9 +28,29 @@ interface IComment {
     commentDay: string;
 }
 
+interface IFriendLink {
+    name: string;
+    webUrl?: string;
+    avatarUrl?: string;
+    email: string;
+    description?: string;
+}
+
+interface ILeaveMessage {
+    id: number;
+    time: string;
+    content: string;
+    belongTo?: number;
+    reply?: string;
+    friendLink: IFriendLink;
+    subLeaveMessage?: ILeaveMessage[];
+}
+
 export {
     IBlog,
     IUserInfo,
     ISelectedTags,
-    IComment
+    IComment,
+    IFriendLink,
+    ILeaveMessage
 }
